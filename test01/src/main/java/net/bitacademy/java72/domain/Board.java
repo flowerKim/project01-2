@@ -25,6 +25,7 @@ public class Board implements Serializable {
 	protected int    hit;
 	protected String title;
 	protected String content;
+	protected String category;
 	protected String name;
 	protected Date   createDate;
 	protected int    viewCount;
@@ -35,11 +36,17 @@ public class Board implements Serializable {
 	protected String yyyyMMdd; // for JSON
 	// 서브 클래스에서 필드를 추가하고 확장할 수 있기 때문에 protected 접근 제어자를
 	// 통해 접근할 수 있도록 하는 것이 관례다.
-
+	
 	public String getYyyyMMdd() {
 		return yyyyMMdd; // yyyy-[M]M-[d]d
 	}
-	public String getName() {
+	public String getCategory() {
+    return category;
+  }
+  public void setCategory(String category) {
+    this.category = category;
+  }
+  public String getName() {
 		return name;
 	}
 	public void setName(String name) {

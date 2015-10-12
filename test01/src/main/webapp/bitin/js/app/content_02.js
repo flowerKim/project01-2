@@ -14,6 +14,8 @@ define([
 			$.getJSON(contextRoot + '/bitin/auth/loginInfo.do', function(result) {
 				var data = result.data;
 				if (result.state == 'yes') {
+					$('#hidden-member-no').val(data.no);
+					$('#hidden-member-name').val(data.name);
 					$('#myid').val(data.no);
 					$('#myname').val(data.name);
 					$('#myemail').val(data.email);

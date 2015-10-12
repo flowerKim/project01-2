@@ -15,7 +15,8 @@
 	
     
   <select id="list" parameterType="map" resultMap="BoardMap">
-   SELECT fno, mno, (select name from memb where mno=b1.mno)as name, title, hit, add_dt
+   SELECT fno, mno, category, 
+     (select name from memb where mno=b1.mno)as name, title, hit, add_dt
    FROM bbs b1
    ORDER By fno desc
    LIMIT #{startIndex}, #{pageSize}
@@ -27,8 +28,8 @@
   </select>
     
   <insert id="insert" parameterType="Board">
-  INSERT INTO bbs(mno, title, content, add_dt)
-		values(#{mno},#{title}, #{content}, now())
+  INSERT INTO bbs(mno, category, title, content, add_dt)
+		values(#{mno}, #{category}, #{title}, #{content}, now())
   </insert>
   
   <delete id="delete" parameterType="int">
@@ -44,7 +45,8 @@
   </update>
 	
   <select id="get" parameterType="int" resultMap="BoardMap"> 
-    SELECT fno, mno,(select name from memb where mno=b1.mno)as name, add_dt, title, content 
+    SELECT fno, mno, category, 
+      (select name from memb where mno=b1.mno)as name, add_dt, title, content 
    	FROM bbs b1
     WHERE fno=#{value};
   </select>

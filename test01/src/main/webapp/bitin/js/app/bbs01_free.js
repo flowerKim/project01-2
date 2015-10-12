@@ -56,13 +56,10 @@ define([
 				  
 				  $('.nameLink').click(function(event){
 				  	event.preventDefault();
-				  	$('.content-04 > #boardMain > #content' ).load('sub/freeboard_detail.html');
+				  	$('.content-04 > #boardMain > #content' ).load('sub/bbs01_free_detail.html');
 				  	num = this.getAttribute('no');
 				  	moduleObj.fdetailBoard(this.getAttribute('no'));
-				  	moduleObj.repllist(1,10,this.getAttribute('no'));
-				  	
-				  	$('.my-view').css('display', '');
-				  	$('.my-new').css('display', 'none');
+				  	moduleObj.repllist(1, 10, this.getAttribute('no'));
 				  	
 				  });
 				});
@@ -134,9 +131,10 @@ define([
 				method: 'POST',
 				dataType: 'json',
 				data: {
-					mno: $('#mNo').val(),
-					title: $('#mTitle').val(),
-					content: $('#mContent').val()
+					mno: $('#hidden-member-no').val(),
+					title: $('#bbs01-title').val(),
+					content: $('#bbs01-content').val(),
+					category: $('#select-category option:selected').val()
 				},
 				success: function(result) {
 					if (result.data == 'success') {
@@ -193,7 +191,7 @@ define([
 				$('.content-04 > #boardMain > #content').load('sub/freeboard.html');
 			});
 			
-			$('#insertBtn').click(function(event) {
+			$('#bbs01-insertBtn').click(function(event) {
 				event.preventDefault();
 				moduleObj.finsertBoard();
 				$('.content-04 > #boardMain > #content').load('sub/freeboard.html');
@@ -202,13 +200,14 @@ define([
 			// 자유 게시판 글쓰기
 			$('#f_writeBtn').click(function(event) {
 			    event.preventDefault();
-			    $('.content-04 > #boardMain > #content' ).load('sub/freeboard_reg.html');
-			    
+			    $('.content-04 > #boardMain > #content' ).load('sub/bbs01_free_insert.html');
+			    console.log("회원번호 : " + $('#hidden-member-no').val());
+					console.log("이름 : " + $('#hidden-member-name').val());
 			  });
 			
 			$('#cancelBtn').click(function(event) {
 				 event.preventDefault();
-				 $('.content-04 > #boardMain > #content').load('sub/freeboard.html');
+				 $('.content-04 > #boardMain > #content').load('sub/bbs01_free_list.html');
 			    });
 			
 			$('#replinsert_Btn').click(function(event) {
@@ -274,30 +273,16 @@ define([
 			});
 		}, // 초기화 함수
 		
-		fInfo: function() {
-			
-		    $.getJSON(contextRoot + '/bitin/auth/loginInfo.do', function(info) {
-					var data = info.data;
-					if (info.state == 'no') {
-					$('#f_writeBtn').css('display','none');
-							
-					}
-				});
-			},// 자유게시판 첫화면 쓰기버튼 조절  
-		
-		fwriteInfo: function() {
-	    $.getJSON(contextRoot + '/bitin/auth/loginInfo.do', function(info) {
-				var data = info.data;
-				if (info.state == 'yes') {
-					$('#mNo').val(data.no);
-					$('#mname').val(data.name);
-					console.log("번호 호출 : " + data.no);
-				} else {
-					$('#mNo').val("회원번보필요");
-					$('#mname').val("비회원");
-				}
-			});
-		},// 글쓰기 버튼 클릭 시 회원 정보 로딩
+//		fInfo: function() {
+//			
+//		    $.getJSON(contextRoot + '/bitin/auth/loginInfo.do', function(info) {
+//					var data = info.data;
+//					if (info.state == 'no') {
+//					$('#f_writeBtn').css('display','none');
+//							
+//					}
+//				});
+//			},// 자유게시판 첫화면 쓰기버튼 조절  
 		
 		fcontentInfo: function() {
 		    $.getJSON(contextRoot + '/bitin/auth/loginInfo.do', function(info) {

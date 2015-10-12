@@ -8,17 +8,13 @@
   color: #000;
 }
 #bbs01-container {
-  width: 650px;
-  margin-left: 80px; 
-}
-#listDiv {
-  padding: 20px 20px;
+  width: 750px;
 }
 #listTable_free thead tr th {
   text-align: center;
   border-bottom: 1px solid #eee;
   border-top: 1px solid #eee;
-  padding: 7px;
+  padding: 9px;
 }
 #listTable_free {
   margin-top: 30px;
@@ -31,21 +27,21 @@
 }
 #listTable_free tbody tr td {
   text-align: center;
-  padding: 7px;
+  padding: 8px;
   color: #666;
 }
 #listTable_free tbody tr td a, #editDiv a {
   text-decoration: none;
   color: #000;
 }
-#listTable_free tbody tr td:nth-child(3) {
-  padding-left: 20px;
+#listTable_free tbody tr td:nth-child(4) {
   text-align: left;
+  width: 350px;
 }
 #editDiv {
-  padding-top: 7px;
+  padding-top: 10px;
   text-align: right;
-  padding-right: 13px;
+  padding-right: 20px;
   font-weight: bold;
 }
 .btn-prev-01, .btn-prev-01:HOVER, .btn-prev-01:VISITED,
@@ -55,21 +51,23 @@
   border: 1px solid #ddd;
 }
 #paging div {
-  width: 566px;
-  padding-top: 10px;
+  padding-top: 15px;
+  padding-left: 0px;
+  width: 692px;
   text-align: right;
 }
 </style>
-<body>
+
 <div id='bbs01-container'> <!-- #main -->
 <div id='listDiv'><!-- listDiv -->
-	<h1 align='center'>OUR STORY:자유</h1>
+	<img src='image/bbs01_01.png'>
 	<table id='listTable_free'>
 	  <thead>  
 		  <tr>
-		    <th width='80'>번호</th>
+		    <th width='50'>번호</th>
+		    <th width='80'>분류</th>
 		    <th width='80'>이름</th>
-		    <th width='400'>제목</th>
+		    <th>제목</th>
 		    <th width='80'>조회</th>
 		    <th width='120'>등록일</th>
 		  </tr>
@@ -88,10 +86,12 @@
 	</div>
 </div><!-- listDiv -->
 </div><!-- #main -->
+
 <script id="template_free" type="text/x-handlebars-template">
 {{#each data}}
 <tr class="data-row">
   <td>{{no}}</td>
+  <td>{{category}}</td>
   <td>{{name}}</td>
   <td id='title-td'><a class="nameLink" no="{{no}}" href="#">{{title}}</a></td>
   <td>{{hit}}</td>
@@ -104,10 +104,9 @@
 requirejs(['app/bbs01_free'], function(bbs01_free) {
 	bbs01_free.finit();
 	bbs01_free.flistBoard(1, 10);
-	bbs01_free.fInfo();
+	// bbs01_free.fInfo();
 });
 </script>
 
 
 
-</body></html>
