@@ -57,51 +57,95 @@ define([
 				  $('.nameLink').click(function(event){
 				  	event.preventDefault();
 				  	$('.content-04 > #boardMain > #content' ).load('sub/bbs01_free_detail.html');
-				  	num = this.getAttribute('no');
-				  	moduleObj.fdetailBoard(this.getAttribute('no'));
-				  	moduleObj.repllist(1, 10, this.getAttribute('no'));
+				  	var detailNo = this.getAttribute('no');
+				  	moduleObj.fdetailBoard(detailNo);
+				  	moduleObj.replyList(1, 10, detailNo);
 				  	
 				  });
 				});
 		}, //flistBoard
 		fdetailBoard: function(no) {
+			var detailNo = no;
 			var moduleObj = this;
+			var replyName = $('#hidden-member-name').val();
+			console.log("덧글 이름 : " + replyName);
 			$.getJSON(contextRoot + '/bitin/board/detail.do?no=' + no, function(result) {
 				var data = result.data;
 				//moduleObj.fcontentInfo();
 				$('#fNo').val(data.no);
 				$('#fmNo').val(data.mno);
-				$('#fName').val(data.name);
+				$('.detail-member-name').text(data.name);
+				$('.detail-added-date').text(data.createDate);
 				$('#fCreateDate').val(data.createDate);
-				$('#fTitle').val(data.title);
-				$('#fContent').val(data.content);
-				$('#mem_No_lb').css('display', 'none');
-				$('#mem_No').css('display', 'none');
-				$('#mem_Name_lb').css('display', 'none');
-				$('#mem_Name').css('display', 'none');
-				$('#repl_No_lb').css('display', 'none');
-				$('#repl_No').css('display', 'none');
-				$('#repl_Content').css('display', 'none');
-				$('#replinsert_Btn').css('display', 'none');
-				$('#replupdate_Btn').css('display', 'none');
+				$('.detail-category').text(data.category);
+				$('.detail-title').text(data.title);
+				$('#bbs01-content').val(data.content);
+				if (data.attachFile1 == null) {
+					$('.detail-filename').remove();
+				} else {
+					$('.c-head-filename').val(data.attachFile);
+				}
+				$('#writer-photo').attr('src', contextRoot + '/files/' + data.photo);
+				$('#reply-name').text(replyName);
+				var compareMemberNo = parseInt($('#hidden-member-no').val());
+				if (compareMemberNo != data.mno) {
+					$('#bbs01-updateBtn').css('display', 'none');
+				}
+				
+				$('#f_editBtn').click(function(event) {
+					event.preventDefault();
+					$('.content-04 > #boardMain > #content' ).load('sub/bbs01_free_edit.html');
+			  	moduleObj.feditBoard(detailNo);
+				});
+				
+				//
+//				$('#mem_No_lb').css('display', 'none');
+//				$('#mem_No').css('display', 'none');
+//				$('#mem_Name_lb').css('display', 'none');
+//				$('#mem_Name').css('display', 'none');
+//				$('#repl_No_lb').css('display', 'none');
+//				$('#repl_No').css('display', 'none');
+//				$('#repl_Content').css('display', 'none');
+//				$('#replyInsert_Btn').css('display', 'none');
+//				$('#replyUpdate_Btn').css('display', 'none');
 				
 			});
+			
 		}, // fdetailBoard
-		fdeleteBoard: function(no){
+		feditBoard: function(no) {
+			var detailNo = no;
 			var moduleObj = this;
-			$.getJSON(contextRoot + '/bitin/board/delete.do?no=' + no, function(result) {
+			$.getJSON(contextRoot + '/bitin/board/detail.do?no=' + no, function(result) {
 				var data = result.data;
-				if (result.data == 'success') {
-					alert('Delete Success!');
-					moduleObj.flistBoard(currPageNo, pageSize);
-					
-					$('#cancelBtn').click();
-					
-				} else {
-					alert('Delete Fail');
-				}
+				//moduleObj.fcontentInfo();
+				$('#edit-fno').val(data.no);
+				$('#edit-mno').val(data.mno);
+				$('#edit-createDate').val(data.createDate);
+				
+				$('#edit-category').val(data.category);
+				$('#edit-title').val(data.title);
+				$('#edit-content').val(data.content);
+				
+				$('#edit-filename').val(data.attachFile);
+				
 			});
-		}, // fdeleteBoard
+			
+		}, // feditBoard
+//		fdeleteBoard: function(no){
+//			var moduleObj = this;
+//			$.getJSON(contextRoot + '/bitin/board/delete.do?no=' + no, function(result) {
+//				var data = result.data;
+//				if (result.data == 'success') {
+//					alert('Delete Success!');
+//					moduleObj.flistBoard(currPageNo, pageSize);
+//					
+//					$('#bbs01-initialize').click();
+//					
+//				} else {
+//					alert('Delete Fail');
+//				}
+//			});
+//		}, // fdeleteBoard
 		fupdateBoard: function(){
 			var moduleObj = this;
 			$.ajax(contextRoot + '/bitin/board/update.do', 
@@ -109,15 +153,17 @@ define([
 				method: 'POST',
 				dataType: 'json',
 				data: {
-					no: $('#fNo').val(),
-					title: $('#fTitle').val(),
-					content: $('#fContent').val()
+					no: $('#edit-fno').val(),
+					mno: parseInt($('#hidden-member-no').val()),
+					title: $('#edit-title').val(),
+					content: $('#edit-content').val(),
+					category: $('#edit-category option:selected').val()
 				},
 				success: function(result) {
 					if (result.data == 'success') {
 						alert('Modify Success!');
 						moduleObj.flistBoard(currPageNo, pageSize);
-						$('#cancelBtn').click();
+						$('#bbs01-initialize').click();
 					} else {
 						alert('Modify Fail');
 					}
@@ -140,7 +186,7 @@ define([
 					if (result.data == 'success') {
 						alert('입력 성공');
 						moduleObj.flistBoard(1, pageSize);
-						$('#cancelBtn').click();
+						$('.content-04 > #boardMain > #content').load('sub/bbs01_free_list.html');
 					} else {
 						alert('입력 실패');
 					}
@@ -175,7 +221,7 @@ define([
 				$('#repl_No_lb').css('display','none');
 				$('#repl_No').css('display','none');	
 				$('#repl_Content').css('display','');
-				$('#replinsert_Btn').css('display','');
+				$('#replyInsert_Btn').css('display','');
 				
 			});
 			
@@ -185,16 +231,16 @@ define([
 				$('.content-04').load('sub/content_04.html');
 			});
 			
-			$('#updateBtn').click(function(event) {
+			$('#bbs01-updateBtn').click(function(event) {
 				event.preventDefault();
 				moduleObj.fupdateBoard(); 
-				$('.content-04 > #boardMain > #content').load('sub/freeboard.html');
+				$('.content-04 > #boardMain > #content').load('sub/bbs01_free_list.html');
 			});
 			
 			$('#bbs01-insertBtn').click(function(event) {
 				event.preventDefault();
 				moduleObj.finsertBoard();
-				$('.content-04 > #boardMain > #content').load('sub/freeboard.html');
+				$('.content-04 > #boardMain > #content').load('sub/bbs01_free_list.html');
 			});
 			
 			// 자유 게시판 글쓰기
@@ -205,47 +251,59 @@ define([
 					console.log("이름 : " + $('#hidden-member-name').val());
 			  });
 			
-			$('#cancelBtn').click(function(event) {
-				 event.preventDefault();
-				 $('.content-04 > #boardMain > #content').load('sub/bbs01_free_list.html');
-			    });
+//			$('#bbs01-cancelBtn').click(function(event) {
+//				$('#bbs01-initialize').click();
+//				event.preventDefault();
+//				console.log("페이지번호는 " + pageNo + ", 페이지 사이즈는 " + pageSize);
+//				moduleObj.flistBoard(pageNo, pageSize)
+//			});
 			
-			$('#replinsert_Btn').click(function(event) {
+			$('#f_listBtn').click(function(event) {
 				event.preventDefault();
-				moduleObj.replinsert(num);
-				$('.content-04 > #boardMain > #content' ).load('sub/freeboard_detail.html');
-				moduleObj.fdetailBoard(num);
-				moduleObj.repllist(1,10,num);
+				$('.content-04 > #boardMain > #content').load('sub/bbs01_free_list.html');
 			});
 			
-			$('#replupdate_Btn').click(function(event) {
+			$('#bbs01-initialize').click(function(event) {
+				 event.preventDefault();
+				 $('.content-04 > #boardMain > #content').load('sub/bbs01_free_list.html');
+			});
+			
+			$('#replyInsert_Btn').click(function(event) {
 				event.preventDefault();
-				moduleObj.replupdate();
+				moduleObj.replyInsert(num);
 				$('.content-04 > #boardMain > #content' ).load('sub/freeboard_detail.html');
 				moduleObj.fdetailBoard(num);
-				moduleObj.repllist(1,10,num);
+				moduleObj.replyList(1,10,num);
+			});
+			
+			$('#replyUpdate_Btn').click(function(event) {
+				event.preventDefault();
+				moduleObj.replyUpdate();
+				$('.content-04 > #boardMain > #content' ).load('sub/freeboard_detail.html');
+				moduleObj.fdetailBoard(num);
+				moduleObj.replyList(1,10,num);
 				
 			  	
 			});
 			
 			$('.deleteLink').click(function(event){
 			  	event.preventDefault();
-				moduleObj.repldelete(this.getAttribute('rno'));
+				moduleObj.replyDelete(this.getAttribute('rno'));
 				$('.content-04 > #boardMain > #content' ).load('sub/freeboard_detail.html');
 				moduleObj.fdetailBoard(num);
-				moduleObj.repllist(1,10,num);
+				moduleObj.replyList(1,10,num);
 			  });
 			
 			$('.getLink').click(function(event){
 			  	event.preventDefault();
-				moduleObj.repldetail(this.getAttribute('rno'));
+				moduleObj.replyDetail(this.getAttribute('rno'));
 			
 				$('#mem_No_lb').css('display','');
 				$('#mem_No').css('display','');
 				$('#repl_No_lb').css('display','');
 				$('#repl_No').css('display','');
 				$('#repl_Content').css('display','');
-				$('#replinsert_Btn').css('display','');
+				$('#replyInsert_Btn').css('display','');
 				
 				
 			  });
@@ -345,7 +403,7 @@ define([
 			    return result;
 				},// 글의 내용 클릭시 회원 정보 로딩(리플)	
 		//***********자유게시판 리플 파트*************
-		repllist: function(pageNo, pageSize, no) {
+		replyList: function(pageNo, pageSize, no) {
 			var moduleObj = this;
 			
 			$.getJSON(contextRoot + '/bitin/repl/list.do?no=' + no, 
@@ -357,13 +415,13 @@ define([
 					currPageNo = result.pageNo;
 				  $('#pageNo').text(currPageNo);
 				  moduleObj.freplInfo(result);
-				  var tbody = $('#listTable tbody');
+				  var tbody = $('#table-reply tbody');
 				  $('.data-row').remove();
 				  // HandlebarsJS 템플릿 사용
-				  var source = $('#template_repl').html();
+				  var source = $('#template_reply').html();
 				  var template = handlebars.compile(source);
 				  var content = template(result);
-				  $('#listTable_repl tbody').html(content);
+				  $('#table-reply tbody').html(content);
 				 
 				  
 				  // 이전, 다음 버튼 처리
@@ -381,7 +439,7 @@ define([
 				
 				});
 		}, //리플 리스트 출력
-		replinsert: function(no) {
+		replyInsert: function(no) {
 			
 			var moduleObj = this;
 			console.log(no);
@@ -398,7 +456,7 @@ define([
 					if (result.data == 'success') {
 						alert('리플 입력을 성공했습니다!');
 						
-						$('#cancelBtn').click();
+						$('#bbs01-initialize').click();
 					} else {
 						alert('리플 입력을 실패했습니다.');
 					}
@@ -406,19 +464,19 @@ define([
 			});
 			
 		},//리플 내용 입력
-		repldelete: function(no){
+		replyDelete: function(no){
 			var moduleObj = this;
 			$.getJSON(contextRoot + '/bitin/repl/delete.do?no=' + no, function(result) {
 				var data = result.data;
 				if (result.data == 'success') {
 					alert('리플 삭제를 완료했습니다!');
-//					moduleObj.repllist(currPageNo, pageSize);
+//					moduleObj.replyList(currPageNo, pageSize);
 				} else {
 					alert('리플 삭제를 실패했습니다.');
 				}
 			});
 		}, //리플 삭제
-		repldetail: function(no) {
+		replyDetail: function(no) {
 			$.getJSON(contextRoot + '/bitin/repl/detail.do?no=' + no, function(result) {
 				var data = result.data;
 				$('#mem_No').val(data.mno);
@@ -426,7 +484,7 @@ define([
 				$('#repl_Content').val(data.content);
 			});
 		}, // 리플 디테일
-		replupdate: function(){
+		replyUpdate: function(){
 			var moduleObj = this;
 			$.ajax(contextRoot + '/bitin/repl/update.do', 
 			{

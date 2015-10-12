@@ -38,15 +38,18 @@
   
   <update id="update" parameterType="Board">
   UPDATE bbs SET
-    fno=#{no},
+    mno=#{mno},
     title=#{title},
-    content=#{content}
+    content=#{content},
+    category=#{category}
   WHERE fno=#{no}   
   </update>
 	
   <select id="get" parameterType="int" resultMap="BoardMap"> 
     SELECT fno, mno, category, 
-      (select name from memb where mno=b1.mno)as name, add_dt, title, content 
+      (select name from memb where mno=b1.mno)as name, 
+      (select photo from memb where mno=b1.mno)as photo,
+      add_dt, title, content 
    	FROM bbs b1
     WHERE fno=#{value};
   </select>

@@ -1,0 +1,112 @@
+#free-insert {
+}
+.optgroud-label {
+  text-align: right;
+  font-size: 12px;
+  padding-left: 20px;
+}
+.c-head {
+  width: 750px;
+  padding: 7px 7px;
+  border-bottom: 1px solid #eee;
+}
+.c-head-title {
+  display: inline-block;
+  width: 100px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+.c-head-file {
+  display: inline-block;
+}
+.span-input-01 input {
+  padding: 3px;
+}
+.c-head-content {
+  vertical-align: top;
+}
+.c-head-buttons {
+  padding: 10px 6px 10px 0px;
+  text-align: right;
+}
+.c-head-buttons span button {
+  border: none;
+  padding: 4px 10px 6px 10px;
+  background: #50a85a;
+  font-size: 1.2em;
+  color: white;
+  width: 60px;
+  overflow: visible;
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+.bbs01-top-img {
+  margin-bottom: 20px;
+}
+#select-category, #edit-category {
+  width: 100px;
+  padding-bottom: 4px;
+  padding-top: 2px;
+  background: url(../image/select_arrow_01.png) no-repeat 95% 50%;
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none
+}
+/* 게시물 상세 보기 */
+.detail-member-photo {
+	display: inline-block;
+	vertical-align: top;
+	margin-bottom: 10px;
+}
+.detail-information {
+	display: inline-block;
+	width: 610px;
+	padding-left: 15px;
+	margin-bottom: 10px;
+}
+.bbs01-detail {
+	padding-bottom: 10px;
+}
+#writer-photo {
+	border: 2px solid rgba(0, 0, 0, 0.1);
+}
+.detail-category, .detail-title, .detail-member-name, .detail-added-date,
+.c-head-filename {
+	color: #999;
+}
+.c-head-buttons span a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+/* 리플 CSS */
+#replyDiv {
+	border-top: 1px solid #ddd;
+}
+.reply-name-info {
+	margin-top: 20px;
+	width: 105px;
+	display: inline-block;
+	vertical-align: top;
+	text-align: right;
+	font-size: 1.1em;
+	font-weight: bold;
+	padding-right: 5px;
+	margin-right: 2px;
+}
+.reply-textarea-form {
+	display: inline-block;
+	margin-top: 20px;
+}
+.reply-list {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+	color: #666;
+}
+.reply-btn {
+	padding-top: 2px;
+}

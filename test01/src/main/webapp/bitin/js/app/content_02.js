@@ -16,6 +16,7 @@ define([
 				if (result.state == 'yes') {
 					$('#hidden-member-no').val(data.no);
 					$('#hidden-member-name').val(data.name);
+					$('#hidden-member-photo').val(data.photo);
 					$('#myid').val(data.no);
 					$('#myname').val(data.name);
 					$('#myemail').val(data.email);

@@ -32,6 +32,7 @@ public class Board implements Serializable {
 	protected String attachFile1;
 	protected String attachFile2;
 	protected String attachFile3;
+	protected String photo;
 	protected String password;
 	protected String yyyyMMdd; // for JSON
 	// 서브 클래스에서 필드를 추가하고 확장할 수 있기 때문에 protected 접근 제어자를
@@ -40,7 +41,13 @@ public class Board implements Serializable {
 	public String getYyyyMMdd() {
 		return yyyyMMdd; // yyyy-[M]M-[d]d
 	}
-	public String getCategory() {
+	public String getPhoto() {
+    return photo;
+  }
+  public void setPhoto(String photo) {
+    this.photo = photo;
+  }
+  public String getCategory() {
     return category;
   }
   public void setCategory(String category) {

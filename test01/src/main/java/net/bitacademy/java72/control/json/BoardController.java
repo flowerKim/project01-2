@@ -37,10 +37,8 @@ public class BoardController {
   
   @RequestMapping("/detail")
   public Object detail(int no) {
-    Map<String,Object> result = 
-        new HashMap<String,Object>();
+    Map<String,Object> result = new HashMap<String,Object>();
     result.put("data", boardService.get(no));
-    
     return result;
   }
 
@@ -99,9 +97,8 @@ public class BoardController {
   public Object update (Board board) throws Exception {
 
     int count = boardService.update(board);
-
-    Map<String,Object> result = 
-        new HashMap<String,Object>();
+    System.out.println("업데이트 진입");
+    Map<String,Object> result = new HashMap<String,Object>();
     if (count > 0) {
       result.put("data", "success");
     } else {

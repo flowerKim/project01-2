@@ -7,7 +7,7 @@
   <div class='bbs01-category c-head'>
     <span class='c-head-title'>카테고리</span>
     <span>
-      <select name=select-category id='select-category'>
+      <select name='edit-category' id='edit-category'>
         <optgroup label="분류선택" style="color:#999">
         </optgroup>
         <option value="일반">일반</option>
@@ -20,26 +20,26 @@
   <div class='c-head'>
     <span class='c-head-title'>제목</span>
     <span class='span-input-01'><input type='text' name='bbs01-title' 
-      id='bbs01-title' style="width:631px" maxlength='30' 
-      placeholder="제목을 입력하세요.(30글자 이내)"></span>
+      id='edit-title' style="width:631px" maxlength='30'></span>
   </div>
   <div class='c-head'>
     <span class='c-head-title c-head-content'>내용</span>
     <span>
-      <textarea name='bbs01-content' id='bbs01-content' rows='15' cols='87' 
-        placeholder="내용을 입력하세요." style="resize:none;"></textarea>
+      <textarea name='bbs01-content' id='edit-content' rows='15' cols='87' 
+        style="resize:none;"></textarea>
     </span>
   </div>  
   <div class='c-head'>
     <span class='c-head-title'>파일 첨부</span>
+    <span class='edit-filename'></span>
     <span class='c-head-file'><input type='file'></span>
-    <span class='c-head-filename'></span>
   </div>  
   <div class='c-head-buttons'>
-	  <span><a href='#'><button type='button' id='bbs01-insertBtn'>등록</button></a>
+	  <span><a href='#'><button type='button' id='bbs01-updateBtn'>저장</button></a>
 	  <a href='#'><button type='button' id='bbs01-cancelBtn'>취소</button></a></span>
   </div>
-      
+  <input type='hidden' id='edit-fno'>
+  <input type='hidden' id='edit-mno'>
 
 </div>
 <script>

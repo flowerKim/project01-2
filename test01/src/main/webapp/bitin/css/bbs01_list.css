@@ -1,0 +1,57 @@
+#paging div a {
+  text-decoration: none;
+  color: #000;
+}
+#paging div a:HOVER {
+  text-decoration: none;
+  color: #000;
+}
+#bbs01-container {
+  width: 750px;
+}
+#listTable_free thead tr th {
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  padding: 9px;
+}
+#listTable_free {
+  margin-top: 30px;
+}
+#listTable_free thead tr {
+  background-color: #f9f9f9;
+}
+#listTable_free tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+#listTable_free tbody tr td {
+  text-align: center;
+  padding: 8px;
+  color: #666;
+}
+#listTable_free tbody tr td a, #editDiv a {
+  text-decoration: none;
+  color: #000;
+}
+#listTable_free tbody tr td:nth-child(4) {
+  text-align: left;
+  width: 380px;
+}
+#editDiv {
+  padding-top: 10px;
+  text-align: right;
+  padding-right: 20px;
+  font-weight: bold;
+}
+.btn-prev-01, .btn-prev-01:HOVER, .btn-prev-01:VISITED,
+.btn-next-01, .btn-next-01:HOVER, .btn-next-01:VISITED {
+  background-color: #f7f7f7;
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+#paging div {
+  padding-top: 15px;
+  padding-left: 0px;
+  width: 692px;
+  text-align: right;
+}
