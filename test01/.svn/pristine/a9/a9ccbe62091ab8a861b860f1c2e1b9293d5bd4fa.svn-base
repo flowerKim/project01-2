@@ -1,0 +1,64 @@
+#lean_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height:100%;
+  width:100%;
+  background: #000;
+  display: none;
+  color: white;
+}
+
+.modal-window {
+	position: fixed;
+  margin: 0 auto;
+  height: 290px;  
+  margin-top:100px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 11120;
+}
+#message {
+	color: red;
+	padding-top: 8px;
+}
+.myinfo-header {
+  padding: 0px 15px 0px 15px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+.info-txt-field {
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: right;
+  font-size: large;
+}
+.info-txt-field label {
+	width: 100px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+.btn-field {
+  padding: 15px 20px 15px 125px;
+  width: 100%;
+  overflow: hidden;
+  background: white;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.btn-field button {
+  float: right;
+  width: auto;
+  border: none;
+  padding: 7px 10px 9px 10px;
+  background: #50a85a;
+  font-size: 1.3em;
+  color: white;
+  overflow: visible;
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  font-family: 'Play', sans-serif;
+}

@@ -1,0 +1,44 @@
+<script src='js/lib/jquery-1.11.3.js' type='text/javascript'></script>
+#top-menu{
+list-style-type:none;
+    
+}
+#top-menu li a{
+text-decoration:none;
+    color:Navy;
+}
+#top-menu li ul li{
+list-style-type:none;
+}
+#top-menu li ul li a{
+text-decoration:none;
+}
+#top-menu li ul li ul{
+list-style-type:none;
+}
+
+<div id="nav-container">
+
+
+  
+<ul id='top-menu'>
+  <li><a href="">Categories</a>
+  <ul>
+		    <li><a href="">Item 11</a></li>
+        <li><a href="">Item 12</a></li>
+        <li><a href="">Item 13</a></li>
+        <li><a href="">Item 14</a></li>
+  </ul>               
+  </li>
+</ul>
+
+</div>
+    
+<script>
+$('#menu >li').hover(function(){
+  $(this).closest('li').find('>ul').css({'opacity':0,'margin-    top':20}).show().animate({'margin-top':1,'opacity':1},300);
+},function(){
+$(this).find('>ul').fadeOut("slow");
+
+});
+</script>

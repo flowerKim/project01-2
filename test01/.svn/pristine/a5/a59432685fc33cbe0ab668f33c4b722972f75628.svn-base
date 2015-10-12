@@ -1,0 +1,139 @@
+<link href="css/myinfo.css" rel="stylesheet" type="text/css" />
+
+<div class='div-profile'>
+<!-- <div id='content02-outline col-sm-6'> div-profile -->
+  <div class='content-02-col-sm-6'>
+    <div class='ih-item circle colored effect13 from_left_and_right'><a href='#myinfo' class='modaltrigger'>
+      <div><img class='round-img-1' src='image/dasol.jpg' width='200' height='200'>&nbsp;</div>
+      <div class='info'>
+        <div class='info-back'>
+          <h3>PROFILE Here</h3>
+          <p>View My Information</p>
+        </div>
+      </div></a>
+    </div>
+  </div>
+  
+  <div class='content-02-col-sm-6'>
+    <div class='ih-item circle colored effect13 from_left_and_right'><a href='#qr-attd' class='modaltrigger'>    
+      <div class="img"><img class='round-img-1 round-qr' src='image/qr_ex01.png' width='200' height='200'>&nbsp;</div>
+      <div class='info'>
+        <div class='info-back'>
+          <h3>QR Attend</h3>
+          <p>IN-OUT Check in Here</p>
+        </div>
+      </div></a>
+    </div>
+  </div>
+  
+  <!-- 출석률 그래프 -->
+  <div class='content-02-col-sm-6'>
+    <div class='ih-item circle colored effect13 from_left_and_right'><a href='#attd-per' class='modaltrigger'>
+    <div><img class='round-img-2' src='image/white_01.png' width='200' height='200'>&nbsp;</div>
+    <div class='attend-chart' id='attend-graph' 
+       data-percent='60'
+       data-size='200'
+       data-line='15'></div>
+      <div class='info'>
+        <div class='info-back'>
+          <h3>Attend Percent</h3>
+          <p>Information of Attendance</p>
+        </div>
+      </div></a>
+    </div>
+  </div>
+</div>
+
+<!-- 모달 윈도우 시작 -->
+<!-- myinfo 부분 -->
+<div id='myinfo' class='modal-window'>
+  <div class='myinfo-header'>
+    <h2>My Information</h2>
+  </div>
+  <form action='' method='post' id='edit-myinformation'>
+	  <div class='info-txt-field'>
+	    <div>
+			  <label>· 아이디 </label>
+			  <input type='text' name='mno' readonly class='input-border-0' id='myid'>
+	    </div>
+	    <div>
+			  <label>· 이름 </label>
+			  <input type='text' name='name' readonly class='input-border-0' id='myname'>
+	    </div>
+	    <div>
+			  <label for='myemail'>· 이메일 </label>
+			  <input type='text' name='email' class='input-border-1' required='required' id='myemail'>
+	    </div>
+	    <div>
+			  <label>· 전화번호 </label>
+			  <input type='text' name='tel' class='input-border-1' required='required' id='mytel'>
+	    </div>
+	    <div>
+			  <label>· 비밀번호 </label> 
+			  <input type='password' name='password' class='input-border-1' required='required' id='mypass'>
+	    </div>
+	    <div>
+			  <label>· 비밀번호 확인 </label>
+			  <input type='password' name='repassword' class='input-border-1' required='required' id='myrepass'>
+	    </div>
+	    <div>
+			  <label class='memb-photo'>· 사진 </label>
+			  <div id='memb-img'><img src='image/dasol.jpg' width='180' height='180'></div><br>
+			  <button class='photo-edit'>변경</button>
+	    </div>
+	  </div>
+	  <div class='info-btn-field' id='login-button'>
+	      <button type='submit'>저장</button>
+	      <button type='button' class='hidemodal'>닫기</button>
+	  </div>
+  </form>
+</div>
+
+<!-- qr-attd 부분 -->
+<div id='qr-attd' class='modal-window qr-window'>
+  <div class='myinfo-header'>
+    <h2>QR Attendance</h2>
+  </div>
+  <div class='info-txt-field qr-txt-field'>
+    <div id='qr-encode'></div>
+    <div class='qr-info'>
+      <p>· QR 갱신 시간 : 07:00, 21:00</p>
+      <p>· 입실 시간 : 08:55</p>
+      <p>· 퇴실 시간 : 미체크</p>
+      <p>· 다음 QR 생성 : </p>
+    </div>
+  </div>
+  <div class='info-txt-field qr-txt-field-info'>
+    <p>최초 체크가 입실 시간이 되고 마지막 체크가 퇴실 시간이</p>
+    <p>됩니다. (중복 체크 가능)</p>
+  </div>
+</div>
+
+<!-- attd-per 부분 -->
+<div id='attd-per' class='modal-window'>
+  <div class='myinfo_header'>
+    <h2>My Attendance</h2>
+  </div>
+</div>
+<!-- 모달 윈도우 끝 -->
+
+<script>
+requirejs(['app/content_02'], function(content_02) {
+  content_02.memberInfo();
+  content_02.infoValidate();
+  content_02.qrEncode();
+}); 
+</script>
+
+<script>
+$(function(){
+  $('.content-02-col-sm-6').click(function(event){
+    event.preventDefault();
+  })
+  $('.modaltrigger').leanModal({ top: 110, overlay: 0.7, closeButton: '.hidemodal' });
+});
+</script>
+
+<script src='js/app/attend_graph.js'></script>
+<script src='js/app/jquery.leanModal.js' type='text/javascript'></script>
+

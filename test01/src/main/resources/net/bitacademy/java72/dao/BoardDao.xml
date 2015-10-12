@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java72.dao.BoardDao">
+  <resultMap type="Board" id="BoardMap">
+    <id     column="fno" property="no" />
+    <result column="views" property="viewCount" />
+    <result column="pwd" property="password" />
+    <result column="add_dt"   property="createDate" />
+    <result column="att_file1" property="attachFile1" />
+    <result column="att_file2" property="attachFile2" />
+    <result column="att_file3" property="attachFile3" />
+  </resultMap>
+	
+    
+  <select id="list" parameterType="map" resultMap="BoardMap">
+   SELECT fno, mno, (select name from memb where mno=b1.mno)as name, title, hit, add_dt
+   FROM bbs b1
+   ORDER By fno desc
+   LIMIT #{startIndex}, #{pageSize}
+  </select>
+    
+  <select id="countAll" resultType="int">
+    SELECT count(*)
+    FROM bbs 
+  </select>
+    
+  <insert id="insert" parameterType="Board">
+  INSERT INTO bbs(mno, title, content, add_dt)
+		values(#{mno},#{title}, #{content}, now())
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+  DELETE FROM bbs where fno=#{value}
+  </delete>
+  
+  <update id="update" parameterType="Board">
+  UPDATE bbs SET
+    fno=#{no},
+    title=#{title},
+    content=#{content}
+  WHERE fno=#{no}   
+  </update>
+	
+  <select id="get" parameterType="int" resultMap="BoardMap"> 
+    SELECT fno, mno,(select name from memb where mno=b1.mno)as name, add_dt, title, content 
+   	FROM bbs b1
+    WHERE fno=#{value};
+  </select>
+  
+  <select id="getView" parameterType="int" resultMap="BoardMap">
+    select bno, views from board10 where bno=#{value}
+  </select>
+
+  <update id="updateView" parameterType="Board">
+    update board10 set views=#{viewCount} where bno=#{no}
+  </update>
+
+
+
+</mapper>

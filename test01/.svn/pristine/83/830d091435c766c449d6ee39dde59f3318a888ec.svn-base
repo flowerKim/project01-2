@@ -1,0 +1,39 @@
+define(['jquery'], function($) {
+  $('#main > header').load('header.html');
+  $('.content-01').load('sub/content_01.html');
+  $('.content-02').load('sub/content_02.html');
+  $('.content-03').load('sub/content_03.html');
+  $('.content-04').load('sub/content_04.html');
+  $('#main > footer').load('footer.html'); 
+ 
+  /*
+  $('#memberMenu').click(function(event) {
+    event.preventDefault();
+    $('#content').load('sub/member.html');
+  });
+*/
+ /* $(document).on('login.success', function(event) {
+    //특정 모듈만 가져오기
+    var header = require('app/header');
+    header.loadLoginInfo();
+    $('#content').load('sub/board.html');
+  });
+
+  $(document).on('logout.success', function(event) {
+    $('#content').load('sub/auth.html');
+    var header = require('app/header');
+    header.loadLoginInfo();
+  });*/
+
+});
+
+
+
+
+
+
+
+
+
+
+

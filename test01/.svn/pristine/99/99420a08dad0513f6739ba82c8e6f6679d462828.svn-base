@@ -1,0 +1,9 @@
+define(['jquery'], function($) {
+ 
+  $('#attend-check').click(function(event) {
+    event.preventDefault();
+    $('#content').load('ac_calendar.html');
+  });
+
+});
+

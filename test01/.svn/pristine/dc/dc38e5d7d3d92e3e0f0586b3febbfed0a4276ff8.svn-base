@@ -1,0 +1,9 @@
+define(['jquery'], function($) {
+			
+	$('#link-myinfo').click(function(event) {
+		console.log("클릭 이벤트 시작");
+    event.preventDefault();
+    $('#content').load('sub/content_02.html');
+	});
+	
+});

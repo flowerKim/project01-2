@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java72.dao.ReportBoardDao">
+  <resultMap type="ReportBoard" id="ReportBoardMap">
+    <id     column="hno" property="no" />
+    <result column="views" property="viewCount" />
+    <result column="pwd" property="password" />
+    <result column="add_dt"   property="createDate" />
+    <result column="web_addr"   property="webAddress" />
+    <result column="att_file1" property="attachFile1" />
+    <result column="att_file2" property="attachFile2" />
+    <result column="att_file3" property="attachFile3" />
+  </resultMap>
+    
+  <select id="list" parameterType="map" resultMap="ReportBoardMap">
+   SELECT hno, mno, (select name from memb where mno=h1.mno)as name, title, web_addr, add_dt from howk h1
+   ORDER By hno desc
+   LIMIT #{startIndex}, #{pageSize}
+  </select>
+    
+  <select id="countAll" resultType="int">
+    SELECT count(*)
+    FROM howk
+  </select>
+  
+  <insert id="insert" parameterType="ReportBoard">
+  INSERT INTO howk(mno, title, content, web_addr, add_dt)
+		values(#{mno}, #{title}, #{content}, #{webAddress}, now())
+  </insert>
+   
+  <delete id="delete" parameterType="int">
+  DELETE FROM howk where hno=#{value}
+  </delete>
+  
+  <update id="update" parameterType="ReportBoard">
+  UPDATE howk SET
+ 	add_dt=now(),
+    title=#{title},
+    content=#{content}
+  WHERE hno=#{no}   
+  </update>
+	
+  <select id="get" parameterType="int" resultMap="ReportBoardMap"> 
+    SELECT hno, add_dt, (select name from memb where mno=h1.mno)as name, title, content 
+   	FROM howk h1
+    WHERE hno=#{value};
+  </select>
+  
+  <select id="getView" parameterType="int" resultMap="ReportBoardMap">
+    select bno, views from board10 where bno=#{value}
+  </select>
+
+  <update id="updateView" parameterType="ReportBoard">
+    update board10 set views=#{viewCount} where bno=#{no}
+  </update>
+  
+</mapper>

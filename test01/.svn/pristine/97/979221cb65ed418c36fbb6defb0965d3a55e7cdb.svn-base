@@ -1,0 +1,48 @@
+.wblinks {
+  position: fixed;
+  left: 48.5%;
+  top: 5px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: xx-large;
+  /* Safari */
+  -webkit-transform: rotate(-90deg);
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+  /* IE */
+  -ms-transform: rotate(-90deg);
+  /* Opera */
+  -o-transform: rotate(-90deg);
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+.dropmenu {
+  font-family: 'Oswald', sans-serif;
+  font-size: large;
+  display: none;
+  letter-spacing: .15em;
+  word-spacing: .75em;
+  background: transparent;
+  position: fixed;
+  left: 39.8%;
+  top: 50px;
+  color: #fff;
+  z-index: 3;
+}
+.wblinks a {
+  text-decoration: none;
+  color: #235683;
+}
+#x3 a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.4);
+  -o-transition:color .5s ease-out, background 2s ease-in;
+  -ms-transition:color .5s ease-out, background 2s ease-in;
+  -moz-transition:color .5s ease-out, background 2s ease-in;
+  -webkit-transition:color .5s ease-out, background 2s ease-in;
+  /* ...and now for the proper property */
+  transition:color .5s ease-out, background 2s ease-in;
+  font-weight: bold;
+}
+#x3 a:HOVER {
+  color: #235683;
+}

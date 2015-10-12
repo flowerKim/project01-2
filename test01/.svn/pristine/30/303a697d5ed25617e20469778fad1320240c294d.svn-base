@@ -1,0 +1,182 @@
+<style>
+ <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+ 
+#loginDiv {
+  text-align: right;
+}
+#listTable-notice {
+  margin: 0 auto;
+}
+#listTable-notice > thead tr th {
+  text-align: center;
+}
+#listTable-notice tbody td {
+  text-align: center;
+}
+#listTable-notice tbody td:first-child {
+  padding-left: 10px;
+  text-align: left;
+}
+.title-notice {
+  /* font-size: 32px; */
+  text-shadow: 4px 4px 4px #aaa;
+}
+
+.container_05 {
+  margin: 0 auto;
+  width: 800px;
+}
+
+.form-group #nContent {
+  /* border: 0px; */
+  border: 1px solid mistyRose; 
+  background-color: mystyRose;
+}
+.content-notice #closeBtn-notice {
+	position: absolute;
+	left: 115%;
+}
+
+</style>
+<body>
+<div class='container_05'> <!-- #main -->
+
+<div id='header' align='right'></div>
+
+<div id='listDiv-notice'> <br />
+	<h1 class='title-notice font-titillium-web' align='center'>NOTICE<br/><br/></h1>
+	<table id='listTable-notice' class='table table-hover'>
+	  <thead>  
+		  <tr>
+		    <th>제목</th>
+		    <th>게시자</th>
+		    <th>등록일</th>
+		  </tr>
+	  </thead>
+	  <tbody></tbody>
+	</table>
+ </div> <!--listDiv-notice -->
+
+<!-- 게시물 상세보기 -->
+<div id='formDiv-notice'>
+ <div class="form-group my-view">
+    <label for="nContent" class="col-sm-2 control-label"></label><br/>
+    <div class="content-notice col-sm-10">
+      <button id='closeBtn-notice' class='btn btn-default btn-sm'>^</button>
+      <input type='text' id='nContent'  style="height:100px; width:790px;" class="form-control" readonly>
+    </div>
+ </div>
+ <!-- 게시물 상세보기 끝 -->
+ 
+ <!-- 페이징 시작-->
+ <br />
+  <div id='paging-notice'>
+    <div><a id='prevBtn-notice' href='#' class="btn btn-default btn-sm" >이전</a>
+      <span id='pageNo-notice'></span>
+      <a id='nextBtn-notice' href='#' class="btn btn-default btn-sm" >다음</a>
+    </div>
+  </div> 
+ <!-- 페이징 끝 -->
+ 
+<!--
+  <h2>게시물 상세 정보</h2>
+  <form class="form-horizontal">
+  <div class="form-group my-view">
+    <label for="fNo" class="col-sm-2 control-label">번호</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="nNo" readonly>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="nTitle" class="col-sm-2 control-label">제목</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="nTitle">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="nContent" class="col-sm-2 control-label">내용</label>
+    <div class="col-sm-10">
+      <textarea id='nContent' rows='5' class="form-control"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fPassword" class="col-sm-2 control-label">암호</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="fPassword">
+    </div>
+  </div>
+  <div class="form-group my-view">
+    <label class="col-sm-2 control-label">조회수</label>
+    <div class="col-sm-10">
+      <p id='fViewCount' class="form-control-static"></p>
+    </div>
+  </div>
+  <div class="form-group my-view">
+    <label class="col-sm-2 control-label">등록일</label>
+    <div class="col-sm-10">
+      <p id='nCreateDate' class="form-control-static"></p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">첨부파일</label>
+    <div class="col-sm-10">
+      <a id='attachFileLink' target='_blank' href='#' 
+            class="form-control-static my-view"></a><br>
+      <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>파일 찾기</span>
+        <input id="fileupload" 
+               type="file" 
+               name="file" 
+               multiple>
+        <input id='fAttachFile' type='hidden'>  
+      </span>
+      <br><br>
+      <div id="progress" class="progress">
+          <div class="progress-bar progress-bar-success"></div>
+      </div>
+      <div id="files" class="files"></div>
+    </div>
+  </div>
+  
+  <!-- 버튼  
+  <div class="form-group">
+    <div class="col-sm-offset-9 col-sm-10">
+      <button id='insertBtn-notice' type='button' class="btn btn-default btn-sm my-new">새글</button>
+      <button id='updateBtn-notice' type='button' class="btn btn-default btn-sm my-view">변경</button>
+      <button id='deleteBtn-notice' type='button' class="btn btn-default btn-sm my-view">삭제</button>
+      <button id='cancelBtn-notice' type='reset' class="btn btn-default btn-sm">취소</button>
+    </div>
+  </div>
+  </form>
+ 버튼 끝  -->
+</div>
+
+
+
+</div> <!-- #main -->
+
+<script id="template-notice" type="text/x-handlebars-template">
+{{#each data}}
+<tr class="data-row-notice">
+  <td><a class="titleLink" nno="{{nno}}" href="#">{{title}}</a></td>
+  <td>{{t_name}} {{ma_name}}</td>
+  <td align='center'>{{createDate}}</td>
+</tr>
+{{/each}}
+</script>
+
+
+
+<script>
+requirejs(['app/content_05'], function(content_05) {
+  content_05.init();
+  content_05.listNotice(1, 3);
+});
+
+
+</script>
+
+<!-- <script src="sub/content_05.js"></script> -->
+
+</body></html>

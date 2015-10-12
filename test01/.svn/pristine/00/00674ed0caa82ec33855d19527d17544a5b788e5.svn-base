@@ -1,0 +1,18 @@
+define(['jquery', 'app/common'], function($) {
+	return {
+		init: function() {
+			console.log("init 진입");
+			$.getJSON(contextRoot + '/bitin/auth/loginInfo.do', 
+				function(result) {
+					var data = result.state;
+					if (data != 'yes') {
+						$('.content-01').css('display', 'none');
+						alert("정상적인 접근이 아닙니다.");
+						window.location.replace(contextRoot + '/bitin/index.html');
+					} else {
+					}
+				});
+		}
+	}
+	
+});

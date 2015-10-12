@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java72.dao.AttdDao">
+  <resultMap type="Attd" id="AttdMap">
+    <id     column="ano" property="no" />
+  </resultMap>
+    
+  <select id="list" parameterType="String" resultMap="AttdMap">
+   SELECT ano, eno, (select name from memb where mno=at.sno)as sno, 
+      fir_time, 
+      date_format(in_time, '%H:%i:%s')as in_time, 
+      date_format(out_time, '%H:%i:%s')as out_time, etc, checkin_t, checkout_t  
+      FROM attd at where fir_time like #{value}
+  </select>
+    
+  <select id="get" parameterType="int" resultMap="AttdMap"> 
+    SELECT checkin_t, checkout_t 
+    FROM attd 
+    WHERE sno=#{value};
+  </select>  
+  
+  <select id="getToday" resultType="Integer"> 
+    SELECT DAYOFWEEK(now());
+  </select>  
+  
+</mapper>

@@ -1,0 +1,73 @@
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0;
+    left: 0;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+    color: white;
+}
+
+#loginmodal {
+  margin: 0 auto;
+  height: 290px;  
+  margin-top:100px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.7);
+  display: none;
+}
+.login-header {
+  padding: 0px 15px 0px 22px;
+  border-bottom: 1px solid #ccc;
+}
+.txt-field {
+  background-color: white;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  text-align: right;
+}
+.txt-field input {
+  width: 244px;
+  padding: 5px;
+  padding-left: 8px;
+  border-radius: 4px;
+  outline: none;
+  color: #222;
+  font-size: 1.2em;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #e7e6e6;
+  border-bottom: 1px solid #e7e6e6;
+  background: #fff8d6;
+}
+.txt-field label {
+  display: block;
+  float: left;
+  width: 100px;
+  text-align: left;
+  padding: 6px 5px;
+}
+.btn-field {
+  padding: 15px 20px 15px 125px;
+  width: 250px;
+  overflow: hidden;
+  background: white;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.btn-field button {
+  float: right;
+  width: auto;
+  border: none;
+  padding: 7px 10px 9px 10px;
+  background: #50a85a;
+  font-size: 1.3em;
+  color: white;
+  overflow: visible;
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  font-family: 'Play', sans-serif;
+}

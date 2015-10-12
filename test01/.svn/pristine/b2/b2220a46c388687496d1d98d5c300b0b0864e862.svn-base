@@ -1,0 +1,63 @@
+<style>
+#loginDiv {
+  text-align: right;
+}
+.container {
+  margin: 0 auto;
+  width: 800px;
+}
+</style>
+<body>
+<div class='container'> <!-- #main -->
+
+<div id='header' align='right'></div>
+
+<div id='listDiv'>
+	<h1 align='center'>회원관리</h1>
+	<table id='listTable' class='table table-hover'>
+	  <thead>  
+		  <tr>
+		    <th>회원번호</th>
+		    <th>이름</th>
+		    <th>이메일</th>
+		    <th>전화번호</th>
+		    <th>등록일</th>
+		  </tr>
+	  </thead>
+	  <tbody></tbody>
+	</table>
+	
+	<div id='paging'>
+	  <div><a id='prevBtn' href='#' class="btn btn-default btn-sm" >이전</a>
+	    <span id='pageNo'></span>
+	    <a id='nextBtn' href='#' class="btn btn-default btn-sm" >다음</a>
+	  </div>
+	</div>
+
+</div> <!-- listDiv -->
+
+
+</div> <!-- #main -->
+
+<script id="template1" type="text/x-handlebars-template">
+{{#each data}}
+<tr class="data-row">
+  <td>{{no}}</td>
+  <td>{{name}}</td>
+  <td>{{email}}</td>
+  <td>{{tel}}</td>
+  <td>{{createDate}}</td>
+</tr>
+{{/each}}
+</script>
+
+<script>
+requirejs(['app/content_04'], function(content_04) {
+  content_04.init();
+  content_04.listMember(1, 3);
+});
+</script>
+
+<!-- <script src="sub/member.js"></script> -->
+
+</body></html>

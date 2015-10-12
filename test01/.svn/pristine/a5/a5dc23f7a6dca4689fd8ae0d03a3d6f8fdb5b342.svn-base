@@ -1,0 +1,106 @@
+<style>  
+.centered { 
+  width: 200px;
+  margin: 0 auto;
+  padding: 0px;
+} 
+
+.line1 {
+  border-bottom:1px dotted red;
+  border-collapse:collapse; 
+}
+.line2 {
+ border: 5px solid #ddd;
+}
+
+.line3 {
+ border: 1px solid black;
+} 
+.mypage-align {
+  width: 270px;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
+.profile-photo {
+  border: 10px solid #f0f0f0;
+  margin: 5px auto;
+}
+.profile-photo-margin20 {
+  margin-top: 20px;
+}
+.qr-img {
+  text-align: center;
+  /* border: 1px solid blue; */
+}
+</style>
+<div class='mypage-align'>
+
+<!-- 프로필 사진 -->
+  <div class="centered profile-photo profile-photo-margin20"> 
+	  <img src="img/me.jpeg" width='180px'>
+  </div>
+
+<!-- 회원이름/ 에디트버튼/ 쪽지이미지 -->
+  <div class="centered">
+    홍길동 님
+      <button class="btn btn-default btn-xs" type="submit">Edit</button> <span
+      style="padding-left: 2px"><img src="img/let2.png" height=18></span>
+  </div>
+
+<!-- 현재 교육 수료일 계산 -->
+<!--   <script>
+    var now = new Date();
+    var then = new Date("june 8,2015");
+    var gap = now.getTime() - then.getTime();
+    gap = Math.floor(gap / (1000 * 60 * 60 * 24));
+    document.write(gap + "일째 교육 중");
+
+교육 수료일까지 남은 일수 계산 
+    var after = new Date("october 28,2015"); // 교육수료일 
+    var gap = after.getTime() - now.getTime();
+    gap = Math.floor(gap / (1000 * 60 * 60 * 24)) + 1;
+    document.write(" ( " + gap + "일 남음 )");
+  </script> -->
+
+<!-- 출결 체크 인 / 아웃 -->
+  <div class='centered'>
+    출결 : <span style="color: blue">IN</span> / <span
+      style="color: lightgray">OUT</span>
+  </div>
+
+<!-- QR코드 이미지 -->
+  <div class="centered profile-photo qr-img">
+    <img 
+        src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=http://localhost:9999/bitinJobBoard/json3/main.html">
+
+<!-- QR 다음 갱신 시간 -->
+    <span style="color: gray"> 
+<!--     <script type="text/javascript">
+      var d = new Date();
+      //document.write('현재 시: ' + d.getHours() + '<br />');
+      var t = (d.getHours() * 60) + (d.getMinutes()); //t=현재시+분
+      //document.write('t  :' +t +' 분 <br />');
+      //alert((420-330)/60 +'시간');
+      if (t >= 0 && t < 420) { //0~7:00
+        document.write('다음 갱신(7시)까지' + Math.floor((420 - t) / 60)
+            + '시간 남음 <br /> ');
+      } else if (t >= 420 && t < 1260) {
+        document.write('다음 갱신(21시)까지' + Math.floor((1260 - t) / 60)
+            + '시간 남음 <br /> ');
+      } else {
+        document.write('내일 오전 7시에 갱신됩니다.<br />' + '(다음 갱신까지 '
+            + Math.floor((1859 - t) / 60) + '시간)');
+      }
+    </script> -->
+    </span>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+

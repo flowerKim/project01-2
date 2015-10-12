@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BITIN</title>
+</head>
+<style>
+.checkinBtn {
+  background-color : mistyRose;
+}
+</style>
+
+<body>
+<div id='comBackHome'></div>
+<div id='ckeckin'>
+<h1 >출결확인</h1>
+ <!--    <button type='submit' class='checkinBtn'>출석체크</button> -->
+ <div id='attend-ok'></div>
+ 
+<script src='js/lib/jquery-1.11.3.min.js' type='text/javascript'></script>
+<script data-main='js/app' src='js/lib/require.js'></script>
+
+ 
+<script>
+requirejs(['app/checkin'], function(checkin) {
+  console.log("checkUrl접근 ");
+  checkin.attendCheck();
+}); 
+</script>
+  
+</div>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/test.jsp" id="frm">
+    아이디 : <input type="text" name="id" id="id"/><br/>
+    비밀번호 : <input type="password" name="password" id="password"/><br/>
+    비밀번호확인 : <input type="password" name="repassword" id="repassword"/><br/>
+    나이 :  <input type="text" name="age" id="age"/><br/>
+    이름 : <input type="text" name="name" id="name"/><br/>
+    이메일 : <input type="text" name="email" id="email"/><br/>
+    홈페이지 : <input type="text" name="homepage" id="homepage"/><br/>
+    <input type="submit" value="회원가입" />
+</form>
+
+
+<script src='../js/lib/jquery-1.11.3.js' type='text/javascript'></script>
+<script src='../js/lib/jquery.validate.js' type='text/javascript'></script>
+<script>
+$(function(){
+  $("form").validate({
+      //validation이 끝난 이후의 submit 직전 추가 작업할 부분
+      submitHandler: function() {
+          var f = confirm("회원가입을 완료하겠습니까?");
+          if(f){
+              return true;
+          } else {
+              return false;
+          }
+      },
+      //규칙
+      rules: {
+          id: {
+              required : true,
+              minlength : 5,
+              remote: "/check_id.jsp"
+          },
+          password: {
+              required : true,
+              minlength : 3
+          },
+          repassword: {
+              required : true,
+              minlength : 3,
+              equalTo : password
+          },
+          name: {
+              required : true,
+              minlength : 2
+          },
+          age: {
+              digits : true
+          },
+          email: {
+              required : true,
+              minlength : 2,
+              email : true
+          },
+          homepage: {
+              url : true
+          }
+      },
+      //규칙체크 실패시 출력될 메시지
+      messages : {
+          id: {
+              required : "필수로입력하세요",
+              minlength : "최소 {0}글자이상이어야 합니다",
+              remote : "존재하는 아이디입니다"
+          },
+          password: {
+              required : "필수로입력하세요",
+              minlength : "최소 {0}글자이상이어야 합니다"
+          },
+          repassword: {
+              required : "필수로입력하세요",
+              minlength : "최소 {0}글자이상이어야 합니다",
+              equalTo : "비밀번호가 일치하지 않습니다."
+          },
+          name: {
+              required : "필수로입력하세요",
+              minlength : "최소 {0}글자이상이어야 합니다"
+          },
+          age: {
+              digits : "숫자만입력하세요"
+          },
+          email: {
+              required : "필수로입력하세요",
+              minlength : "최소 {0}글자이상이어야 합니다",
+              email : "메일규칙에 어긋납니다"
+          },
+          homepage: {
+              url : "정상적인 URL이 아닙니다"
+          }
+      }
+  });
+})
+</script>
+
+</body>
+</html>

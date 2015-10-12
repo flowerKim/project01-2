@@ -1,0 +1,71 @@
+<style>
+#loginDiv {
+  text-align: right;
+}
+#paging {
+  text-align: center;
+}
+#write {
+  text-align: right;
+}
+.jobboard3 {
+  text-align: center;
+  float: center;
+  width: 800px;
+  margin: 0px 25px 20px -105px; 
+}
+</style>
+<body>
+<div class='jobboard3'> <!-- #main -->
+<div id='listDiv'><!-- listDiv -->
+	<h1 align='center'>Job Board</h1>
+	<table id='listTable_job' class='table table-hover'>
+	  <thead>  
+		  <tr>
+		    <th>No.</th>
+		    <th>MembNo.</th>
+		    <th>Name</th>
+		    <th>CompanyName</th>
+		    <th>LineMemo</th>
+		    <th>DefiniteDate</th>
+		    <th>CreateDate</th>
+		  </tr>
+	  </thead>
+	  <tbody></tbody>
+	</table>
+	<div id='loginDiv'>
+  <a id='j_writeBtn' href='#' class='btn btn-primary btn-xs'>Write</a>
+ </div>
+	<div id='paging'>
+	  <div><a id='jprevBtn' href='#' class="btn btn-default btn-sm" >Prev</a>
+	    <span id='pageNo'></span>
+	    <a id='jnextBtn' href='#' class="btn btn-default btn-sm" >Next</a>
+	  </div>
+	</div>
+</div><!-- listDiv -->
+</div><!-- #main -->
+<script id="template_job" type="text/x-handlebars-template">
+{{#each data}}
+<tr class="data-row">
+  <td>{{no}}</td>
+  <td>{{sno}}</td>
+  <td>{{name}}</td>
+  <td>{{co_name}}</td>
+  <td><a class="nameLink" no="{{no}}" href="#">{{line_memo}}</td>
+  <td>{{jday}}</td>
+  <td>{{createDate}}</td>
+</tr>
+{{/each}}
+</script>
+
+<script>
+requirejs(['app/content_04'], function(content_04) {
+  content_04.init();
+  content_04.jlistBoard(1, 10);
+  
+});
+</script>
+
+
+
+</body></html>

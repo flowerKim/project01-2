@@ -1,0 +1,68 @@
+#indexbody {
+  padding: 0px;
+  margin: 0;
+}
+.indexlogin {
+  text-align: center;
+  margin-top: -8px;
+  margin-bottom: -15px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  padding: 0px;
+  border-bottom: 5px solid #eee;
+}
+.indexlogin img {
+  margin-bottom: -4px;
+}
+.bit-information {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 7px;
+  font-weight: bold;
+  margin: 0;
+  color: #666;
+  width: 100%;
+  min-width: 1024px;
+  border-bottom: 3px solid #eee;
+}
+.bit-information span {
+  margin: 0;
+  padding: 10px 5px 10px 5px;
+}
+.bit-information span:first-child {
+  font-size: 1.3em;
+  color: black;
+}
+.bit-information span:nth-child(even) {
+  
+  margin-left: 20px;
+}
+.bit-information span:nth-child(even) img {
+  vertical-align: middle;
+  padding-bottom: 3px;
+}
+.code-background {
+  width: 100%;
+  height: 235px;
+  background-image: url(../image/background_02.png);
+  background-repeat: repeat;
+  background-color: white;
+  text-align: center;
+  vertical-align: bottom;
+  padding-top: 65px;
+  border-bottom: 3px solid #eee;
+}
+.code-background #login-btn div {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  vertical-align: middle;
+  border: 10px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  margin-left: 20px;
+}
+.code-background div img {
+  margin: 0;
+  border-radius: 50%;
+}

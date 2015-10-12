@@ -1,0 +1,104 @@
+<<<<<<< .mine
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/common.css">
+<style>
+#content_04 {
+  width: 800px;
+  margin-left: 10%;
+}
+</style>
+<div id='title' class='container'>  
+ <h1>자유게시판</h1>
+</div>
+<div id='content_04'>
+
+<table id='listTable' class='table table-hover'>
+  <thead>
+	  <tr>
+	    <th>자게번호</th> 
+	    <th>회원번호</th> 
+	    <th>제목</th>
+	    <th>조회수</th>
+	    <th>등록일</th>
+	  </tr>
+	</thead>
+  <tbody></tbody>
+</table>
+<div id='input_Button'>
+<a href='form.html' class="btn btn-primary btn-xs">글쓰기</a>
+<a href='form.html' class="btn btn-primary btn-xs">글수정</a>
+</div>
+<div id='page_Controller'>
+  <a id='prevBtn' href='#' class="btn btn-default btn-sm">이전</a>
+  <span id='pageNo'></span>
+  <a id='nextBtn' href='#' class="btn btn-default btn-sm">다음</a>
+</div>
+
+</div><!-- #main -->  
+    
+  <!-- <script src="../js/bootstrap.min.js"></script> -->
+  <script src="js/app/bit.js"></script>
+  <script src="js/app/content_04.js"></script>
+
+
+
+
+
+
+
+
+          =======
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>bit_in 자유게시판</title>  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div id='title' class='container'>  
+ <h1>자유게시판</h1>
+</div>
+<div id='content_04'>
+
+<table id='listTable' class='table table-hover'>
+  <thead>
+	  <tr>
+	    <th>자게번호</th> 
+	    <th>회원번호</th> 
+	    <th>제목</th>
+	    <th>조회수</th>
+	    <th>등록일</th>
+	  </tr>
+	</thead>
+  <tbody></tbody>
+</table>
+<div id='input_Button'>
+<a href='form.html' class="btn btn-primary btn-xs">글쓰기</a>
+<a href='form.html' class="btn btn-primary btn-xs">글수정</a>
+</div>
+<div id='page_Controller'>
+  <a id='prevBtn' href='#' class="btn btn-default btn-sm">이전</a>
+  <span id='pageNo'></span>
+  <a id='nextBtn' href='#' class="btn btn-default btn-sm">다음</a>
+</div>
+
+</div><!-- #main -->  
+    
+  <!-- <script src="../js/bootstrap.min.js"></script> -->
+  <script src="js/app/bit.js"></script>
+  <script src="js/app/content_04.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+          >>>>>>> .r42

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MAIN</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="common3.css">
+
+<style type="text/css" media="screen">
+
+#div_con {
+	width: 100%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	border: 1px solid red;
+}
+
+#editor{ 
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+  
+#top{
+border: 1px solid black;
+}  
+
+#bottom{
+border: 1px solid black;
+}
+
+.section1 {
+	margin-left:30px;
+	margin-top: 20px;
+	width:360px;
+	height:170px;
+	float: left;
+	
+}
+.section2 {
+	margin-left:440px;
+	margin-top: 20px;
+	width:500px;
+	position: relative;
+}
+.section3 {
+	margin-left:30px;
+	width:500px;
+	float:left;
+	top:380px;
+}
+.section4 {
+	margin-left:580px;
+	width:360px;
+	height:190px;
+  position: relative;
+}
+th, td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+  
+</style>
+
+</head>
+<body>
+
+<div id="div_con">
+
+  <div class="section1">
+    <a href=""><img src="../json3/image/attendance.png" alt="출석체크" class="img-thumbnail"></a>
+  </div>
+    
+  <div class="section2">
+    <table class="table table-bordered">
+			<tr>
+			  <td colspan="3"><p class="bg-primary">보헤미안 새글</p></td>
+			</tr>
+			<tr>
+			  <td width='80'><b>종류</b></td> 
+			  <td width='200'><b>제목</b></td> 
+			  <td width='80'><b>아이디</b></td>
+			</tr>
+			<tr> 
+				<td><span class="label label-success">반장공지</span></td>
+				<td><a href="">반장에게 권한을 주십시요.</a></td>
+				<td>태희1</td>
+			</tr>
+			
+			<tr>
+			<td>
+			<span class="label label-primary">Q &amp; A</span>
+			</td>
+			<td><a href="">자바책 걍 주실분..</a></td>
+			<td>태희2</td>
+			</tr>
+			<tr>
+			<td>
+			<span class="label label-warning">일반글</span>
+			</td>
+			<td><a href="">홈페이지 제작관련 문의합니다.</a></td>
+			<td>김태희3</td>
+			</tr>
+    </table>
+  </div>
+  
+  <div class="section3">
+    <table class="table table-bordered">
+	    <tr id="tr1" height="30px;"> <td colspan="3"><p class="bg-primary">꿀팁 새글</p></td></tr>
+	    <tr id="tr2">
+	      <td><b>종류</b></td>
+	      <td><b>제목</b></td>
+	      <td><b>아이디</b></td>
+	    </tr>
+	  	<tr id="tr3"> 
+	      <td><span class="label label-success">강의자료</span></td>
+		    <td><a href="">꿀팁을 알려드립니다1.</a></td>
+		    <td>김태희1</td>
+	    </tr>
+	    <tr id="tr4"  height="30px;">
+	      <td><span class="label label-primary">취업정보</span></td>
+		   	<td><a href="">꿀팁을 알려드립니다2.</a></td>
+		    <td>김태희2</td>
+	    </tr>
+	    <tr>
+		    <td><span class="label label-warning">정보공유</span></td>
+		    <td><a href="">꿀팁을 알려드립니다3.</a></td>
+	    <td>김태희3</td>
+	    </tr>
+	  </table>
+  </div>
+  
+  <div class="section4">
+    <a href=""><img src="../json3/image/homework.png" alt="..." class="img-thumbnail"></a>
+  </div>
+</div>
+
+
+
+</body>
+</html>

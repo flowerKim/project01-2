@@ -1,0 +1,149 @@
+<link href="css/myinfo.css" rel="stylesheet" type="text/css" />
+<style>
+.div-profile {
+  float: left;
+  width: 100%;
+  min-width: 800px;
+  margin-top: 80px;
+  text-align: center;
+}
+.round-img-1 {
+  display: inline-block;
+  border-radius: 50%;
+  border: 13px solid #ffd6d0;
+}
+.round-img-2 {
+  border: 13px solid #fff;
+}
+.round-qr {
+  border: 13px solid #ebd0ff;
+}
+.div-edit {
+  border-left: 10px solid #83d2ff;
+  padding-left: 25px;
+  float: right;
+  margin-top: 80px;
+  margin-right: 20%;
+  width: 30%;
+  height: 200px;
+  font-size: x-large;
+  
+}
+
+/* 출석률 그래프 */
+.attend-chart {
+  position:absolute;
+  top: 64px;
+  left: -30px;
+  width:200px; 
+  height:200px;
+  text-align:center;
+  font-size:40px;
+  color:#555;
+  font-family: 'Bree Serif', serif;
+}
+canvas {
+  position: absolute;
+  left: 30px;
+  top: -64px;
+}
+.content-02-col-sm-6 {
+  display: inline-block;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+/* 출석률 그래프 끝 */
+
+</style>
+
+<div class='div-profile'>
+<!-- <div id='content02-outline col-sm-6'> div-profile -->
+  <div class='content-02-col-sm-6'>
+    <div class='ih-item circle colored effect13 from_left_and_right'><a href='#myinfo' class='modaltrigger'>
+      <div><img class='round-img-1' src='image/dasol.jpg' width='200' height='200'>&nbsp;</div>
+      <div class='info'>
+        <div class='info-back'>
+          <h3>PROFILE Here</h3>
+          <p>View My Information</p>
+        </div>
+      </div></a>
+    </div>
+  </div>
+  
+  <div class='content-02-col-sm-6'>
+    <div class='ih-item circle colored effect13 from_left_and_right'><a href='#qr-attd' class='modaltrigger'>    
+      <div class="img"><img class='round-img-1 round-qr' src='http://chart.apis.google.com/chart?cht=qr&chs=200x200&chl=http://localhost:9999/bitinJobBoard/json3/main.html' width='200' height='200'>&nbsp;</div>
+      <div class='info'>
+        <div class='info-back'>
+          <h3>QR Attend</h3>
+          <p>IN-OUT Check in Here</p>
+        </div>
+      </div></a>
+    </div>
+  </div>
+  
+  <div class='content-02-col-sm-6'>
+    <div class='ih-item circle colored effect13 from_left_and_right'><a href='#attd-per' class='modaltrigger'>
+    <div><img class='round-img-2' src='image/white_01.png' width='200' height='200'>&nbsp;</div>
+    <div class='attend-chart' id='attend-graph' 
+       data-percent='60'
+       data-size='200'
+       data-line='15'></div>
+      <div class='info'>
+        <div class='info-back'>
+          <h3>Attend Percent</h3>
+          <p>Information of Attendance</p>
+        </div>
+      </div></a>
+    </div>
+  </div>
+</div>
+
+<!-- 모달 윈도우 시작 -->
+<!-- myinfo 부분 -->
+<div id='myinfo' class='modal-window'>
+  <div class='myinfo-header'>
+    <h2>My Information</h2>
+  </div>
+  <div class='info-txt-field'>
+	  <label>회원번호 : </label>
+	  <input type='text' name='mno' readonly><br>
+	  <label>이름 : </label>
+	  <input type='text' name='name' readonly><br>
+	  <label>이메일 : </label>
+	  <input type='text' name='name' readonly><br>
+	  <label>전화번호 : </label>
+	  <input type='text' name='name' readonly><br>
+  </div>
+</div>
+
+<!-- qr-attd 부분 -->
+<div id='qr-attd' class='modal-window'>
+  <div class='myinfo-header'>
+    <h2>QR Attendance</h2>
+  </div>
+</div>
+
+<!-- attd-per 부분 -->
+<div id='attd-per' class='modal-window'>
+  <div class='myinfo-header'>
+    <h2>My Attendance</h2>
+  </div>
+</div>
+<!-- 모달 윈도우 끝 -->
+
+<script>
+requirejs(['app/content_02']); 
+</script>
+<script type='text/javascript'>
+$(function(){
+  $('.content-02-col-sm-6').click(function(event){
+  	console.log("클릭테스트");
+    event.preventDefault();
+  })
+  $('.modaltrigger').leanModal({ top: 110, overlay: 0.7, closeButton: '.hidemodal' });
+});
+</script>
+<script src='js/app/attend_graph.js'></script>
+<script src='js/lib/jquery-1.11.3.js' type='text/javascript'></script>
+<script src='js/app/jquery.leanModal.js' type='text/javascript'></script>

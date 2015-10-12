@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java72.dao.JobBoardDao">
+  <resultMap type="JobBoard" id="JobBoardMap">
+    <id     column="jno" property="no" />
+    <result column="views" property="viewCount" />
+    <result column="pwd" property="password" />
+    <result column="add_dt"   property="createDate" />
+    <result column="att_file1" property="attachFile1" />
+    <result column="att_file2" property="attachFile2" />
+    <result column="att_file3" property="attachFile3" />
+  </resultMap>
+    
+  <select id="list" parameterType="map" resultMap="JobBoardMap">
+   SELECT jno, sno, (select name from memb where mno=j1.sno)as name, co_name, line_memo, jday, add_dt from jobb j1
+   ORDER By jno desc
+   LIMIT #{startIndex}, #{pageSize}
+  </select>
+    
+  <select id="countAll" resultType="int">
+    SELECT count(*)
+    FROM jobb 
+  </select>
+  
+  <insert id="insert" parameterType="JobBoard">
+  INSERT INTO jobb(sno, co_name, line_memo, add_dt, jday)
+		values(#{sno}, #{co_name}, #{line_memo}, now(), now())
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+  DELETE FROM jobb where jno=#{value}
+  </delete>
+  
+  <update id="update" parameterType="JobBoard">
+  UPDATE jobb SET
+    co_name=#{co_name},
+    line_memo=#{line_memo}
+  WHERE jno=#{no}   
+  </update>
+	
+  <select id="get" parameterType="int" resultMap="JobBoardMap"> 
+    SELECT jno, add_dt, jday, (select name from memb where mno=j1.sno)as name, co_name, line_memo 
+   	FROM jobb j1
+    WHERE jno=#{value};
+  </select>
+  
+  <select id="getView" parameterType="int" resultMap="JobBoardMap">
+    select bno, views from board10 where bno=#{value}
+  </select>
+
+  <update id="updateView" parameterType="JobBoard">
+    update board10 set views=#{viewCount} where bno=#{no}
+  </update>
+
+
+
+</mapper>

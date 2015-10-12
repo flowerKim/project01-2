@@ -1,0 +1,53 @@
+<script src='js/lib/jquery-1.11.3.js' type='text/javascript'></script>
+<style>
+#main-menu-bar {
+  margin: 0 auto;
+  width: 584px;
+  margin-top: 170px;
+  padding: 0px;
+}
+.div-under-text {
+  width: 576px;
+  text-align: center;
+}
+.font-titillium-web {
+  font-size: xx-large;
+  font-family: 'Titillium Web', sans-serif;
+  letter-spacing: .3em;
+  color: #235683;
+}
+.font-oxygen {
+  font-family: 'Oxygen', sans-serif;
+  font-size: medium;
+  color: #666;
+}
+.div-top-margin-1 {
+  margin-top: 20px;  
+}
+.div-bottom-margin-1 {
+  margin-bottom: 20px;  
+}
+</style>
+<div id='main-menu-bar'>
+  <div class='div-under-text div-bottom-margin-1 font-titillium-web'>
+    &nbsp;- T H E - 
+  </div>
+  <div class='div-logo'>
+    <img src='image/logo_bracket_01.png'>
+    <img 
+    src='image/logo_b_01.png'><img 
+    src='image/logo_i_01.png'><img 
+    src='image/logo_t_01.png'><img 
+    src='image/logo_i_01.png'><img 
+    src='image/logo_n_01.png'>
+    <img src='image/logo_bracket_02.png'>
+  </div>
+  <div class='div-under-text div-top-margin-1 font-titillium-web'>
+    &nbsp;- P R O J E C T - 
+  </div><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class='div-under-text font-oxygen'>
+    Bit Academy JAVA 72th Final Project in 28, October 2015<br>
+    Designed &amp; Programmed By KimHongGyoo KimDaHye KimHyungJin<br>
+    With eclipse MySQL JavaScript jQuery HTML5 CSS EChartsAPI NodeJS and Etc
+  </div>
+</div>

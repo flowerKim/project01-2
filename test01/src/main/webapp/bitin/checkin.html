@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비트인 출결 체크</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+
+<style>
+#checkin-body {
+  background-color : mistyrose;
+  margin: 0 auto;
+  height: 100%;
+  min-height: 1280px;
+  padding: 5%;
+}
+#checkin {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 50%;
+  vertical-align: middle;
+}
+#checkin-btn {
+  padding: 10px 20px 10px 20px;
+  font-size: 3em;
+  font-weight: bold;
+  background-color: #50a85a;
+  border: 0px;
+  border-radius: 10px;
+  color: white;
+  outline-style: none;
+}
+</style>
+</head>
+
+<body id='checkin-body'>
+
+<div id='checkin'>
+
+  <!-- Button trigger modal -->
+<button id='checkin-btn' type="button" data-toggle="modal" data-target="#myModal">
+  출결 체크
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">출결 체크 하시겠습니까?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id='confirm-checkin'>확인</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+</div>
+<script src='js/lib/jquery-1.11.3.min.js' type='text/javascript'></script>
+<script src='js/lib/bootstrap.min.js' type='text/javascript'></script>
+<script data-main='js/app' src='js/lib/require.js'></script>
+<script>
+requirejs(['app/checkin'], function(checkin) {
+	$('#confirm-checkin').click(function (event){
+		event.preventDefault();
+	  checkin.attendCheck();
+	});
+}); 
+</script>
+</body>
+</html>
+
+
+
+
+

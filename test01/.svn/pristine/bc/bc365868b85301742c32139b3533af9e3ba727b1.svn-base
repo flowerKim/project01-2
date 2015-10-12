@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BITIN</title>
+  <link href="css/ihover.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/alertify.core.css">
+  <link rel="stylesheet" href="css/alertify.default.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+  <link href="css/authform.css" rel="stylesheet" type="text/css" />
+</head>
+<style>
+#header-main {
+  background-color: transparent;
+  margin: 0px auto;
+  padding: 0px;
+}
+#main-content {
+  margin: 0 auto;
+  height: 960px;
+  background-color: #fbea90;
+  padding-bottom: 4.4%;
+}
+.content-02 {
+  background-color: #fff;
+  background-image: url("image/pattern_01.png");
+  background-repeat: repeat;
+  height: 500px;
+}
+.content-03 {
+  height: 880px;
+  background-color: #3bbcad;
+}
+.content-04 {
+  height: 700px;
+  background-color: #fff;
+}
+.content-05 {
+  height: 500px;
+  background-color: #f0f0f0;
+}
+.content-06 {
+  height: 500px;
+  background-color: #22b573;
+}
+</style>
+<body>
+<div id='main'> <!-- #main -->
+
+  <header id='header-main'></header>
+  <div id='main-content'><div class='content-01 content-general'></div></div>
+  <div class='content-02'></div>
+  <div class='content-03'></div>
+  <div class='content-04'></div>
+  <div class='content-05'></div> 
+  <div class='content-06'></div> 
+</div> <!-- #main -->
+
+<script data-main='js/app' src='js/lib/require.js'></script>
+<script>
+requirejs(['app/checkUrl'], function(checkUrl) {
+  checkUrl.init();
+}); 
+</script>
+<script src='js/lib/jquery-1.11.3.min.js' type='text/javascript'></script>
+<script src='js/lib/jquery.qrcode-0.12.0.js' type='text/javascript'></script>
+
+</body></html>

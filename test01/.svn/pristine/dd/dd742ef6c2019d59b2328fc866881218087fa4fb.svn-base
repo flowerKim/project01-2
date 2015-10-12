@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src='../js/app/cal_test.js' type='text/javascript'></script>
+</head>
+<style>
+.delete {
+  /* display: none; */
+}
+</style>
+<body>
+
+<a class='delete' href='#'>삭제
+</a>
+
+
+</body>
+</html>

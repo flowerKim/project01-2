@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>강의평가</title>
+<style>
+#titlebar {
+  text-align: center;
+  border: double gray;
+  background-color: #f0f0f0;
+  font-size: x-large;
+}
+.padding-10 {
+  padding: 10px 0px 10px 0;
+}
+.padding-5 {
+  padding: 5px 0px 5px 0;
+}
+.al {
+  margin: 0 auto;
+  width: 700px;
+}
+
+.text-size-bold {
+  font-size: large;
+  font-weight: bold;
+}
+.txtarea {
+  resize: none;
+  outline-style: none;
+}
+.txtalign-center {
+  text-align: center;
+}
+.table-nth {
+  background-color: #f0f0f0;
+}
+.border-last-child {
+  border-bottom: 1px solid #ddd;
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div id='titlebar' class='al padding-10'>
+설&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 문&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;과
+</div>
+
+<div class='al padding-10'>
+<table id='listTable_lecture_inquire' class='table table-hover'>
+	  <tbody>결과없음</tbody>
+	</table>
+</div>
+
+<script id="template_lecture_inquire" type="text/x-handlebars-template">
+
+{{#each data}}
+<h3>결과</h3>
+<table>
+<tr class="data-row">
+  <td><b>설문 일자 : </td>
+  <td colspan="6"><input type='text' readonly value="{{edate}}"></td>
+</tr>
+
+<tr class="data-row">
+  <td><b>교육 기간 : </td>
+  <td colspan="6"><input type='text' readonly value="{{yyyyMMdd1}}">~<input type='text' readonly value="{{yyyyMMdd2}}"></td>
+</tr>
+
+</tr>
+<tr class="data-row">
+<th>과목평가1</th>
+<th>과목평가2</th>
+<th>과목평가3</th>
+<th>강사평가1</th>
+<th>강사평가2</th>
+<th>강사평가3</th>
+<th>강사평가4</th>
+</tr>
+
+<tr class="data-row">
+  <td>{{sub_eval1}}점</td>
+  <td>{{sub_eval2}}점</td>
+  <td>{{sub_eval3}}점</td>
+  <td>{{tch_eval1}}점</td>
+  <td>{{tch_eval2}}점</td>
+  <td>{{tch_eval3}}점</td>
+  <td>{{tch_eval4}}점</td>
+</tr>
+
+<tr class="data-row">
+<th>과정평가1</th>
+<th>과정평가2</th>
+<th>과정평가3</th>
+<th>과정평가4</th>
+<th>자기계발1</th>
+<th>자기계발2</th>
+<th>운영평가1</th>
+</tr>
+
+<tr>
+  <td>{{cur_eval1}}점</td>
+  <td>{{cur_eval2}}점</td>
+  <td>{{cur_eval3}}점</td>
+  <td>{{cur_eval4}}점</td>
+  <td>{{dev1}}점</td>
+  <td>{{dev2}}점</td>
+  <td>{{mng_eval1}}점</td> 
+</tr>
+
+<tr class="data-row">
+<th colspan="7">운영평가2</th>
+</tr>
+<tr>
+<td colspan="7">{{mng_eval2}}점</td>
+</tr>
+<tr class="data-row">
+<th colspan="7">교육소감</th>
+</tr>
+<tr>
+<td colspan="7"><textarea rows='5' readonly cols='95' class='txtarea'>{{op}}</textarea></td>
+</tr>
+</table>
+
+
+<br>
+{{/each}}
+</script>
+
+<script data-main='js/app' src='js/lib/require.js'></script>
+
+<script>
+
+requirejs(['app/lecture_evaluation'], function(lecture_evaluation) {
+	lecture_evaluation.lectureInfo();
+	lecture_evaluation.lectureResult(1,10);
+	lecture_evaluation.init();  
+});
+</script>
+
+
+</body>
+</html>
+
+

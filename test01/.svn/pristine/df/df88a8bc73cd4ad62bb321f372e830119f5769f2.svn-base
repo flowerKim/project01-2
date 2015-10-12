@@ -1,0 +1,116 @@
+<!--   
+  .check {
+    /* text-align: center; */
+    padding-left: 40px;
+  }
+  
+  
+  .centered { 
+    /* border: 1px solid red; */
+    display: table; margin-left: auto; margin-right: auto; }
+
+  .line1 {
+    border-bottom:1px dotted red;
+    border-collapse:collapse; 
+  }
+  .line2 {
+   border: 5px solid #ddd;
+  }
+  
+  .line3 {
+   border: 1px solid black;
+  } -->
+
+<div id='aside'>
+
+<!-- 프로필 사진 -->
+  <div class="centered"> 
+  <ul>
+    <li class="line2"><img src="img/me.jpeg" width=150 height=150
+      style="border: 3px solid f0f0f0;"></li>
+  </ul>
+  </div>
+
+<!-- 회원이름/ 에디트버튼/ 쪽지이미지 -->
+  <div class="check">
+    <li style="text-align: left">홍길동 님
+      <button class="btn btn-default btn-xs" type="submit">edit</button> <span
+      style="padding-left: 2px";><img src="img/let2.png" height=18></span>
+    </li>
+  </div>
+
+<!-- 현재 교육 수료일 계산 -->
+  <li class=centered style="padding-left: 40px"><script>
+    var now = new Date();
+    var then = new Date("june 8,2015");
+    var gap = now.getTime() - then.getTime();
+    gap = Math.floor(gap / (1000 * 60 * 60 * 24));
+    document.write(gap + "일째 교육 중");
+
+<!-- 교육 수료일까지 남은 일수 계산 -->
+    var after = new Date("october 28,2015"); // 교육수료일 
+    var gap = after.getTime() - now.getTime();
+    gap = Math.floor(gap / (1000 * 60 * 60 * 24)) + 1;
+    document.write(" ( " + gap + "일 남음 )");
+  </script></li>
+
+<!-- 출결 체크 인 / 아웃 -->
+  <p class='check'>
+    출결 : <span style="color: blue">IN</span> / <span
+      style="color: lightgray">OUT</span>
+  </p>
+  </ul>
+
+<!-- QR코드 이미지 -->
+  <div class="centered">
+    <div id="qrcode" class="line2">
+      <img
+        src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=http://localhost:9999/bitinJobBoard/json3/main.html">
+    </div>
+
+<!-- QR 다음 갱신 시간 -->
+    <span style="color: gray"> 
+    <script type="text/javascript">
+      var d = new Date();
+      //document.write('현재 시: ' + d.getHours() + '<br />');
+      var t = (d.getHours() * 60) + (d.getMinutes()); //t=현재시+분
+      //document.write('t  :' +t +' 분 <br />');
+      //alert((420-330)/60 +'시간');
+      if (t >= 0 && t < 420) { //0~7:00
+        document.write('다음 갱신(7시)까지' + Math.floor((420 - t) / 60)
+            + '시간 남음 <br /> ');
+      } else if (t >= 420 && t < 1260) {
+        document.write('다음 갱신(21시)까지' + Math.floor((1260 - t) / 60)
+            + '시간 남음 <br /> ');
+      } else {
+        document.write('내일 오전 7시에 갱신됩니다.<br />' + '(다음 갱신까지 '
+            + Math.floor((1859 - t) / 60) + '시간)');
+      }
+    </script>
+    </span>
+  </div>
+
+</div>
+
+
+
+
+
+<div id='content'>ok</div>
+<footer></footer>
+</div>
+<!-- #main -->
+
+<!--  
+data-main: require.js를 로딩한 후, 첫 번째로 실행할 스크립트 파일 지정.
+-->
+<script data-main='js/app' src='js/lib/require.js'></script>
+</body>
+</html>
+
+
+
+
+
+
+

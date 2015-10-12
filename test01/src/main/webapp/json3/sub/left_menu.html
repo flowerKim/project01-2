@@ -1,0 +1,97 @@
+<script src="js/app/left_menu.js"></script>
+
+<script src="js/lib/jquery-1.11.3.js"></script>
+<style>  
+.centered { 
+  width: 200px;
+  margin: 0 auto;
+  padding: 0px;
+} 
+
+.line1 {
+  border-bottom:1px dotted red;
+  border-collapse:collapse; 
+}
+.line2 {
+ border: 5px solid #ddd;
+}
+
+.line3 {
+ border: 1px solid black;
+} 
+.mypage-align {
+  width: 270px;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
+.profile-photo {
+  border: 10px solid #f0f0f0;
+  margin: 5px auto;
+}
+.profile-photo-margin20 {
+  margin-top: 25px;
+}
+.qr-img {
+  text-align: center;
+  /* border: 1px solid blue; */
+}
+</style>
+<div class='mypage-align'>
+
+<!-- 프로필 사진 -->
+  <div class="centered profile-photo profile-photo-margin20"> 
+	  <img src="img/me.jpeg" width='180px'>
+  </div>
+
+<!-- 회원이름/ 에디트버튼/ 쪽지이미지 -->
+  <div class="centered">
+    홍길동 님
+      <button class="btn btn-default btn-xs" type="submit">Edit</button> <span
+      style="padding-left: 2px"><img src="img/let2.png" height=18></span>
+  </div>
+
+<!-- 교육 날짜 삽입 -->
+<!-- <div id='edu-date01' class='centered'>142일 중 95일째 (47일 남음)</div> -->
+<div id="currentEduDate" class='centered'>
+<!-- <script>
+  currentEduDate(currentEduDate);
+</script> -->
+</div>
+
+<div id ="remainEduDate" class='centered'>
+95일 째 교육 중
+<!-- <script>
+  remainEduDate(remainEduDate);
+</script> -->
+</div>
+
+
+<!-- 출결 체크 인 / 아웃 -->
+  <div class='centered'>
+    출결 : <span style="color: blue">IN</span> / <span
+      style="color: lightgray">OUT</span>
+  </div>
+
+<!-- QR코드 이미지 -->
+<div class="centered profile-photo qr-img">
+  <img 
+        src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=http://localhost:9999/bitinJobBoard/json3/main.html">
+</div>
+
+<!-- QR 다음 갱신 시간 -->
+<div class='centered'>갱신 시간 : 매일 07:00, 21:00</div>
+	 
+	  <div id ="qrtime" class='centered'>
+	     <!--  <script>
+	       qrtime(qrtime);
+	      </script> -->
+	  </div>
+</div>
+
+
+
+
+
+
+
+

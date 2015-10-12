@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bitacademy.java72.dao.CheckinDao">
+	<resultMap type="Checkin"    id="CheckinMap">
+	  <id     column="ano"      property="attendNo" />
+		<result column="eno"      property="eduNo" />
+		<result column="sno"      property="studentNo" />
+		<result column="in_time"  property="inTime" />
+		<result column="out_time" property="outTime" />
+		<result column="fir_time" property="firstTime" />
+		<result column="checkin_t" property="checkinTime" />
+		<result column="checkout_t" property="checkoutTime" />
+	</resultMap>
+	
+<insert id="insertCheckin" parameterType="Checkin">
+  UPDATE attd set 
+    in_time=#{inTime},
+    checkin_t=#{checkinTime}
+  where sno=#{studentNo} and fir_time=#{todayInfo}; 
+</insert>
+
+<update id="updateCheckin" parameterType="Checkin">
+  UPDATE attd set 
+    out_time=#{outTime},
+    checkout_t=#{checkoutTime}
+  where sno=#{studentNo} and fir_time=#{todayInfo}; 
+</update>
+
+<select id='getTodayInfo' parameterType="string" resultMap="CheckinMap">
+  SELECT ano from attd where fir_time=#{value}; 
+</select>
+
+<select id='allMember' resultMap="CheckinMap">
+  SELECT * from students; 
+</select>
+
+<insert id='insertToday' parameterType="int">
+  INSERT INTO ATTD(sno, fir_time) 
+  VALUES(#{studentNo}, now());
+</insert>
+
+<select id="getCheckinTime" parameterType="map" resultType='Integer'>
+  SELECT checkin_t 
+  FROM attd
+  WHERE fir_time=#{today} and sno=#{studentNo};
+</select>
+<!-- <select id="list" parameterType="map"  resultMap="CheckinMap">
+    SELECT eno, sno, in_time, out_time
+    From attd
+    ORDER By ano
+  </select> -->
+
+
+<!-- 	<update id="update" parameterType="Checkin">
+		UPDATE attd SET
+		  eno=#{eduNo},
+		  sno=#{studentNo},
+			out_time=now(),
+			etc=#{etc}
+		WHERE ano=#{attendNo}
+	</update>
+ -->
+
+<!-- 	<delete id="delete" parameterType="int">
+		DELETE FROM attd where ano=#{value}
+	</delete>
+
+	<select id="get" parameterType="int" resultMap="CheckinMap">
+		SELECT mno, name, email, tel, pwd
+		FROM attd
+		WHERE mno=#{value}
+	</select>
+	
+	<select id="exist" parameterType="map" resultMap="CheckinMap">
+		SELECT mno, name, email, tel, add_dt
+		FROM memb
+		WHERE mno=#{mno} and pwd=#{password}
+	</select> -->
+
+</mapper>

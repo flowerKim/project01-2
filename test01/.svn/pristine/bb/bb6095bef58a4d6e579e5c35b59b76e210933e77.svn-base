@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>New JHD</title>
+<style>
+#bbs01-free-insert {
+  padding: 10px;
+  font-family: 굴림체;
+  border-spacing: 5px 2px;
+}
+#bbs01-free-insert th{
+  text-align: right;
+  color: #666666;
+  background-color: #f7f7f7;
+  width: 80px;
+  font-size: 12px;
+  padding: 5px 5px 5px 0px;
+}
+#bbs01-free-insert tr input, #bbs01-free-insert tr textarea {
+  padding-left: 3px;
+}
+.optgroud-label {
+  text-align: right;
+  font-size: 12px;
+  padding-left: 20px;
+}
+.h1 {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 맑은고딕;
+  padding: 1px 1px 20px 135px;
+  border-spacing: 50px;
+}
+</style>
+</head>
+<body>
+
+<form action='insert.do' method='post' enctype="multipart/form-data">
+<h2>&nbsp; </h2>
+<table id='bbs01-free-insert'>
+  
+  <tr>
+    <th>카테고리</th>
+    <td>
+      <select name="category">
+        <optgroup label="카테고리" style="color:#999999" class='optgroud-label'>
+        </optgroup>
+        <option align='right' value="일  반" selected>일반</option>
+        <option value="클래스">클래스</option>
+        <option value="메소드">메소드</option>
+        <option value="XML">XML</option>
+      </select>&nbsp;
+    </td>
+  </tr>
+
+  <tr>
+    <th>제목</th>
+    <td><input type='text' name='title' style="width:444px" maxlength='40' placeholder="제목을 입력하세요.(40글자 이내)"></td>
+  </tr>
+  
+  <tr>
+    <th>내용</th>
+    <td>
+      <textarea name='detail' rows='10' cols='61' placeholder="내용을 입력하세요." style="resize:none;"></textarea>
+    </td>
+  </tr>
+  
+  <tr>  
+    <th>파일 첨부</th>
+    <td><input type='file'></td>
+  </tr>
+
+  <tr>
+      <td colspan='2' align="right"><input style="width:60px" type='submit' value='등록'>
+      <input style="width:60px" type='reset' value='초기화'>
+      <input style="width:60px" type='button' onClick="location.href='list.do'" value='취소'></td>
+  </tr>
+      
+
+</table>
+</form>
+</body>
+</html>

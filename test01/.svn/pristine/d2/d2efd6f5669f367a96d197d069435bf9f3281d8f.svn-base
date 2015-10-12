@@ -1,0 +1,56 @@
+{
+	"pageNo": 1,
+	"isNextPage": true,
+	"pageSize": 3,
+	"data": [
+	         {
+	        	 "bno": 1,
+	        	 "mno": "001",
+	        	 "title": "자유 게시판 제목1",
+	        	 "createDate": "2015-08-19",
+	        	 "viewCount": 1
+	         },
+	         {
+	        	 "bno": 2,
+	        	 "mno": "002",
+	        	 "title": "자유 게시판 제목2",
+	        	 "createDate": "2015-08-19",
+	        	 "viewCount": 12
+	         },
+	         {
+	        	 "bno": 3,
+	        	 "mno": "003",
+	        	 "title": "자유 게시판 제목3",
+	        	 "createDate": "2015-08-19",
+	        	 "viewCount": 162
+	         },
+	         {
+	        	 "bno": 4,
+	        	 "mno": "004",
+	        	 "title": "자유 게시판 제목4",
+	        	 "createDate": "2015-08-19",
+	        	 "viewCount": 112
+	         },
+	         {
+	        	 "bno": 5,
+	        	 "mno": "005",
+	        	 "title": "자유 게시판 제목4",
+	        	 "createDate": "2015-08-19",
+	        	 "viewCount": 12
+	         },
+	         {
+	        	 "bno": 6,
+	        	 "mno": "006",
+	        	 "title": "자유 게시판 제목5",
+	        	 "createDate": "2015-08-19",
+	        	 "viewCount": 14
+	         },
+	         {
+	        	 "bno": 7,
+	        	 "mno": "007",
+	        	 "title": "자유 게시판 제목6",
+	        	 "createDate": "2015-08-19",
+	        	 "viewCount": 1
+	         }
+	         ]
+}

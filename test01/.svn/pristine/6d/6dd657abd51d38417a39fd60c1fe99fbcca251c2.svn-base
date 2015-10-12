@@ -1,0 +1,46 @@
+/* Kurien / Kurien's Blog / http://blog.kurien.co.kr */
+/* 주석만 제거하지 않는다면, 어떤 용도로 사용하셔도 좋습니다. */
+
+#kCalendar {
+	border: 1px solid red;
+	width: 800px;
+  border: 1px solid black;
+  float: left;
+  margin-left: 10%;
+  margin-top: 50px;
+}
+
+#kCalendar #header {height: 50px; line-height: 50px; text-align: center; font-size: 18px; font-weight: bold}
+#kCalendar .button {color: #000; text-decoration: none;}
+
+#kCalendar table { border-collapse: collapse; }
+#kCalendar caption {display: none;}
+
+#kCalendar .sun {color: #ff6600;}
+#kCalendar .sat {color: #0066cc;}
+.thead-cal tr th {
+	border: 1px solid #ddd;
+	height: 25px;
+	width: 120px;
+}
+.date-today {
+	font-weight: bold;
+	font-color: black;
+	font-size: large; 
+}
+.cal-td {
+	vertical-align: top;
+	height: 90px;
+	border: 1px solid #ddd;
+}
+.img-padding {
+	padding: 1px 0px 0px 5px; 
+	align: center;
+}
+.check-compl {
+	vertical-align: top;
+}
+.span-padding-bottom {
+	padding-bottom: 5px;
+	
+}

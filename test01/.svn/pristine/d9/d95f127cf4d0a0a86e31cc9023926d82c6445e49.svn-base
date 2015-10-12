@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+    
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+ 
+  
+  #boardMain {
+    /* border: 1px solid red; */
+    width: 1000px;
+  }
+  
+  aside {
+  	float : right;
+    display: table-cell;
+	width: 100px;
+	/* background: LightGreen; */
+  }
+  
+  #content {
+	/* display: table-cell; */
+	position:absolute;
+
+	width: 350px;
+	/* background: Khaki; */
+	margin-top: 20px;
+	margin-left: 120px;
+	left : 80px;
+  }
+  
+  </style>
+</head>
+<body>
+<div id='boardMain' class='container'>  
+  
+<aside>
+<ul class="nav nav-pills nav-stacked">
+  <li><a id='freeBoard' href='#'>자유게시판</a></li>
+  <li><a id='reportBoard' href='#'>과제게시판</a></li>
+  <li><a id='jobBoard' href='#'>구직게시판</a></li>
+  <li><a id='lectureEvalBoard' href='#'>강의평가</a></li>
+  <li><a id='inquire' href='#'>평가결과</a></li>
+</ul>
+</aside>
+<div id='content'></div>
+<footer></footer>
+</div><!-- #main -->  
+
+<!--  
+data-main: require.js를 로딩한 후, 첫 번째로 실행할 스크립트 파일 지정.
+-->    
+<script>
+requirejs(['app/content_04'], function(content_04) {
+  content_04.boardmain();
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+          

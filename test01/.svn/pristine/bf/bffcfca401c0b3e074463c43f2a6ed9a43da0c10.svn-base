@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java72.dao.AttdDao">
+  <resultMap type="Attd" id="AttdMap">
+    <id     column="ano" property="no" />
+  </resultMap>
+	
+    
+  <select id="list" parameterType="map" resultMap="AttdMap">
+   SELECT ano, eno, (select name from memb where mno=at.sno)as sno, 
+      date_format(in_time, '%H:%i:%s')as in_time, 
+      date_format(out_time, '%H:%i:%s')as out_time, etc 
+      FROM attd at
+  </select>
+    
+</mapper>

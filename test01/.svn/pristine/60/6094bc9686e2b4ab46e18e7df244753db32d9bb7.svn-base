@@ -1,0 +1,39 @@
+<script src='../js/lib/jquery-1.11.3.js' type='text/javascript'></script>
+<script src='../js/app/jquery.leanModal.min.js' type='text/javascript'></script>
+<link href="../css/authform.css" rel="stylesheet" type="text/css" />
+<link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+
+<div>
+  <div><a href='#loginmodal' id='modaltrigger'>로그인</a></div>
+</div>
+
+
+<div id='loginmodal'>
+  <div class='login-header'>
+	  <h2>LOGIN</h2>
+  </div>
+  <form action='login.do' method='post'>
+    <div class='txt-field'>
+      <label>BITIN No</label>
+      <input type='text' name='id'>
+    </div>
+    <div class='txt-field'>
+      <label>Password</label>
+      <input type='text' name='pw' id='pw' size='23'>
+    </div>
+    <div class='btn-field'>
+      <button type='submit'>LOGIN</button>
+    </div>
+  </form>
+</div>
+
+<!-- 윈도우 -->
+<script type='text/javascript'>
+$(function(){
+  $('#loginform').submit(function(e){
+    return false;
+  });
+  $('#modaltrigger').leanModal({ top: 110, overlay: 0.7, closeButton: '.hidemodal' });
+});
+</script>
+<!-- 윈도우 -->

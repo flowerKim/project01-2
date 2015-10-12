@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+    
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+  header {
+    background-color: Gainsboro;
+    padding: 10px 10px;
+  }
+  
+  #boardMain {
+    /* border: 1px solid red; */
+    width: 1000px;
+  }
+  
+  aside {
+  
+    /* border-right: 1px solid gray; */
+    float: right;
+    width: 120px;
+  }
+  
+  #content {
+    padding: 5px 10px;
+    margin-left: 122px;
+  }
+  
+  </style>
+</head>
+<body>
+<div id='boardMain' class='container'>  
+<header></header>  
+<aside>
+<ul class="nav nav-pills nav-stacked">
+  <li><a id='freeBoard' href='#'>Free Board</a></li>
+  <li><a id='reportBoard' href='#'>Report Board</a></li>
+  <li><a id='jobBoard' href='#'>Job Board</a></li>
+</ul>
+</aside>
+<div id='content'></div>
+<footer></footer>
+</div><!-- #main -->  
+
+<!--  
+data-main: require.js를 로딩한 후, 첫 번째로 실행할 스크립트 파일 지정.
+-->    
+<script>
+requirejs(['app/content_04'], function(content_04) {
+  content_04.boardmain();
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+          

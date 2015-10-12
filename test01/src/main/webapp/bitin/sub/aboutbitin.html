@@ -1,0 +1,33 @@
+<style>
+#about-main {
+  background-color: #fbea90;
+  margin: 0 auto;
+  text-align: center;
+  max-height: 1080px;
+  min-height: 768px;
+  font-size: 5em;
+}
+#about-main div {
+  padding-top: 200px;
+  vertical-align: middle;
+}
+</style>
+<div id='about-main'>
+  <div>
+	  about bitin <a href='#' class='page-transition'>돌아가기</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+// about bitin 페이드 인-아웃 효과
+$('#about-main').click(function(event) {
+  event.preventDefault();
+  $('#main').css('background-color', '#fbea90').css('height', '768').show();
+  $('.content-01').fadeOut(800, function() {
+    $('.content-01').load('sub/content_01.html');
+    setTimeout(function() {
+      $('.content-01').fadeIn(800)
+    });
+  });
+});
+</script>

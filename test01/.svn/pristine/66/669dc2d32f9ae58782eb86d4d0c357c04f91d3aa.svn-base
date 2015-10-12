@@ -1,0 +1,131 @@
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<script src="js/lib/bootstrap.min.js"></script>
+
+
+<style>
+#formDiv {
+  text-align: center;
+}
+.container3 {
+   text-align: center;
+  width: 550px;
+  margin:10px;
+}
+}
+
+</style>
+
+<div class='container3'>
+<div id='formDiv'>
+  <h1 align='center'>FreeBoard</h1>
+	<form class="form-horizontal">
+	<div class="form-group">
+    <label for="fNo" class="col-sm-2 control-label">No</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="fNo" readonly>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="fmNo" class="col-sm-2 control-label">mNo</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="fmNo" readonly>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fName" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="fName" readonly>
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="fTitle" class="col-sm-2 control-label">CreateDate</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="fCreateDate" readonly>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fTitle" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="fTitle">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fContent" class="col-sm-2 control-label">Content</label>
+    <div class="col-sm-10">
+      <textarea id='fContent' rows='8' class="form-control" style="resize:none;"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id='replyBtn' type='button' class="btn btn-default btn-sm my-view">Reply</button>
+      <button id='updateBtn' type='button' class="btn btn-default btn-sm my-view">Modify</button>
+      <button id='deleteBtn' type='button' class="btn btn-default btn-sm my-view">Delete</button>
+      <button id='cancelBtn' type='button' class="btn btn-default btn-sm my-view">cancel</button>
+    </div>
+  </div>
+<div id='listDiv'><!-- listDiv -->
+	<table id='listTable_repl' class='table table-hover'>
+	  <thead>  
+		  <tr>
+		    <th>답글</th>
+		    
+		  </tr>
+	  </thead>
+	  <tbody></tbody>
+	</table>
+</div><!-- listDiv -->
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <label for="fNo" class="col-sm-2 control-label" id="mem_No_lb">MembNo.</label>
+      <input type="text" class="form-control" id="mem_No" readonly>
+    <label for="fNo" class="col-sm-2 control-label" id="mem_Name_lb">Name</label>
+      <input type="text" class="form-control" id="mem_Name" readonly>
+    <label for="fNo" class="col-sm-2 control-label" id=repl_No_lb>RNo.</label>
+      <input type="text" class="form-control" id="repl_No" readonly>
+
+     <textarea id="repl_Content" cols="50" rows="2" class="textarea m-tcol-c" maxlength="1000" style="overflow: hidden; line-height: 14px; height: 61px;" style="resize:none;">
+	</textarea>	
+<input id="replinsert_Btn" type="image" src="http://cafeimgs.naver.net/cafe4/btn_cmt_cfm_v1.gif" alt="확인" class="_submitCmt" >
+<input id="replupdate_Btn" type="image" src="http://cafeimgs.naver.net/cafe4/btn_cmt_cfm_v1.gif" alt="수정" class="_submitCmt" >
+    </div>
+  </div>
+	</form>
+</div><!-- formDiv -->
+
+</div>
+<style>
+.rmAttr {
+    .rmAttr {
+        text-decoration: none;
+        color:black;
+        
+    }
+}
+</style>
+
+<script id="template_repl" type="text/x-handlebars-template">
+{{#each data}}
+<tr class="data-row">
+  <td>{{no}}</td>
+  <td id="replMno">{{mno}}</td>
+  <td>{{fno}}</td>
+  <td>{{name}}</td>
+  <td><a class="getLink" rno="{{no}}" get-mno={{mno}} href="#">{{content}}</a></td>
+  <td>{{createDate}}</td>
+  <td><a class="deleteLink" rno="{{no}}" data-mno={{mno}} href="#">삭제</a></td>
+</tr>
+{{/each}}
+</script>
+
+<script>
+requirejs(['app/freeboard'], function(freeboard) {
+  freeboard.finit();
+  freeboard.fcontentInfo();
+  
+});
+</script>
+
+
+

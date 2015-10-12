@@ -1,0 +1,69 @@
+<style>
+#loginDiv {
+  text-align: right;
+}
+#paging {
+  text-align: center;
+}
+#write {
+  text-align: right;
+}
+.container2 {  
+  text-align: center;
+  float: center;
+  width: 550px;
+  margin: 0px 25px 150px 0px; 
+}
+</style>
+<body>
+<div class='container2'> <!— #main —>
+<div id='listDiv'><!— listDiv —>
+  <h1 align='center'>Report Board</h1>
+  <table id='listTable_report' class='table table-hover'>
+    <thead>  
+      <tr>
+        <th>No.</th>
+        <th>MembNo.</th>
+        <th>Name</th>
+        <th>Title</th>
+        <th>WebAddress</th>
+        <th>CreateDate</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div id='loginDiv'>
+  <a id='r_writeBtn' href='#' class='btn btn-primary btn-xs'>Write</a>
+ </div>
+  <div id='paging'>
+    <div><a id='rprevBtn' href='#' class="btn btn-default btn-sm" >Prev</a>
+      <span id='pageNo'></span>
+      <a id='rnextBtn' href='#' class="btn btn-default btn-sm" >Next</a>
+    </div>
+  </div>
+</div><!— listDiv —>
+</div><!— #main —>
+<script id="template_report" type="text/x-handlebars-template">
+{{#each data}}
+<tr class="data-row">
+  <td>{{no}}</td>
+  <td>{{mno}}</td>
+  <td>{{name}}</td>
+  <td><a class="nameLink" no="{{no}}" href="#">{{title}}</a></td>
+  <td>{{webAddress}}</td>
+  <td>{{createDate}}</td>
+</tr>
+{{/each}}
+</script>
+
+<script>
+requirejs(['app/reportboard'], function(reportboard) {
+  reportboard.rinit();
+  reportboard.rlistBoard(1, 10);
+  reportboard.rInfo();
+});
+</script>
+
+
+
+</body></html>

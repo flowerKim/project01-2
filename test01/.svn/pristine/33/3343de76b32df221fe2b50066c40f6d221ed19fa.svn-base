@@ -1,0 +1,238 @@
+.div-profile {
+  float: left;
+  width: 100%;
+  min-width: 800px;
+  margin-top: 130px;
+  text-align: center;
+}
+.round-img-1 {
+  display: inline-block;
+  border-radius: 50%;
+  border: 13px solid #ffd6d0;
+}
+.round-img-2 {
+  border: 13px solid #fff;
+  border-radius: 50%;
+}
+.round-qr {
+  border: 13px solid #ebd0ff;
+}
+.div-edit {
+  border-left: 10px solid #83d2ff;
+  padding-left: 25px;
+  float: right;
+  margin-top: 80px;
+  margin-right: 20%;
+  width: 30%;
+  height: 200px;
+  font-size: x-large;
+  
+}
+
+/* 출석률 게이지 */
+.attend-chart {
+  position:absolute;
+  top: 64px;
+  left: -30px;
+  width:200px; 
+  height:200px;
+  text-align:center;
+  font-size:40px;
+  color:#555;
+  font-family: 'Bree Serif', serif;
+}
+canvas {
+  position: absolute;
+  left: 30px;
+  top: -64px;
+}
+.content-02-col-sm-6 {
+  display: inline-block;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+/* 출석률 그래프 끝 */
+
+/* 모달 윈도우 */
+#lean_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height:100%;
+  width:100%;
+  background: #000;
+  display: none;
+  color: white;
+}
+.modal_close {
+	position: absolute;
+	top: 18px;
+	right: 18px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background-image: url(../image/close_01.png);
+	z-index: 11111;
+}
+.modal-window {
+	position: fixed;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 11120;
+}
+.modal-window-margin-top {
+  margin-top: -70px;
+}
+#message {
+	color: red;
+	padding-top: 8px;
+}
+.myinfo-header {
+  padding: 0px 15px 0px 18px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+.info-txt-field {
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: right;
+  font-size: medium;
+}
+.info-txt-field input {
+  margin-right: 10px;
+  padding-left: 5px;
+}
+.info-txt-field label {
+	width: 150px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	text-align: left;
+}
+.info-btn-field {
+  padding: 15px 20px 15px 125px;
+  width: 100%;
+  overflow: hidden;
+  background: white;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.info-txt-field div {
+  padding: 8px 0px 8px 7px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.info-txt-field div:last-child {
+  border-bottom: 0px;	
+  padding-bottom: 1px;
+}
+span.error {
+	text-align: left;
+	display: block;
+	padding-left: 165px;
+	font-size: 0.75em;
+	color: red;
+}
+.input-border-0 {
+	outline-width: 0;
+	border: 0;
+}
+.input-border-1 {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+}
+.info-btn-field button {
+  float: right;
+  width: auto;
+  border: none;
+  padding: 4px 10px 6px 10px;
+  margin-left: 10px;
+  background: #50a85a;
+  font-size: 1.1em;
+  color: white;
+  overflow: visible;
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  font-family: 'Play', sans-serif;
+}
+.memb-photo {
+	padding: 5px 0px 10px 0px;
+	vertical-align: top;
+}
+.photo-edit {
+	margin-right: 10px;
+	margin-top: 5px;
+	background: #3bbcad;
+	border-radius: 4px;
+	border: none;
+  font-size: 1em;
+	color: white;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	padding: 5px 10px 5px 10px;;
+	border-bottom: 0px;
+}
+#memb-img {
+	display: inline-block;
+	margin: 5px 10px 5px 5px;
+	border: 8px solid #f0f0f0;
+	padding: 0px 0px;
+}
+/* qr코드 관련 부분 */
+#qrupdate-time {
+  color: blue;
+}
+.qr-window {
+	width: 500px;
+	text-align: left;
+}
+
+#qr-encode {
+	text-align: left;
+	display: inline-block;
+	margin-left: 5px;
+	border-bottom: 0px;
+}
+.qr-info p {
+	margin-bottom: 6px;
+}
+.qr-info {
+	text-align: left;
+	display: inline-block;
+	margin-right: 25px;
+	font-size: 1.1em;
+	vertical-align: top;
+	padding-top: 3px;
+	padding-left: 10px;
+	border-bottom: 0px;
+}
+.qr-txt-field {
+	text-align: left;
+}
+.qr-txt-field-info {
+	text-align: left;
+	font-size: 1.3em;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+/* 차트 부분 */
+.attd-chart {
+  height: 505px; 
+  width: 660px; 
+  margin: 0 auto;
+}
+#chart-container {
+	height: 400px;
+	margin-bottom: 20px;
+	padding-left: 0px;
+	padding-bottom: 10px;
+}
+.myinfo_header {
+	padding-left: 20px;
+	border-bottom: 1px solid #ccc;
+}
+.bottom-radius-5 {
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}

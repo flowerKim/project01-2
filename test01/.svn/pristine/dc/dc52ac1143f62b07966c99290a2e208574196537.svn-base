@@ -1,0 +1,41 @@
+define([
+          'jquery',
+          'handlebars',
+          'app/common'
+       ], function($, handlebars){
+	var currPageNo = 1;
+	var pageSize = 3;
+	
+	return {
+		attdList : function() {
+			var moduleObj = this;
+			$.getJSON(contextRoot + '/bitin/attd/list.do', 
+  			function(result) {
+					var missAttd = '미체크'; 
+					for (var i = 0; i < result.data.length; i++) {
+						if (result.data[i].in_time == null) {
+							result.data[i].in_time = missAttd;
+						}
+					}
+  			  var tbody = $('#table-attd');
+  			  $('.attd-data-row').remove();
+  			  
+  			  // HandlebarsJS 템플릿 사용
+  			  var source = $('#template1').html();
+  			  var template = handlebars.compile(source);
+  			  var content = template(result);
+  			  $('#table-attd tbody').html(content);
+  			  
+  			  // 출석 미체크 시 글자 색 붉은 색 + 진하게
+  			  for (var n = 0; n < result.data.length; n++) {
+  			  	if ($('#table-attd tbody tr:nth-child(' + n + ') td:nth-child(2)').text() == missAttd) {
+  			  		$('#table-attd tbody tr:nth-child(' + n + ') td:nth-child(2)').css('font-weight', 'bold').css('color', 'red');
+  			  	}
+  			  }
+  			  
+	  		});
+		}
+	
+	};
+	
+});	

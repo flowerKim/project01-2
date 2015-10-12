@@ -1,0 +1,52 @@
+define([
+          'jquery',
+          'handlebars',
+          'bootstrap.min',
+          'jquery.ui.widget',
+          'jquery.iframe-transport',
+          'jquery.fileupload',
+          /*
+          'canvas-to-blob.min',
+          'load-image.all.min',
+          'jquery.fileupload-process',
+          'jquery.fileupload-image',
+          'jquery.fileupload-audio',
+          'jquery.fileupload-video',
+          'jquery.fileupload-validate',
+          */
+          'app/common'
+       ], function($, handlebars){
+	
+	return {
+		boardmain: function(){
+
+			  $('#content').load('sub/freeboard.html');
+			  $('#freeBoard').click(function(event) {
+			    event.preventDefault();
+			    $('#content').load('sub/freeboard.html');
+			  });
+			  $('#reportBoard').click(function(event) {
+			    event.preventDefault();
+			    $('#content').load('sub/reportboard.html');
+			  });
+			  $('#jobBoard').click(function(event) {
+				event.preventDefault();
+				$('#content').load('sub/jobboard.html');
+			  });			
+		}
+	};
+	
+});
+
+
+
+
+
+
+
+
+
+
+
+
+

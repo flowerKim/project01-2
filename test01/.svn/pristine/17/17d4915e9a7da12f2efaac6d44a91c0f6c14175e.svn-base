@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<script src="js/lib/bootstrap.min.js"></script>
+
+
+<style>
+#formDiv {
+  text-align: center;
+}
+.container2 {
+  text-align: center;
+  width: 550px;
+  margin:60px;
+}
+</style>
+
+
+<div class='container2'>
+<div id='formDiv'>
+  <h1 align='center'>Write</h1>
+	<form class="form-horizontal">
+	
+	<div class="form-group">
+      <label for="jNo" class="col-sm-2 control-label">MemberNo.</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="jNo" readonly>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="jName" class="col-sm-2 control-label">Name</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="jName" readonly>
+      </div>
+    </div>    
+  
+    <div class="form-group">
+      <label for="jConame" class="col-sm-2 control-label">Co.Name</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="jConame">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="jLinememo" class="col-sm-2 control-label">LineMemo</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="jLinememo">
+      </div>
+    </div>
+  
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id='jinsertBtn' type='button' class="btn btn-default btn-sm my-view">Write</button>
+      <button id='jcancelBtn' type='button' class="btn btn-default btn-sm my-view">Cancel</button>
+    </div>
+  </div>
+  
+  
+<script>
+requirejs(['app/jobboard'], function(jobboard) {
+  jobboard.jinit();
+  jobboard.jwriteInfo();
+});
+</script>
+  
+  
+  

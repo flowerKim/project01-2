@@ -1,0 +1,57 @@
+<!-- <div id='loginDiv'>
+  <a id='loginBtn' href='#'><button type="button" class="btn btn-default btn-xs">로그2인</button></a>
+  <div id='userInfo'>
+    <span id='userName'></span>님 (<span id='userEmail'></span>)
+    <a id='logoutBtn' href='#'><button type="button" class="btn btn-default btn-xs">로그2아웃</button></a>
+  </div>
+</div>
+ -->
+<style>
+#top-menu {
+  padding: 0px;
+  border-spacing: 0px;
+}
+td {
+ /*  border: 1px dashed black;  */
+}
+.header-top {
+  width: 130px;
+  height: 58px;
+  padding-left: 10px;
+}
+.header-table-td:HOVER {
+  background-color: #f8f8f8;
+}
+img {
+  margin: 0px;
+  padding: 0px;
+  
+}
+#float-image01 {
+  float: left;
+  margin-top: 0px;
+}
+</style>
+<div id='top-menu'>
+<table id='header-table'>
+  <tr>
+    <td class='header-top'><img src='image/bitin_01.png'></td>
+    <td width='58%'></td>
+    <td width='110px' class='header-table-td'><a href='#'><img src='image/home_01.png'></a></td>
+    <td width='130px' class='header-table-td'><a href='#'><img src='image/attend_01.png'></a></td>
+    <td width='120px' class='header-table-td'><a href='#'><img src='image/board_01.png'></a></td>
+    <td width='50px' class='header-table-td'><a href='#'><img src='image/loginout_01.png'></a></td>
+  </tr>
+</table>
+<img src='image/layout_line01.png' id='float-image01'>
+</div>
+
+
+<!-- <script>
+// header.html을 다룰 자바스크립트 파일을 로딩한다.
+// app/header.js가 로딩되지 않았을 때만 로딩한다. requirejs 지가 알아서 함.
+ requirejs(['app/header'], function(header) {
+	header.loadLoginInfo();
+}); 
+</script>
+ -->

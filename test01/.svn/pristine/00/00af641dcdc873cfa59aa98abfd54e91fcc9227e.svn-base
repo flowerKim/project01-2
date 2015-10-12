@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BITIN</title>
+  <link href="css/ihover.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link href='https://fonts.googleapis.com/css?family=Oxygen:700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Candal' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+
+</head>
+<style>
+#header-main {
+  background-color: transparent;
+  margin: 0px auto;
+  padding: 0px;
+}
+footer {
+  height: 80px;
+  clear: left;
+}
+.content-01 {
+  margin: 0 auto;
+  padding-top: 100px;
+  height: 970px;
+  background-color: #fbea90;
+}
+.content-02 {
+  height: 400px;
+  background-color: #fff;
+}
+.content-03 {
+  height: 880px;
+  background-color: #3bbcad;
+}
+.content-04 {
+  height: 700px;
+  background-color: #fff;
+}
+</style>
+<body>
+<div id='main'> <!-- #main -->
+
+  <header id='header-main'></header>
+  <div class='content-01 content-general'></div>
+  <div class='content-02'></div>
+  <div class='content-03'></div>
+  <div class='content-04'></div>
+  <footer></footer>
+
+</div> <!-- #main -->
+<script data-main='js/app' src='js/lib/require.js'></script>
+</body></html>

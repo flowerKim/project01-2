@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="net.bitacademy.java72.dao.NoticeDao">
+  <resultMap type="Notice" id="NoticeMap">
+    <id     column="nno" property="nno" />
+    <result column="add_dt" property="createDate" />
+    <result column="mano" property="managerNo" />
+    <result column="tno" property="trainerNo" />
+    
+  </resultMap>
+
+  <select id="list" parameterType="map" resultMap="NoticeMap">
+    SELECT nno, title, mano, ma_name, tno, t_name, add_dt 
+    From MNAME 
+    ORDER By nno desc
+    LIMIT  #{noticeStartIndex}, #{noticePageSize}
+  </select>
+<!--     LIMIT #{noticeStartIndex}, #{noticePageSize} -->
+
+  <select id="countAll" resultType="int">
+    SELECT count(*)
+    From notice 
+  </select>
+  
+  
+ 
+ <insert id="insert" parameterType="Notice">
+  INSERT INTO notice(title, content, add_dt, tno, mano) 
+  values(#{title}, #{content}, now(), #{trainerNo}, #{managerNo})
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+  DELETE FROM notice where nno=#{value}
+  </delete>
+  
+  <update id="update" parameterType="Notice">
+  UPDATE notice SET
+    title=#{title},
+    content=#{content},
+  WHERE nno=#{nno}   
+  </update>
+ 
+  <select id="get" parameterType="int" resultMap="NoticeMap"> 
+    SELECT nno, title, content, mano, tno, add_dt 
+    FROM notice
+    WHERE nno=#{value};
+  </select> 
+  
+<!-- <select id="getView" parameterType="int" resultMap="NoticeMap">
+    select nno, views from notice where nno=#{value}
+  </select> -->
+
+ <!--  <update id="updateView" parameterType="Notice">
+    update notice set views=#{viewCount} where nno=#{nno}
+  </update> -->
+
+
+</mapper>

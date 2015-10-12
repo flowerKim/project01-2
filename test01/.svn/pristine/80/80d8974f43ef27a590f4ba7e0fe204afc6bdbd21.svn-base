@@ -1,0 +1,246 @@
+define([
+          'jquery',
+          'qrcode',
+          'validate',
+          'app/common'
+       ], function($, qrcode){
+	
+	return {
+		memberInfo: function() {
+			var moduleObj = this;
+			$.getJSON(contextRoot + '/bitin/auth/loginInfo.do', function(result) {
+				var data = result.data;
+				if (result.state == 'yes') {
+					console.log(data.no + " + " + data.name);
+					
+					$('#myid').val(data.no);
+					$('#myname').val(data.name);
+					$('#myemail').val(data.email);
+					$('#mytel').val(data.tel);
+					if (data.photo != null) {
+						$('#profileImg').attr('src', contextRoot + '/files/' + data.photo);
+					} else {
+						$('#profileImg').attr('src', contextRoot + '/bitin/image/defaultImg.jpg');
+					}
+					
+//					$('#mNo').val(data.name);
+					
+//					$('#loginBtn').css('display', 'none');
+//					$('#userInfo').css('display', '');
+				} else {
+					$('#myid').val('아무개');
+					$('#myname').val('아무개');
+//					$('#loginBtn').css('display', '');
+//					$('#userInfo').css('display', 'none');
+				}
+				$.getJSON(contextRoot + '/bitin/member/detail.do?no=' + data.no, function(detail) {
+					var dataDetail = detail.data;
+					$('#hiddenPass').val(dataDetail.password);
+					console.log($('#hiddenPass').val());
+				});
+			});
+		},
+		updateMember: function(){
+			var moduleObj = this;
+			// *pass : 비밀번호를 입력하지 않았을 때 기존 비밀번호를 DB에 저장
+			if ($('#mypass').val() == '') {
+				$('#mypass').val($('#hiddenPass').val());
+			}
+			// *pass 끝.
+			$.ajax(contextRoot + '/bitin/member/update.do', 
+			{
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					no: $('#myid').val(),
+				  name: $('#myname').val(),
+					email: $('#myemail').val(),
+					tel: $('#mytel').val(),
+					password: $('#mypass').val(),
+					photo: $('#myPhoto').val()
+				},
+				success: function(result) {
+					if (result.data == 'success') {
+						$('#mypass').val('');
+						$('#myrepass').val('');
+						alert('변경 성공입니다.');
+						$('#lean_overlay').fadeOut(200);
+				  	$('#myinfo').css({'display' : 'none'});
+					} else {
+						alert('변경할 수 없습니다.');
+					}
+				}
+			});
+		}, // updateMember
+		infoValidate: function(){
+			$('#edit-myinformation').validate({
+				rules: {
+					mno: { required: true },
+					name: { required: true },
+					password: { required: true, minlength: 6 },
+					repassword: { required: true, minlength: 6, equalTo: '#mypass' },
+					email: { required: true, email: true },
+					tel: { required: true }
+				}, 
+				messages: {
+					mno: { required: "필수 입력 항목입니다." },
+					name: { required: "필수 입력 항목입니다." },
+					password: { required: "필수 입력 항목입니다.", minlength: "6글자 이상이어야 합니다." },
+					repassword: { 
+						required: "필수 입력 항목입니다.", 
+						minlength: "6글자 이상이어야 합니다.",
+						equalTo: "비밀번호가 일치하지 않습니다." 
+					},
+					email: { required: "필수 입력 항목입니다.", email: "이메일 규칙에 맞춰 주세요."},
+					tel: { required: "필수 입력 항목입니다." }
+				}
+			});
+		},
+		qrEncode: function(){
+			$('#qr-encode').qrcode({
+				render: 'image',
+				size: 150,
+				radius: 0.5,
+				text: "http://edit.com"
+			});
+			console.log("정상 작동")
+		},
+		init: function() {
+			var moduleObj = this;
+			
+//			$('#deleteBtn').click(function(event) {
+//				event.preventDefault();
+//				moduleObj.deleteMember($('#fNo').val()); 
+//			});
+//			
+			$('#memUpdateBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.updateMember(); 
+			});
+			$('.fileinput-button').click(function(event){
+				console.log("클릭클릭");
+			})
+			
+//			$('#cancelBtn').click(function(event) {
+//				$('.my-view').css('display', 'none');
+//				$('.my-new').css('display', '');
+//				$('#files').html('');
+//				$('#progress .progress-bar').css('width', '0%');
+//			});
+
+//			$('#fEmail').keyup(function(event) {
+////				console.log(chkEmail);
+//				console.log($(this).val());
+//				$.getJSON(
+////					contextRoot + '/json/member/existEmail.do', 
+//					'http://localhost:8888/member/existEmail.do',
+//					{
+//						email: $(this).val()
+//					},	
+//					function(result) {
+//						console.log(result.data);
+//						if (result.data == 'no') {
+//							$('#message').removeClass('my-message-warning')
+//													 .addClass('my-message-success')
+//													 .html('사용 가능합니다.');
+//							
+//						} else {
+//							$('#message').removeClass('my-message-success')
+//													 .addClass('my-message-warning')
+//													 .html('사용할 수 없는 이메일입니다.');
+//						}
+//				});
+//			});
+			
+			// 사진 변경 (jQuery file upload plugin)
+			$('#fileupload').fileupload({
+		  	url: contextRoot + '/bitin/file/upload.do',
+		    dataType: 'json',
+//		    autoUpload: false,
+		    maxFileSize: 10000000,
+		    disableImageResize: /Android(?!.*Chrome)|Opera/
+		      .test(window.navigator.userAgent), 
+		      previewMaxWidth: 100,
+		      previewMaxHeight: 100, 
+		      previewCrop: true
+			}).on('fileuploadsubmit', function(e, data) {
+				
+      }).on('fileuploaddone', function(e, data) {
+        $('#memberFiles').html('');
+        $.each(data.result.data, function (index, file) {
+            $('#memberFiles').css('display', 'block')
+            .html("첨부파일 : " + file.originName).appendTo('#memb-img br');
+            $('#myPhoto').val(file.name);
+        });
+      }).on('fileuploadprogressall', function (e, data) {
+      }); // 파일 업로드에 대한 옵션 지정
+		} // 초기화 함수
+	}
+});
+
+/* qr코드 옵션 
+ 
+ {
+    // render method: 'canvas', 'image' or 'div'
+    render: 'canvas',
+
+    // version range somewhere in 1 .. 40
+    minVersion: 1,
+    maxVersion: 40,
+
+    // error correction level: 'L', 'M', 'Q' or 'H'
+    ecLevel: 'L',
+
+    // offset in pixel if drawn onto existing canvas
+    left: 0,
+    top: 0,
+
+    // size in pixel
+    size: 200,
+
+    // code color or image element
+    fill: '#000',
+
+    // background color or image element, null for transparent background
+    background: null,
+
+    // content
+    text: 'no text',
+
+    // corner radius relative to module width: 0.0 .. 0.5
+    radius: 0,
+
+    // quiet zone in modules
+    quiet: 0,
+
+    // modes
+    // 0: normal
+    // 1: label strip
+    // 2: label box
+    // 3: image strip
+    // 4: image box
+    mode: 0,
+
+    mSize: 0.1,
+    mPosX: 0.5,
+    mPosY: 0.5,
+
+    label: 'no label',
+    fontname: 'sans',
+    fontcolor: '#000',
+
+    image: null
+}
+ 
+ */
+
+
+
+
+
+
+
+
+
+
+

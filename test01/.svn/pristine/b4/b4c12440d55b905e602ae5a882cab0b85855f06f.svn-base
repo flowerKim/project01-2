@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>비트 시스템</title>
+  <link rel="stylesheet" href="css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/common.css">
+</head>
+<style>
+#main {
+  width: 1280px;
+  margin: 0 auto;
+}
+#loginDiv {
+  text-align: right;
+}
+header, div, footer, aside {
+  /* border: 1px solid #dfdfdf; */
+}
+#header-main {
+  height: 68px;
+  background-color: transparent;
+  margin: 0px auto;
+  padding: 0px;
+}
+#aside-main {
+  float: left;
+  width: 275px;
+  height: 600px;
+  /* border: 1px dashed lightgray; */
+}
+#content {
+  padding: 5px 10px;
+  width: 1000px;
+  height: 600px;
+  margin-left: 280px;
+  margin-top: 1px;
+/*   border: 1px dashed lightgray; */
+}
+footer {
+  height: 80px;
+  clear: left;
+}
+</style>
+<body>
+<div id='main'> <!-- #main -->
+
+  <header id='header-main'></header>
+  <aside id='aside-main'>
+  <div id='mypage'></div>
+  </aside>
+  
+  <div id='content'></div>
+  <footer></footer>
+
+</div> <!-- #main -->
+
+<!-- 
+  data-main: require.js를 로딩한 후 첫 번째로 실행할 스크립트 파일 지정.
+-->
+<!-- <script src="js/lib/jquery-1.11.3.js"></script>
+<script src="js/lib/vendor/jquery.ui.widget.js"></script>
+<script src="js/lib/load-image.all.min.js"></script>
+<script src="js/lib/canvas-to-blob.min.js"></script>
+<script src="js/lib/jquery.fileupload.js"></script>
+<script src="js/lib/jquery.fileupload-process.js"></script>
+<script src="js/lib/jquery.fileupload-image.js"></script>
+<script src="js/lib/jquery.fileupload-audio.js"></script>
+<script src="js/lib/jquery.fileupload-video.js"></script>
+<script src="js/lib/jquery.fileupload-validate.js"></script>
+<script src="js/lib/jquery.iframe-transport.js"></script>
+<script src="js/lib/bootstrap.min.js"></script> -->
+<script data-main='js/app' src='js/lib/require.js'></script>
+</body></html>

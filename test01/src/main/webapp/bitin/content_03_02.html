@@ -1,0 +1,60 @@
+<style>
+#table-attd {
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid lightgray;
+}
+#table-attd td {
+  border: 1px solid lightgray;
+  padding: 4px 0 4px 0;
+}
+#table-attd thead th {
+  border: 1px solid lightgray;
+  padding: 4px 0 4px 0;
+}
+#attd-date {
+  margin: 0 auto;
+}
+.title-attd {
+  margin: 0 auto;
+}
+</style>
+
+<div id="attd-date">
+
+	<div class='title-attd'>
+	<table id='table-attd'>
+	  <thead>
+		  <tr>
+		    <th width='120'>이름</th>
+		    <th width='180'>입실 시간</th>
+		    <th width='180'>퇴실 시간</th>
+		    <th width='400'>비고</th>
+		  </tr>
+	  </thead>
+	  <tbody></tbody>
+	  
+	</table>
+	
+	</div>
+
+
+</div> <!-- attd-date -->
+<script data-main='js/app' src='js/lib/require.js'></script>
+<script id="template1" type="text/x-handlebars-template">
+{{#each data}}
+<tr class="attd-data-row">
+  <td>{{sno}}</td>
+  <td>{{in_time}}</td>
+  <td>{{out_time}}</td>
+  <td>{{etc}}</td>
+</tr>
+{{/each}}
+</script>
+
+<script>
+requirejs(['app/attendance'], function(attendance) {
+  attendance.attdList();
+});
+</script>

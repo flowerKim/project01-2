@@ -1,0 +1,608 @@
+define([
+          'jquery',
+          'handlebars',
+          'bootstrap.min',
+          'jquery.ui.widget',
+          'jquery.iframe-transport',
+          'jquery.fileupload',
+          /*
+          'canvas-to-blob.min',
+          'load-image.all.min',
+          'jquery.fileupload-process',
+          'jquery.fileupload-image',
+          'jquery.fileupload-audio',
+          'jquery.fileupload-video',
+          'jquery.fileupload-validate',
+          */
+          'app/common'
+       ], function($, handlebars){
+	var currPageNo = 1;
+	var pageSize = 10;
+	
+	return {
+		listBoard: function(pageNo, pageSize) {
+			var moduleObj = this;
+			$.getJSON(contextRoot + '/bitin/board/list.do', 
+				{
+					pageNo : pageNo, 
+					pageSize : pageSize
+				}, 
+				function(result) {
+					currPageNo = result.pageNo;
+				  $('#pageNo').text(currPageNo);
+				  
+				  var tbody = $('#listTable tbody');
+				  $('.data-row').remove();
+				  
+				  // HandlebarsJS 템플릿 사용
+				  var source = $('#template_free').html();
+				  var template = handlebars.compile(source);
+				  var content = template(result);
+				  $('#listTable_free tbody').html(content);
+				  
+				  // 이전, 다음 버튼 처리
+				  if (result.pageNo > 1) {
+				  	$('#prevBtn').removeAttr('disabled');
+				  } else {
+				  	$('#prevBtn').attr('disabled', 'disabled');
+				  }
+				  
+				  if (result.isNextPage) {
+				  	$('#nextBtn').removeAttr('disabled');
+				  } else {
+				  	$('#nextBtn').attr('disabled', 'disabled');
+				  }
+				  
+				  $('.nameLink').click(function(event){
+				  	event.preventDefault();
+				  	$('.content-04 > #boardMain > #content' ).load('sub/freeboard_detail.html');
+				  	moduleObj.detailBoard(this.getAttribute('no'));
+				  	$('.my-view').css('display', '');
+				  	$('.my-new').css('display', 'none');
+				  });
+				});
+		}, // listBoard
+		jlistBoard: function(pageNo, pageSize) {
+			var moduleObj = this;
+			$.getJSON(contextRoot + '/bitin/jobBoard/list.do', 
+				{
+					pageNo : pageNo, 
+					pageSize : pageSize
+				}, 
+				function(result) {
+					currPageNo = result.pageNo;
+				  $('#pageNo').text(currPageNo);
+				  
+				  var tbody = $('#listTable_job tbody');
+				  $('.data-row').remove();
+				  
+				  // HandlebarsJS 템플릿 사용
+				  var source = $('#template_job').html();
+				  var template = handlebars.compile(source);
+				  var content = template(result);
+				  $('#listTable_job tbody').html(content);
+				  
+				  // 이전, 다음 버튼 처리
+				  if (result.pageNo > 1) {
+				  	$('#jprevBtn').removeAttr('disabled');
+				  } else {
+				  	$('#jprevBtn').attr('disabled', 'disabled');
+				  }
+				  
+				  if (result.isNextPage) {
+				  	$('#jnextBtn').removeAttr('disabled');
+				  } else {
+				  	$('#jnextBtn').attr('disabled', 'disabled');
+				  }
+				  
+				  $('.nameLink').click(function(event){
+				  	event.preventDefault();
+				  	$('.content-04 > #boardMain > #content' ).load('sub/jobboard_detail.html');
+				  	moduleObj.jdetailBoard(this.getAttribute('no'));
+				  	$('.my-view').css('display', '');
+				  	$('.my-new').css('display', 'none');
+				  });
+				});
+		}, // jlistBoard
+		rlistBoard: function(pageNo, pageSize) {
+			var moduleObj = this;
+			$.getJSON(contextRoot + '/bitin/reportBoard/list.do', 
+				{
+					pageNo : pageNo, 
+					pageSize : pageSize
+				}, 
+				function(result) {
+					currPageNo = result.pageNo;
+				  $('#pageNo').text(currPageNo);
+				  
+				  var tbody = $('#listTable_report tbody');
+				  $('.data-row').remove();
+				  
+				  // HandlebarsJS 템플릿 사용
+				  var source = $('#template_report').html();
+				  var template = handlebars.compile(source);
+				  var content = template(result);
+				  $('#listTable_report tbody').html(content);
+				  
+				  // 이전, 다음 버튼 처리
+				  if (result.pageNo > 1) {
+				  	$('#rprevBtn').removeAttr('disabled');
+				  } else {
+				  	$('#rprevBtn').attr('disabled', 'disabled');
+				  }
+				  
+				  if (result.isNextPage) {
+				  	$('#rnextBtn').removeAttr('disabled');
+				  } else {
+				  	$('#rnextBtn').attr('disabled', 'disabled');
+				  }
+				  
+				  $('.nameLink').click(function(event){
+				  	event.preventDefault();
+				  	$('.content-04 > #boardMain > #content' ).load('sub/reportboard_detail.html');
+				  	moduleObj.rdetailBoard(this.getAttribute('no'));
+				  	$('.my-view').css('display', '');
+				  	$('.my-new').css('display', 'none');
+				  });
+				});
+		}, // rlistBoard
+		detailBoard: function(no) {
+			$.getJSON(contextRoot + '/bitin/board/detail.do?no=' + no, function(result) {
+				var data = result.data;
+				$('#fNo').val(data.no);
+				$('#fName').val(data.name);
+				$('#fCreateDate').val(data.createDate);
+				$('#fTitle').val(data.title);
+				$('#fContent').val(data.content);
+			});
+		}, // detailMember
+		jdetailBoard: function(no) {
+			$.getJSON(contextRoot + '/bitin/jobBoard/detail.do?no=' + no, function(result) {
+				var data = result.data;
+				$('#jNo').val(data.no);
+				$('#jCreateDate').val(data.createDate);
+				$('#jDefDate').val(data.jday);
+				$('#jName').val(data.name);
+				$('#jCoName').val(data.co_name);
+				$('#jLineMemo').val(data.line_memo);
+			});
+		}, // jdetailMember
+		rdetailBoard: function(no) {
+			$.getJSON(contextRoot + '/bitin/reportBoard/detail.do?no=' + no, function(result) {
+				var data = result.data;
+				$('#rNo').val(data.no);
+				$('#rCreateDate').val(data.createDate);
+				$('#rName').val(data.name);
+				$('#rTitle').val(data.title);
+				$('#rContent').val(data.content);
+				
+			});
+		}, // rdetailMember
+		deleteBoard: function(no){
+			var moduleObj = this;
+			$.getJSON(contextRoot + '/bitin/board/delete.do?no=' + no, function(result) {
+				var data = result.data;
+				if (result.data == 'success') {
+					alert('Delete Success!');
+					moduleObj.listBoard(currPageNo, pageSize);
+					
+					$('#cancelBtn').click();
+					
+				} else {
+					alert('Delete Fail');
+				}
+			});
+		}, // deleteMember
+		jdeleteBoard: function(no){
+			var moduleObj = this;
+			$.getJSON(contextRoot + '/bitin/jobBoard/delete.do?no=' + no, function(result) {
+				var data = result.data;
+				if (result.data == 'success') {
+					alert('Delete Success!');
+					moduleObj.jlistBoard(currPageNo, pageSize);
+					
+					$('#cancelBtn').click();
+					
+				} else {
+					alert('Delete Fail');
+				}
+			});
+		}, // jdeleteMember
+		rdeleteBoard: function(no){
+			var moduleObj = this;
+			$.getJSON(contextRoot + '/bitin/reportBoard/delete.do?no=' + no, function(result) {
+				var data = result.data;
+				if (result.data == 'success') {
+					alert('Delete Success!');
+					moduleObj.rlistBoard(currPageNo, pageSize);
+					
+					$('#cancelBtn').click();
+					
+				} else {
+					alert('Delete Fail');
+				}
+			});
+		}, // rdeleteMember
+		updateBoard: function(){
+			var moduleObj = this;
+			$.ajax(contextRoot + '/bitin/board/update.do', 
+			{
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					no: $('#fNo').val(),
+					title: $('#fTitle').val(),
+					content: $('#fContent').val()
+				},
+				success: function(result) {
+					if (result.data == 'success') {
+						alert('Modify Success!');
+						moduleObj.listBoard(currPageNo, pageSize);
+						$('#cancelBtn').click();
+					} else {
+						alert('Modify Fail');
+					}
+				}
+			});
+		}, // updateMember
+		jupdateBoard: function(){
+			var moduleObj = this;
+			$.ajax(contextRoot + '/bitin/jobBoard/update.do', 
+			{
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					no: $('#jNo').val(),
+					co_name: $('#jCoName').val(),
+					line_memo: $('#jLineMemo').val()
+				},
+				success: function(result) {
+					if (result.data == 'success') {
+						alert('Modify Success!');
+						moduleObj.jlistBoard(currPageNo, pageSize);
+						$('#cancelBtn').click();
+					} else {
+						alert('Modify Fail');
+					}
+				}
+			});
+		}, // jupdateMember
+		rupdateBoard: function(){
+			var moduleObj = this;
+			$.ajax(contextRoot + '/bitin/reportBoard/update.do', 
+			{
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					no: $('#rNo').val(),
+					name: $('#rName').val(),
+					title: $('#rTitle').val(),
+					content: $('#rContent').val(),
+				},
+				success: function(result) {
+					if (result.data == 'success') {
+						alert('Modify Success!');
+						moduleObj.jlistBoard(currPageNo, pageSize);
+						$('#cancelBtn').click();
+					} else {
+						alert('Modify Fail');
+					}
+				}
+			});
+		}, // rupdateMember
+		insertBoard: function() {
+			var moduleObj = this;
+			$.ajax(contextRoot + '/bitin/board/insert.do', 
+			{
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					mno: $('#mNo').val(),
+					title: $('#mTitle').val(),
+					content: $('#mContent').val()
+				},
+				success: function(result) {
+					if (result.data == 'success') {
+						alert('입력 성공');
+						moduleObj.listBoard(1, pageSize);
+						$('#cancelBtn').click();
+					} else {
+						alert('입력 실패');
+					}
+				}
+			});
+		}, // insertMember
+		jinsertBoard: function() {
+			var moduleObj = this;
+			$.ajax(contextRoot + '/bitin/jobBoard/insert.do', 
+			{
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					sno: $('#jNo').val(),
+					co_name: $('#jConame').val(),
+					line_memo: $('#jLinememo').val(),
+					jday: $('#jDifiniteDate').val()
+				},
+				success: function(result) {
+					if (result.data == 'success') {
+						alert('Write Success!');
+						moduleObj.jlistBoard(1, pageSize);
+						$('#cancelBtn').click();
+					} else {
+						alert('Write Fail');
+					}
+				}
+			});
+		}, // jinsertMember
+		rinsertBoard: function() {
+			var moduleObj = this;
+			$.ajax(contextRoot + '/bitin/reportBoard/insert.do', 
+			{
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					mno: $('#rNo').val(),
+					title: $('#rTitle').val(),
+					content: $('#rContent').val(),
+					webAddress: $('#rWebAddress').val()
+				},
+				success: function(result) {
+					if (result.data == 'success') {
+						alert('Write Success!');
+						moduleObj.rlistBoard(1, pageSize);
+						$('#cancelBtn').click();
+					} else {
+						alert('Write Fail');
+					}
+				}
+			});
+		}, // rinsertMember
+		init: function() {
+			var moduleObj = this;
+			
+			$('#prevBtn').click(function(event) {
+				event.preventDefault();
+				if ($(this).attr('disabled') == 'disabled') {
+					return;
+				}
+				moduleObj.listBoard(currPageNo - 1, pageSize)
+			});
+			
+			$('#nextBtn').click(function(event) {
+				event.preventDefault();
+				if ($(this).attr('disabled') == 'disabled') {
+					return;
+				}
+				moduleObj.listBoard(currPageNo + 1, pageSize)
+			});
+			
+			$('#jprevBtn').click(function(event) {
+				event.preventDefault();
+				if ($(this).attr('disabled') == 'disabled') {
+					return;
+				}
+				moduleObj.jlistBoard(currPageNo - 1, pageSize)
+			});
+			
+			$('#jnextBtn').click(function(event) {
+				event.preventDefault();
+				if ($(this).attr('disabled') == 'disabled') {
+					return;
+				}
+				moduleObj.jlistBoard(currPageNo + 1, pageSize)
+			});
+			
+			$('#rprevBtn').click(function(event) {
+				event.preventDefault();
+				if ($(this).attr('disabled') == 'disabled') {
+					return;
+				}
+				moduleObj.rlistBoard(currPageNo - 1, pageSize)
+			});
+			
+			$('#rnextBtn').click(function(event) {
+				event.preventDefault();
+				if ($(this).attr('disabled') == 'disabled') {
+					return;
+				}
+				moduleObj.rlistBoard(currPageNo + 1, pageSize)
+			});
+			
+			
+			$('#deleteBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.deleteBoard($('#fNo').val());
+				$('.content-04').load('sub/content_04.html');
+			});
+			
+			$('#jdeleteBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.jdeleteBoard($('#jNo').val());
+				$('.content-04 > #boardMain > #content').load('sub/jobboard.html');
+			});
+			$('#rdeleteBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.rdeleteBoard($('#rNo').val());
+				$('.content-04 > #boardMain > #content').load('sub/reportboard.html');
+			});
+			
+			$('#updateBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.updateBoard(); 
+				$('.content-04 > #boardMain > #content').load('sub/freeboard.html');
+			});
+			
+			$('#jupdateBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.jupdateBoard(); 
+				$('.content-04 > #boardMain > #content').load('sub/jobboard.html');
+			});
+			
+			$('#rupdateBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.rupdateBoard(); 
+				$('.content-04 > #boardMain > #content').load('sub/reportboard.html');
+			});
+			
+			$('#insertBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.insertBoard();
+				$('.content-04 > #boardMain > #content').load('sub/freeboard.html');
+			});
+			
+			$('#jinsertBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.jinsertBoard();
+				$('.content-04 > #boardMain > #content').load('sub/jobboard.html');
+			});
+			$('#rinsertBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.rinsertBoard();
+				$('.content-04 > #boardMain > #content').load('sub/reportboard.html');
+			});
+			
+			// 자유 게시판 글쓰기
+			$('#f_writeBtn').click(function(event) {
+			    event.preventDefault();
+			    $('.content-04 > #boardMain > #content' ).load('sub/freeboard_reg.html');
+			    
+			  });
+			
+			$('#r_writeBtn').click(function(event) {
+			    event.preventDefault();
+			    $('.content-04 > #boardMain > #content' ).load('sub/reportboard_reg.html');
+			  });
+			$('#j_writeBtn').click(function(event) {
+			    event.preventDefault();
+			    $('.content-04 > #boardMain > #content' ).load('sub/jobboard_reg.html');
+			  });
+			
+			$('#cancelBtn').click(function(event) {
+				 event.preventDefault();
+				 $('.content-04 > #boardMain > #content').load('sub/freeboard.html');
+			    });
+			
+			$('#jcancelBtn').click(function(event) {
+				 event.preventDefault();
+				 $('.content-04 > #boardMain > #content').load('sub/jobboard.html');
+			    });
+
+			$('#rcancelBtn').click(function(event) {
+				 event.preventDefault();
+				 $('.content-04 > #boardMain > #content').load('sub/reportboard.html');
+			    });
+			
+			$('#fEmail').keyup(function(event) {
+//				console.log(chkEmail);
+				console.log($(this).val());
+				$.getJSON(
+//					contextRoot + '/json/member/existEmail.do', 
+					'http://localhost:8888/member/existEmail.do',
+					{
+						email: $(this).val()
+					},	
+					function(result) {
+						console.log(result.data);
+						if (result.data == 'no') {
+							$('#message').removeClass('my-message-warning')
+													 .addClass('my-message-success')
+													 .html('사용 가능합니다.');
+							
+						} else {
+							$('#message').removeClass('my-message-success')
+													 .addClass('my-message-warning')
+													 .html('사용할 수 없는 이메일입니다.');
+						}
+				});
+			});
+			
+//			$('#fileupload').fileupload({
+//		  	url: contextRoot + '/json/file/upload.do',
+//		    dataType: 'json',
+//		    // autoUpload: false;
+//		    maxFileSize: 10000000,
+//		    disableImageResize: /Android(?!.*Chrome)|Opera/
+//		      .test(window.navigator.userAgent), 
+//		      previewMaxWidth: 100,
+//		      previewMaxHeight: 100, 
+//		      previewCrop: true
+//			}).on('fileuploadsubmit', function(e, data) {
+//        // 서버에 일반 폼 데이터도 보내고 싶으면, submit 하기 전에
+//        // 다음과 같이 formData 프로퍼티에 값을 설정하라!
+//        /*
+//        data.formData = {
+//          data1: 'okok',
+//          data2: 'nono'
+//        };
+//        */
+//      }).on('fileuploaddone', function(e, data) {
+//        console.log(data.result);
+//        $('#files').html('');
+//        $.each(data.result.data, function (index, file) {
+//            $('<img>')
+//              .attr('src', file.url)
+//              .css('width', '100px')
+//              .appendTo('#files');
+//            $('<span/>')
+//            .text(file.name 
+//                + '(' + file.originName + ')'
+//                + ', ' + file.size)
+//                .appendTo('#files');
+//            $('#fPhoto').val(file.name);
+//        });
+//      }).on('fileuploadprogressall', function (e, data) {
+//        var progress = parseInt(
+//            data.loaded / data.total * 100, 10);
+//        $('#progress .progress-bar').css(
+//            'width',
+//            progress + '%'
+//        );
+//      }); // 파일 업로드에 대한 옵션 지정
+		}, // 초기화 함수
+		writeInfo: function() {
+			// 글쓰기 버튼 클릭 시 회원 정보 로딩
+	    $.getJSON(contextRoot + '/bitin/auth/loginInfo.do', function(info) {
+				var data = info.data;
+				if (info.state == 'yes') {
+					$('#mNo').val(data.no);
+					console.log("번호 호출 : " + data.no);
+				} else {
+					$('#mNo').val("아무개");
+				}
+			});
+		},
+		boardmain: function(){
+			
+//			  $('#main > header').load('header.html');
+//			  $('#main > footer').load('footer.html');
+			  $('#content').load('sub/freeboard.html');
+			  $('#freeBoard').click(function(event) {
+			    event.preventDefault();
+			    $('#content').load('sub/freeboard.html');
+			  });
+			  $('#reportBoard').click(function(event) {
+			    event.preventDefault();
+			    $('#content').load('sub/reportboard.html');
+			  });
+			  $('#jobBoard').click(function(event) {
+				event.preventDefault();
+				$('#content').load('sub/jobboard.html');
+			  });			
+		}
+	};
+	
+});
+
+
+
+
+
+
+
+
+
+
+
+
+

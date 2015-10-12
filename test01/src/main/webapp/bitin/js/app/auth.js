@@ -1,0 +1,36 @@
+define(['jquery', 'app/common'], function($) {
+			
+	return {
+		init: function() {
+			console.log("init 진입");
+			$('#login-button').click(function(event) {
+				event.preventDefault();
+				$.getJSON(contextRoot + '/bitin/auth/login.do', 
+				{
+					mno: $('#mno').val(),
+					password: $('#password').val()
+				},
+				function(result) {
+					if (result.data == 'yes') {
+						console.log("로그인 성공");
+						window.location.replace('main.html');
+						$(document).trigger('login.success');
+						// 도큐먼트 객체에 대해서 이벤트를 발생시킨다. 사용법을 잘 알아두도록.
+					} else {
+						// 로그인 실패 메세지 출력하기
+						$('#message').text('이메일 또는 암호가 맞지 않습니다.')
+					}
+				});
+			});
+			
+			$('input').focus(function(event){
+				$('#message').text('');
+			});
+			$('#lean_overlay').click(function(event){
+				$('#message').text('');
+			})
+
+		}
+	}
+	
+});

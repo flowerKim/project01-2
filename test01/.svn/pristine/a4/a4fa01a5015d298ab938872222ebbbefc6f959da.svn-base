@@ -1,0 +1,94 @@
+<script src='js/app/content_01_flip.js' type='text/javascript'></script>
+<link href="css/content_01.css" rel="stylesheet">
+<style>
+
+</style>
+
+<div id='main-menu-bar'>
+  <div class='div-under-text div-bottom-margin-1 font-titillium-web'>
+    &nbsp;- T H E - 
+  </div>
+  
+  <div class="div-logo">
+	  <div class="section">
+	    <div class="section-content clearfix">
+	      <div class="nocard nocard-left effect-hover">
+	        <div class="card-front">
+	          <span class="card-text"><img src='image/logo_bracket_01.png'></span>
+	        </div>
+	      </div>
+	      <div class="card effect-hover">
+	        <div class="card-front">
+	          <span class="card-text"><img src='image/logo_b_01.png'></span>
+	        </div>
+	        <div class="card-back">
+	          <span class="card-text"><img src='image/logo_b_02.png'></span>
+	        </div>
+	      </div>
+	      <div class="card effect-hover">
+	        <div class="card-front">
+	          <span class="card-text"><img src='image/logo_i_01.png'></span>
+	        </div>
+	        <div class="card-back">
+	          <span class="card-text">
+	           <a id='link-myinfo' href='#'><img src='image/logo_i_02.png'></a>
+	          </span>
+	        </div>
+	      </div>
+	       <div class="card effect-hover">
+	        <div class="card-front">
+	          <span class="card-text"><img src='image/logo_t_01.png'></span>
+	        </div>
+	        <div class="card-back">
+	          <span class="card-text"><img src='image/logo_t_02.png'></span>
+	        </div>
+	      </div>
+	      <div class="card effect-hover">
+	        <div class="card-front">
+	          <span class="card-text"><img src='image/logo_i_01.png'></span>
+	        </div>
+	        <div class="card-back">
+	          <span class="card-text"><img src='image/logo_i_02.png'></span>
+	        </div>
+	      </div>
+	      <div class="card effect-hover">
+	        <div class="card-front">
+	          <span class="card-text"><img src='image/logo_n_01.png'></span>
+	        </div>
+	        <div class="card-back">
+	          <span class="card-text"><img src='image/logo_n_02.png'></span>
+	        </div>
+	      </div>
+	      
+	      <div class="nocard nocard-right effect-hover">
+	        <div class="card-front">
+	          <span class="card-text"><img src='image/logo_bracket_02.png'></span>
+	        </div>
+	      </div>
+	    </div><!-- /card -->
+	  </div><!-- /section -->
+  </div>
+  
+  <div class='div-under-text div-top-margin-1 font-titillium-web'>
+    &nbsp;- P R O J E C T - 
+  </div><br>
+  <div class='div-under-text font-titillium-web e-name'>
+    JAVA 72th
+  </div><br>
+</div>
+<div class='div-under-text font-oxygen'>
+  Bit Academy JAVA 72th Final Project in 28, October 2015<br>
+  Designed &amp; Programmed By KimHongGyoo KimDaHye KimHyungJin<br>
+  With Spring MySQL JavaScript jQuery HTML5 CSS EChartsAPI NodeJS and Etc
+</div>
+<div id='logout-btn'><a href='#'><img src='image/auth_check.png' width='30' 
+  height='30' title='로그아웃'></a>
+</div>
+<!-- <script>
+$('#link-myinfo').click(function(event) {
+  event.preventDefault();
+  $('#content').load('sub/content_02.html').css('background-color', 'white');
+});
+</script> -->
+<link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+

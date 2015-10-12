@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bitacademy.java72.dao.MemberDao">
+	<resultMap type="Member"    id="MemberMap">
+		<id     column="mno"      property="no" />
+		<result column="pwd"      property="password" />
+		<result column="add_dt"   property="createDate" />
+	</resultMap>
+
+	<select id="list" parameterType="map"  resultMap="MemberMap">
+		SELECT mno, name, email, tel, add_dt
+		From memb
+		ORDER By mno desc
+		LIMIT #{startIndex}, #{pageSize}
+	</select>
+
+  <select id="countAll" resultType="int">
+    SELECT count(*)
+    From memb 
+  </select>
+
+	<update id="update" parameterType="Member">
+		UPDATE memb SET
+		  mno=#{no},
+		  name=#{name},
+			email=#{email},
+			tel=#{tel},
+			photo=#{photo},
+			pwd=#{password}
+		WHERE mno=#{no}
+	</update>
+
+<!-- 
+  <select id="countEmail" parameterType="string" resultType="int">
+    SELECT count(*)
+    From member 
+    where email = #{value}
+  </select>
+
+	<insert id="insert" parameterType="Member">
+		INSERT INTO member(mname, email, tel, pwd, photo, cre_dt)
+		values(#{name}, #{email}, #{tel}, #{password}, #{photo}, now())
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM member where mno=#{value}
+	</delete>
+
+ -->
+	<select id="get" parameterType="int" resultMap="MemberMap">
+		SELECT mno, name, email, tel, pwd
+		FROM memb
+		WHERE mno=#{value}
+	</select>
+	
+	<select id="exist" parameterType="map" resultMap="MemberMap">
+		SELECT mno, name, email, tel, add_dt
+		FROM memb
+		WHERE mno=#{mno} and pwd=#{password}
+	</select>
+
+</mapper>

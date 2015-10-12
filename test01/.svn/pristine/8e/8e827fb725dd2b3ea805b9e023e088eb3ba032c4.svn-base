@@ -1,0 +1,10 @@
+<div align='center' id='pageFooter'>
+  <span id='span-footer'>- 2015 JAVA 72th Project BITIN -</span>
+</div>
+<script>
+// header.html을 다룰 자바스크립트 파일을 로딩한다.
+// app/header.js가 로딩되지 않았을 때만 로딩한다. requirejs 지가 알아서 함.
+requirejs(['app/footer'], function(footer) {
+  footer.memberInfo();
+});
+</script>

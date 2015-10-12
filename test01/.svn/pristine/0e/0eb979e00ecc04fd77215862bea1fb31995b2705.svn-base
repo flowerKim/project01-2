@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<script src="js/lib/bootstrap.min.js"></script>
+
+
+<style>
+#formDiv {
+  text-align: center;
+}
+.container3 {
+  text-align: center;
+  width: 550px;
+  margin:10px;
+}
+}
+
+
+
+</style>
+
+<div class='container3'>
+<div id='formDiv'>
+  <h1 align='center'>JobBoard</h1>
+	<form class="form-horizontal">
+	<div class="form-group">
+    <label for="jNo" class="col-sm-2 control-label">No</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="jNo" readonly>
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="jCreateDate" class="col-sm-2 control-label">CreateDate</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="jCreateDate" readonly>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="jDefDate" class="col-sm-2 control-label">DefiniteDate</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="jDefDate" readonly>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="jName" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="jName" readonly>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="jCoName" class="col-sm-2 control-label">Co.Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="jCoName">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="jLineMemo" class="col-sm-2 control-label">LineMemo</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="jLineMemo">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id='jupdateBtn' type='button' class="btn btn-default btn-sm my-view">Modify</button>
+      <button id='jdeleteBtn' type='button' class="btn btn-default btn-sm my-view">Delete</button>
+      <button id='jcancelBtn' type='button' class="btn btn-default btn-sm my-view">cancel</button>
+    </div>
+  </div>
+	</form>
+</div><!-- formDiv -->
+
+</div>
+
+
+<script>
+requirejs(['app/content_04'], function(content_04) {
+  content_04.init();
+  content_04.jlistBoard(1, 10);
+});
+</script>

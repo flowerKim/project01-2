@@ -1,0 +1,73 @@
+<style>
+#table-attd {
+  margin-top: 10px;
+  border-collapse: collapse;
+  color: #f0f0f0;
+}
+#table-attd td {
+  border-bottom: 1px solid #61c6ba;
+  text-align: center;
+  padding: 4px 0 4px 0;
+}
+#table-attd tbody tr:HOVER {
+  background-color: #53cfc1;
+}
+#table-attd thead th {
+  border-bottom: 1px solid #61c6ba;
+  border-top: 1px solid #61c6ba;
+  padding: 4px 0 4px 0;
+  text-align: center;
+  font-size: 1.1em;
+}
+#attd-date {
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-left: 10%;
+}
+#attd-date h2 {
+  font-weight: bold;
+}
+.title-attd {
+  margin: 0 auto;
+}
+</style>
+
+<div id="attd-date">
+  <div>
+    <h2>&nbsp;&nbsp;&nbsp;Today Attendance</h2>
+  </div>
+  <div class='title-attd'>
+  <table id='table-attd'>
+    <thead>
+      <tr>
+        <th width='100'>이름</th>
+        <th width='130'>입실 시간</th>
+        <th width='130'>퇴실 시간</th>
+        <th width='300' align='left'>비고</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    
+  </table>
+  
+  </div>
+
+
+</div> <!-- attd-date -->
+<script data-main='js/app' src='js/lib/require.js'></script>
+<script id="template1" type="text/x-handlebars-template">
+{{#each data}}
+<tr class="attd-data-row">
+  <td>{{sno}}</td>
+  <td class='in-time'>{{in_time}}</td>
+  <td class='out-time'>{{out_time}}</td>
+  <td>{{etc}}</td>
+</tr>
+{{/each}}
+</script>
+
+<script>
+requirejs(['app/attendance'], function(attendance) {
+  attendance.attdList();
+});
+</script>

@@ -1,0 +1,27 @@
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/app/header.js"></script>
+<link href="css/header.css" type="text/css" rel="stylesheet">
+
+<div class="wblinks">
+  <a id="popm" href="#"><img src='image/top_menu_01.png' width='30' height='30'></a>
+</div>
+<div id="x3" class="dropmenu">
+  <a class="more header-home" href="#">HOME</a>
+  <a class="more header-mypage" href="#">MYPAGE</a>
+  <a class="more header-attd" href="#">ATTENDANCE</a>
+  <a class="more header-story" href="#">OUR:STORY</a>
+  <a class="more header-notice" href="#">NOTICE</a>
+</div>
+
+<script>
+// 메인 페이지에서는 표시 되지 않게 고정 메뉴 처리
+$('.wblinks').fadeOut(500);
+$(window).scroll(function() {
+	if ($(this).scrollTop() > 767) {
+		$('.wblinks').fadeIn(500);
+	} else {
+		$('.wblinks').fadeOut(500);
+	}
+});
+</script>
+

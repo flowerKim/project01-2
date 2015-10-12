@@ -1,0 +1,20 @@
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script src="js/app/header.js"></script>
+<link href="css/header.css" type="text/css" rel="stylesheet">
+
+
+
+<div class="wblinks">
+  <a id="popm" href="popular.asp">|||</a>
+</div>
+<div id="x3" class="dropmenu">
+  <a class="more" href="#">HOME</a>
+  <a class="more" href="#">MYPAGE</a>
+  <a class="more" href="#">ATTENDANCE</a>
+  <a class="more" href="#">OUR:STORY</a>
+  <a class="more" href="#">NOTICE</a>
+</div>
+
+<script>
+
+</script>

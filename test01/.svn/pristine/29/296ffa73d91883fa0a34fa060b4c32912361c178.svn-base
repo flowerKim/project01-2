@@ -1,0 +1,17 @@
+$(function() {
+  var t;
+  $('#popm').mouseover(function() {
+      $('#x3').fadeIn("fast", "linear");
+  });
+  $('#popm').mouseout(function() {
+      t = setTimeout(function(){
+          $('#x3').fadeOut("fast", "linear");
+      }, 300);
+  });
+  $('#x3').mouseover(function() {
+      clearTimeout(t);
+  });
+  $('#x3').mouseleave(function() {
+      $('#x3').fadeOut("fast", "linear");
+  });
+});
