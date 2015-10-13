@@ -27,7 +27,7 @@ define([
 			  });
 			  $('#reportBoard').click(function(event) {
 			    event.preventDefault();
-			    $('#content').load('sub/reportboard.html');
+			    $('#content').load('sub/bbs02_report_list.html');
 			  });
 			  $('#jobBoard').click(function(event) {
 				event.preventDefault();

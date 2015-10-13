@@ -23,6 +23,7 @@ public class Board implements Serializable {
 	protected int    no;
 	protected int    mno;
 	protected int    hit;
+	protected int    rCount;
 	protected String title;
 	protected String content;
 	protected String category;
@@ -41,7 +42,13 @@ public class Board implements Serializable {
 	public String getYyyyMMdd() {
 		return yyyyMMdd; // yyyy-[M]M-[d]d
 	}
-	public String getPhoto() {
+	public int getrCount() {
+    return rCount;
+  }
+  public void setrCount(int rCount) {
+    this.rCount = rCount;
+  }
+  public String getPhoto() {
     return photo;
   }
   public void setPhoto(String photo) {
@@ -72,7 +79,7 @@ public class Board implements Serializable {
 		this.hit = hit;
 	}
 	public void setYyyyMMdd(String yyyyMMdd) {
-		this.setCreateDate(Date.valueOf(yyyyMMdd));
+//		this.setCreateDate(Date.valueOf(yyyyMMdd));
 	}
 	public String getPassword() {
 		return password;
@@ -103,7 +110,7 @@ public class Board implements Serializable {
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-		this.yyyyMMdd = createDate.toString();
+//		this.yyyyMMdd = createDate.toString();
 	}
 	public int getViewCount() {
 		return viewCount;

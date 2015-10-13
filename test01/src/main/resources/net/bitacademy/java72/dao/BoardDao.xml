@@ -16,7 +16,9 @@
     
   <select id="list" parameterType="map" resultMap="BoardMap">
    SELECT fno, mno, category, 
-     (select name from memb where mno=b1.mno)as name, title, hit, add_dt
+     (select name from memb where mno=b1.mno)as name, 
+     (select count(*) from repl where fno=b1.fno)as rCount, 
+     title, hit, add_dt
    FROM bbs b1
    ORDER By fno desc
    LIMIT #{startIndex}, #{pageSize}

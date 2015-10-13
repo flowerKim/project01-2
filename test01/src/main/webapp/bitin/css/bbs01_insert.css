@@ -53,6 +53,9 @@
   appearance: none
 }
 /* 게시물 상세 보기 */
+#f_deleteBtn, #f_editBtn {
+	display: none;
+}
 .detail-member-photo {
 	display: inline-block;
 	vertical-align: top;
@@ -86,7 +89,7 @@
 }
 .reply-name-info {
 	margin-top: 20px;
-	width: 105px;
+	width: 60px;
 	display: inline-block;
 	vertical-align: top;
 	text-align: right;
@@ -100,6 +103,7 @@
 	margin-top: 20px;
 }
 .reply-list {
+	display: none;
 	padding: 10px;
 	border-bottom: 1px solid #ddd;
 	font-size: 1.2em;
@@ -107,6 +111,74 @@
 	text-align: center;
 	color: #666;
 }
+.reply-btn span button, .reply-confirm button {
+	border: 1px solid #999;
+  padding: 4px 10px 6px 10px;
+  background: #f7f7f7;
+  font-size: 1.1em;
+  color: #333;
+  width: 90px;
+  height: 107px;
+  overflow: visible;
+  border-radius: 4px;
+}
+.reply-confirm button {
+	vertical-align: top;
+	margin-top: 10px;
+	height: 102px;
+}
+.reply-confirm {
+	display: none;
+}
 .reply-btn {
-	padding-top: 2px;
+	padding-top: 20px;
+	display: inline-block;
+	vertical-align: top;
+}
+.data-row-reply {
+	width: 750px;
+	border-bottom: 1px solid #f0f0f0;
+	padding: 10px;
+}
+.data-row-reply td {
+	padding: 7px;
+}
+.data-row-reply div span a {
+	text-decoration: none;
+}
+.reply-name {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.reply-cd, .reply-edit, .reply-delete {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0.9em;
+	color: #999;
+}
+.reply-edit, .reply-delete {
+	display: none;
+}
+.reply-content {
+	display: inline-block;
+}
+.reply-cancel {
+	display: none;
+}
+.reply-cd {
+	width: 609px;
+}
+.reply-textarea {
+	outline-style: none;
+	border: 1px;
+	
+	margin-top: 10px;
+	margin-right: 1px;
+	padding: 0px;
+	resize: none;
+}
+.data-row-reply div span a {
+	text-decoration: none;
+	color: #000;
+	
 }

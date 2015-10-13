@@ -21,10 +21,11 @@
     </span>
   </div>  
   <div class='c-head-buttons'>
-    <!-- <a href='#'><button type='button' id='bbs01-updateBtn'>변경</button></a> -->
 	  <span><a id='f_editBtn' href='#' class='toUpdate'>- 수정하기</a>&nbsp;
+	  <a id='f_deleteBtn' href='#' class='toDelete'>- 삭제하기</a>&nbsp;
 	  <a id='f_listBtn' href='#' class='toList'>- 목록으로</a></span>
   </div>
+  <input class='detail-hidden-no' type='hidden'>
 </div>
 <div id='replyDiv'><!-- listDiv -->
   <div class='reply-list'><span>덧글이 없습니다. 무플방지 위원이 되어주시겠어요?</span></div>
@@ -34,23 +35,35 @@
 </div><!-- listDiv -->
 <div id='replyForm'> <!-- 리플 입력 폼 -->
   <div class='reply-name-info'><span id='reply-name'></span></div>
-  <div class='reply-textarea-form'><textarea rows='5' cols='87' style="resize: none;"></textarea></div>
-  <div class='reply-btn c-head-buttons'>
+  <div class='reply-textarea-form'><textarea id='reply-content' rows='5' cols='80' style="resize: none;"></textarea></div>
+  <div class='reply-btn'>
     <span><a href='#'><button type='button' id='bbs01-insertReplyBtn'>저장</button></a></span>
   </div>
 </div>
 
 <script id="template_reply" type="text/x-handlebars-template">
 {{#each data}}
-<tr class="data-row">
-  <td>{{no}}</td>
-  <td id="replyMno">{{mno}}</td>
-  <td>{{fno}}</td>
-  <td>{{name}}</td>
-  <td><a class="getLink" rno="{{no}}" get-mno={{mno}} href="#">{{content}}</a></td>
-  <td>{{createDate}}</td>
-  <td><a class="deleteLink" rno="{{no}}" data-mno={{mno}} href="#">삭제</a></td>
-</tr>
+<div class="data-row-reply">
+  <div>
+    <span class='reply-name'>{{name}}</span>&nbsp;
+    <span class='reply-cd'>{{createDate}}</span>
+    <span class='reply-edit reply-edit{{no}} link{{mno}}' 
+      idname='rnumber{{no}}'><a href='#'>수정</a> | </span>
+    <span class='reply-delete reply-delete{{no}} link{{mno}}' idname='{{no}}' 
+      bbs-num='{{fno}}'><a href='#'>삭제</a></span>
+    <span class='reply-cancel reply-cancel{{no}}' 
+      idname='rnumber{{no}}'><a href='#'>수정취소</a></span>
+  </div>
+  <div>
+    <span class="reply-content"><textarea class='update-reply-content{{no}} 
+      reply-textarea reply-textarea{{no}}'  cols='88' 
+      bbs-number='{{fno}}' reply-number='{{no}}' reply-member='{{mno}}' 
+      readonly>{{content}}</textarea></span>
+    <span class='reply-confirm reply-confirm{{no}}'><a href='#'><button 
+      type='button' button-bbs-num='{{fno}}' button-r-num='{{no}}' 
+      class='bbs01-updateReplyBtn'>저장</button></a></span>
+  </div>  
+</div>
 {{/each}}
 </script>
 

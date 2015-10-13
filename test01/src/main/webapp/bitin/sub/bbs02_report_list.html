@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="css/bbs02_list.css">
+<div id='bbs02-container'> <!-- #main -->
+<div id='report-listDiv'><!-- listDiv -->
+	<img src='image/bbs02_01.png'>
+	<table id='listTable_report'>
+	  <thead>  
+		  <tr>
+		    <th width='50'>번호</th>
+		    <th width='80'>이름</th>
+		    <th>제목</th>
+		    <th width='120'>등록일</th>
+		  </tr>
+	  </thead>
+	  <tbody></tbody>
+	</table>
+	<div id='report-editDiv'>
+    <a id='report-writeBtn' href='#' class='link-write'>- 글쓰기</a>
+  </div>
+	<div id='report-paging'>
+	  <div>
+	    <span id='report-pageNo'></span>&nbsp;
+	    <span class="rbtn-prev-01"><a id='report-prevBtn' href='#'><img src='image/prevbtn_01.png'> 이전</a></span>
+	    <a id='report-nextBtn' href='#' class="rbtn-next-01">다음 <img src='image/nextbtn_01.png'></a>
+	  </div>
+	</div>
+</div><!-- listDiv -->
+</div><!-- #main -->
+
+<script id="template_report" type="text/x-handlebars-template">
+{{#each data}}
+<tr class="data-row">
+  <td>{{no}}</td>
+  <td>{{name}}</td>
+  <td><a class='reportDetail m{{mno}}' report_no='{{no}}'>{{title}}</a></td>
+  <td>{{createDate}}</td>
+</tr>
+{{/each}}
+</script>
+
+<script>
+requirejs(['app/bbs02_report'], function(bbs02_report) {
+	bbs02_report.rinit();
+	bbs02_report.rlistBoard(1, 10);
+});
+</script>
+
+
+

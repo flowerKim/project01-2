@@ -5,15 +5,6 @@ define([
           'jquery.ui.widget',
           'jquery.iframe-transport',
           'jquery.fileupload',
-          /*
-          'canvas-to-blob.min',
-          'load-image.all.min',
-          'jquery.fileupload-process',
-          'jquery.fileupload-image',
-          'jquery.fileupload-audio',
-          'jquery.fileupload-video',
-          'jquery.fileupload-validate',
-          */
           'app/common'
        ], function($, handlebars){
 	var currPageNo = 1;
@@ -54,6 +45,8 @@ define([
 				  	$('#nextBtn').removeAttr('href');
 				  }
 				  
+				  $('.data-row').find('.rcount0').css('display', 'none');
+				  
 				  $('.nameLink').click(function(event){
 				  	event.preventDefault();
 				  	$('.content-04 > #boardMain > #content' ).load('sub/bbs01_free_detail.html');
@@ -68,15 +61,13 @@ define([
 			var detailNo = no;
 			var moduleObj = this;
 			var replyName = $('#hidden-member-name').val();
-			console.log("덧글 이름 : " + replyName);
 			$.getJSON(contextRoot + '/bitin/board/detail.do?no=' + no, function(result) {
 				var data = result.data;
 				//moduleObj.fcontentInfo();
-				$('#fNo').val(data.no);
-				$('#fmNo').val(data.mno);
+				$('.detail-hidden-no').val(data.no);
+//				$('#fmNo').val(data.mno);
 				$('.detail-member-name').text(data.name);
 				$('.detail-added-date').text(data.createDate);
-				$('#fCreateDate').val(data.createDate);
 				$('.detail-category').text(data.category);
 				$('.detail-title').text(data.title);
 				$('#bbs01-content').val(data.content);
@@ -85,11 +76,19 @@ define([
 				} else {
 					$('.c-head-filename').val(data.attachFile);
 				}
-				$('#writer-photo').attr('src', contextRoot + '/files/' + data.photo);
+				if (data.photo != null) {
+					$('#writer-photo').attr('src', contextRoot + '/files/' + data.photo);
+				} else {
+					$('#writer-photo').attr('src', contextRoot + '/bitin/image/anonymous.png');
+				}
+				
+				// 덧글 입력 폼 왼쪽에 로그인한 사용자 이름
 				$('#reply-name').text(replyName);
+				
 				var compareMemberNo = parseInt($('#hidden-member-no').val());
-				if (compareMemberNo != data.mno) {
-					$('#bbs01-updateBtn').css('display', 'none');
+				if (compareMemberNo == data.mno) {
+					$('#f_editBtn').css('display', 'inline');
+					$('#f_deleteBtn').css('display', 'inline');
 				}
 				
 				$('#f_editBtn').click(function(event) {
@@ -97,7 +96,7 @@ define([
 					$('.content-04 > #boardMain > #content' ).load('sub/bbs01_free_edit.html');
 			  	moduleObj.feditBoard(detailNo);
 				});
-				
+								
 				//
 //				$('#mem_No_lb').css('display', 'none');
 //				$('#mem_No').css('display', 'none');
@@ -131,21 +130,21 @@ define([
 			});
 			
 		}, // feditBoard
-//		fdeleteBoard: function(no){
-//			var moduleObj = this;
-//			$.getJSON(contextRoot + '/bitin/board/delete.do?no=' + no, function(result) {
-//				var data = result.data;
-//				if (result.data == 'success') {
-//					alert('Delete Success!');
-//					moduleObj.flistBoard(currPageNo, pageSize);
-//					
-//					$('#bbs01-initialize').click();
-//					
-//				} else {
-//					alert('Delete Fail');
-//				}
-//			});
-//		}, // fdeleteBoard
+		fdeleteBoard: function(no){
+			var moduleObj = this;
+			$.getJSON(contextRoot + '/bitin/board/delete.do?no=' + no, function(result) {
+				var data = result.data;
+				if (result.data == 'success') {
+					alert('Delete Success!');
+					moduleObj.flistBoard(currPageNo, pageSize);
+					
+					$('#bbs01-initialize').click();
+					
+				} else {
+					alert('Delete Fail');
+				}
+			});
+		}, // fdeleteBoard
 		fupdateBoard: function(){
 			var moduleObj = this;
 			$.ajax(contextRoot + '/bitin/board/update.do', 
@@ -225,12 +224,18 @@ define([
 				
 			});
 			
-			$('#deleteBtn').click(function(event) {
+			// 삭제 버튼
+			$('#f_deleteBtn').click(function(event) {
 				event.preventDefault();
-				moduleObj.fdeleteBoard($('#fNo').val());
-				$('.content-04').load('sub/content_04.html');
+				if (confirm("삭제하시겠습니까?")) {
+					moduleObj.fdeleteBoard($('.detail-hidden-no').val());
+					$('.content-04').load('sub/content_04.html');
+				} else {
+					return;
+				}
 			});
 			
+			// 수정 버튼
 			$('#bbs01-updateBtn').click(function(event) {
 				event.preventDefault();
 				moduleObj.fupdateBoard(); 
@@ -243,7 +248,7 @@ define([
 				$('.content-04 > #boardMain > #content').load('sub/bbs01_free_list.html');
 			});
 			
-			// 자유 게시판 글쓰기
+			// 글 작성 버튼
 			$('#f_writeBtn').click(function(event) {
 			    event.preventDefault();
 			    $('.content-04 > #boardMain > #content' ).load('sub/bbs01_free_insert.html');
@@ -257,6 +262,12 @@ define([
 //				console.log("페이지번호는 " + pageNo + ", 페이지 사이즈는 " + pageSize);
 //				moduleObj.flistBoard(pageNo, pageSize)
 //			});
+			
+			// 덧글 입력
+			$('#bbs01-insertReplyBtn').click(function(event) {
+				event.preventDefault();
+				moduleObj.replyInsert($('.detail-hidden-no').val());
+			});
 			
 			$('#f_listBtn').click(function(event) {
 				event.preventDefault();
@@ -274,16 +285,6 @@ define([
 				$('.content-04 > #boardMain > #content' ).load('sub/freeboard_detail.html');
 				moduleObj.fdetailBoard(num);
 				moduleObj.replyList(1,10,num);
-			});
-			
-			$('#replyUpdate_Btn').click(function(event) {
-				event.preventDefault();
-				moduleObj.replyUpdate();
-				$('.content-04 > #boardMain > #content' ).load('sub/freeboard_detail.html');
-				moduleObj.fdetailBoard(num);
-				moduleObj.replyList(1,10,num);
-				
-			  	
 			});
 			
 			$('.deleteLink').click(function(event){
@@ -412,51 +413,125 @@ define([
 					pageSize : pageSize,
 				}, 
 				function(result) {
+//					console.log("리플데이터 : ");
+//					console.log(result);
+					if (result.data == '') {
+						$('.reply-list').css('display', 'block');
+					}
 					currPageNo = result.pageNo;
 				  $('#pageNo').text(currPageNo);
 				  moduleObj.freplInfo(result);
 				  var tbody = $('#table-reply tbody');
-				  $('.data-row').remove();
+				  $('.data-row-reply').remove();
 				  // HandlebarsJS 템플릿 사용
 				  var source = $('#template_reply').html();
 				  var template = handlebars.compile(source);
 				  var content = template(result);
 				  $('#table-reply tbody').html(content);
 				 
+//				  // 이전, 다음 버튼 처리
+//				  if (result.pageNo > 1) {
+//				  	$('#prevBtn').removeAttr('disabled');
+//				  } else {
+//				  	$('#prevBtn').attr('disabled', 'disabled');
+//				  }
+//				  
+//				  if (result.isNextPage) {
+//				  	$('#nextBtn').removeAttr('disabled');
+//				  } else {
+//				  	$('#nextBtn').attr('disabled', 'disabled');
+//				  }
+				  console.log($('#hidden-member-no').val() + " ++++ " + $('.reply-textarea').attr('reply-member'));
+				  var findNumber = ".link" + $('#hidden-member-no').val();
 				  
-				  // 이전, 다음 버튼 처리
-				  if (result.pageNo > 1) {
-				  	$('#prevBtn').removeAttr('disabled');
-				  } else {
-				  	$('#prevBtn').attr('disabled', 'disabled');
-				  }
+				  $('.data-row-reply').find(findNumber).css('display', 'inline');
 				  
-				  if (result.isNextPage) {
-				  	$('#nextBtn').removeAttr('disabled');
-				  } else {
-				  	$('#nextBtn').attr('disabled', 'disabled');
-				  }
-				
+//				  if ($('#hidden-member-no').val() != $('.reply-textarea').attr('reply-member')) {
+//				  	console.log("다름");
+//				  } else {
+//				  	console.log("가틈");
+//				  }
+//				  var idname = $('.reply-edit').attr('idname');
+//					console.log("idname = " + idname);
+//					var rNumber = idname.substr(7);
+//					console.log("idname = " + rNumber);
+					
+					
+					// 덧글 수정
+					$('.reply-edit').click(function(event) {
+						event.preventDefault();
+						var idname = $(this).attr('idname');
+						var r_number = idname.substr(7);
+						var r_number_string1 = ".reply-confirm" + r_number;
+						var r_number_string2 = ".reply-textarea" + r_number;
+						var r_number_string3 = ".reply-cancel" + r_number;
+						var r_number_string4 = ".reply-edit" + r_number;
+						var r_number_string5 = ".reply-delete" + r_number;
+						$(r_number_string1).css('display', 'inline');
+						$(r_number_string2).css('border', '1px solid #a9a9a9');
+						$(r_number_string3).css('display', 'inline');
+						$(r_number_string4).css('display', 'none');
+						$(r_number_string5).css('display', 'none');
+						$(r_number_string2).attr('rows', '5');
+						$(r_number_string2).removeAttr('readonly');
+					});
+					// 덧글 수정 취소
+					$('.reply-cancel').click(function(event) {
+						event.preventDefault();
+						var idname = $(this).attr('idname');
+						var r_number = idname.substr(7);
+						var r_number_string1 = ".reply-confirm" + r_number;
+						var r_number_string2 = ".reply-textarea" + r_number;
+						var r_number_string3 = ".reply-cancel" + r_number;
+						var r_number_string4 = ".reply-edit" + r_number;
+						var r_number_string5 = ".reply-delete" + r_number;
+						$(r_number_string1).css('display', 'none');
+						$(r_number_string2).css('border', '0px');
+						$(r_number_string3).css('display', 'none');
+						$(r_number_string4).css('display', 'inline');
+						$(r_number_string5).css('display', 'inline');
+						$(r_number_string2).removeAttr('rows');
+						$(r_number_string2).attr('readonly', '');
+					});
+					// 덧글 업데이트 버튼
+					$('.bbs01-updateReplyBtn').click(function(event) {
+						event.preventDefault();
+						var idname = $(this).attr('button-r-num');
+						var content_cls = ".update-reply-content" + idname;
+						var update_content = $(content_cls).val();
+						var bbs_no = $(this).attr('button-bbs-num');
+						moduleObj.replyUpdate(bbs_no, idname, update_content);
+					});
+					// 덧글 삭제 버튼
+					$('.reply-delete').click(function(event) {
+						event.preventDefault();
+						var delete_no = $(this).attr('idname');
+						var bbs_no = $(this).attr('bbs-num');
+						if (confirm("삭제하시겠습니까?")) {
+							moduleObj.replyDelete(delete_no, bbs_no);
+						} else {
+							return;
+						}
+					});
 				});
 		}, //리플 리스트 출력
 		replyInsert: function(no) {
-			
 			var moduleObj = this;
-			console.log(no);
 			$.ajax(contextRoot + '/bitin/repl/insert.do', 
 			{
 				method: 'POST',
 				dataType: 'json',
 				data: {
 					fno: no,
-					mno: $('#mem_No').val(),
-					content: $('#repl_Content').val()
+					mno: $('#hidden-member-no').val(),
+					content: $('#reply-content').val()
 				},
 				success: function(result) {	
 					if (result.data == 'success') {
 						alert('리플 입력을 성공했습니다!');
-						
-						$('#bbs01-initialize').click();
+						moduleObj.replyList(1, 10, no);
+						$('#reply-content').val('');
+						$('.reply-list').css('display', 'none');
 					} else {
 						alert('리플 입력을 실패했습니다.');
 					}
@@ -464,40 +539,43 @@ define([
 			});
 			
 		},//리플 내용 입력
-		replyDelete: function(no){
+		replyDelete: function(no, fno){
 			var moduleObj = this;
+			var bbsNo = fno;
 			$.getJSON(contextRoot + '/bitin/repl/delete.do?no=' + no, function(result) {
-				var data = result.data;
 				if (result.data == 'success') {
-					alert('리플 삭제를 완료했습니다!');
-//					moduleObj.replyList(currPageNo, pageSize);
+					alert('삭제되었습니다.');
+					moduleObj.replyList(1, 10, fno);
 				} else {
-					alert('리플 삭제를 실패했습니다.');
+					alert('삭제되지 않았습니다.');
 				}
 			});
 		}, //리플 삭제
-		replyDetail: function(no) {
-			$.getJSON(contextRoot + '/bitin/repl/detail.do?no=' + no, function(result) {
-				var data = result.data;
-				$('#mem_No').val(data.mno);
-				$('#repl_No').val(data.no);
-				$('#repl_Content').val(data.content);
-			});
-		}, // 리플 디테일
-		replyUpdate: function(){
+//		replyDetail: function(no) {
+//			$.getJSON(contextRoot + '/bitin/repl/detail.do?no=' + no, function(result) {
+//				var data = result.data;
+//				$('#mem_No').val(data.mno);
+//				$('#repl_No').val(data.no);
+//				$('#repl_Content').val(data.content);
+//			});
+//		}, // 리플 디테일
+		replyUpdate: function(fno, no, content){
 			var moduleObj = this;
+			var updateNo = no;
+			var updateContent = content;
+			var bbsNo = fno;
 			$.ajax(contextRoot + '/bitin/repl/update.do', 
 			{
 				method: 'POST',
 				dataType: 'json',
 				data: {
-					no: $('#repl_No').val(),
-					content: $('#repl_Content').val()
+					no: updateNo,
+					content: updateContent
 				},
 				success: function(result) {
 					if (result.data == 'success') {
 						alert('리플 수정을 완료했습니다!');
-						
+						moduleObj.replyList(1, 10, bbsNo);
 					} else {
 						alert('리플 수정을 실패했습니다.');
 					}
