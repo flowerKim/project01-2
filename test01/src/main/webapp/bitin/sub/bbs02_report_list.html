@@ -1,4 +1,9 @@
 <link rel="stylesheet" href="css/bbs02_list.css">
+
+<style>
+.m100001 {
+}
+</style>
 <div id='bbs02-container'> <!-- #main -->
 <div id='report-listDiv'><!-- listDiv -->
 	<img src='image/bbs02_01.png'>
@@ -28,7 +33,7 @@
 
 <script id="template_report" type="text/x-handlebars-template">
 {{#each data}}
-<tr class="data-row">
+<tr class="report-data-row">
   <td>{{no}}</td>
   <td>{{name}}</td>
   <td><a class='reportDetail m{{mno}}' report_no='{{no}}'>{{title}}</a></td>

@@ -20,12 +20,6 @@ define([
 					currPageNo = result.pageNo;
 				  $('#pageNo').text(currPageNo);
 				  
-				  console.log("회원 번호 비교하기");
-				  console.log('#');
-				  var login_memberNo = $('#hidden-member-no').val();
-				  var find_memberNo = "m" + login_memberNo;
-				  console.log(find_memberNo);
-				  $('.data-row').find(find_memberNo).css('font-size', '2em');
 				  
 				  var tbody = $('#listTable_report tbody');
 				  $('.data-row').remove();
@@ -49,24 +43,53 @@ define([
 				  	$('#report-nextBtn').removeAttr('href');
 				  }
 				  
+				  // 본인이 작성한 글만 열람할 수 있게
+				  var login_memberNo = $('#hidden-member-no').val();
+				  var find_memberNo = ".m" + login_memberNo;
+				  console.log(find_memberNo);
+				  $('#listTable_report').find(find_memberNo).attr('href', '#');
+				  // 끝
+				  
 				  $('.reportDetail').click(function(event){
 				  	event.preventDefault();
-				  	$('.content-04 > #boardMain > #content' ).load('sub/reportboard_detail.html');
+				  	$('.content-04 > #boardMain > #content' ).load('sub/bbs02_report_detail.html');
 				  	moduleObj.rdetailBoard(this.getAttribute('report_no'));
 				  });
 				});
 		}, // rlistBoard
-		
+		// 과제 게시판 상세보기
 		rdetailBoard: function(no) {
 			$.getJSON(contextRoot + '/bitin/reportBoard/detail.do?no=' + no, function(result) {
 				var data = result.data;
-				$('#rNo').val(data.no);
-				$('#rmNo').val(data.mno);
-				$('#rCreateDate').val(data.createDate);
-				$('#rName').val(data.name);
-				$('#rTitle').val(data.title);
-				$('#rContent').val(data.content);
-				
+				var rNo = data.no;
+				var mNo = data.mno;
+				$('#bbs02-dtitle').val(data.title);
+				$('#bbs02-dcontent').val(data.content);
+				$('#bbs02-editBtn').css('display', 'inline');
+
+				$('#bbs02-editBtn').click(function(event) {
+					event.preventDefault();
+					$('#bbs02-editBtn').css('display', 'none');
+					$('#bbs02-updateBtn').css('display', 'inline');
+					$('#bbs02-updateCancelBtn').css('display', 'inline');
+					$('#bbs02-dtitle').removeAttr('readonly');
+					$('#bbs02-dcontent').removeAttr('readonly');
+					$('#bbs02-dtitle').css('border', '1px solid #a7a7a7');
+					$('#bbs02-dcontent').css('border', '1px solid #a7a7a7');
+					$('.report-head-title').css('border-right', '0px');
+				});
+				$('#bbs02-updateCancelBtn').click(function(event) {
+					event.preventDefault();
+					$('#bbs02-editBtn').css('display', 'inline');
+					$('#bbs02-updateBtn').css('display', 'none');
+					$('#bbs02-updateCancelBtn').css('display', 'none');
+					$('#bbs02-dtitle').attr('readonly', '');
+					$('#bbs02-dcontent').attr('readonly', '');
+					$('#bbs02-dtitle').css('border', '0px');
+					$('#bbs02-dcontent').css('border', '0px');
+					$('.report-head-title').css('border-right', '1px dashed #ddd');
+					$('#bbs02-dcontent').val(data.content);
+				});
 			});
 		}, // rdetailBoard
 		
@@ -117,22 +140,21 @@ define([
 				method: 'POST',
 				dataType: 'json',
 				data: {
-					mno: $('#rNo').val(),
-					title: $('#rTitle').val(),
-					content: $('#rContent').val(),
-					webAddress: $('#rWebAddress').val()
+					mno: $('#hidden-member-no').val(),
+					title: $('#bbs02-title').val(),
+					content: $('#bbs02-content').val()
 				},
 				success: function(result) {
 					if (result.data == 'success') {
 						alert('Write Success!');
 						moduleObj.rlistBoard(1, pageSize);
-						$('#cancelBtn').click();
 					} else {
 						alert('Write Fail');
 					}
 				}
 			});
 		}, // rinsertBoard
+		// 초기화 함수 시작
 		rinit: function() {
 			var moduleObj = this;
 			
@@ -155,31 +177,34 @@ define([
 			$('#rdeleteBtn').click(function(event) {
 				event.preventDefault();
 				moduleObj.rdeleteBoard($('#rNo').val());
-				$('.content-04 > #boardMain > #content').load('sub/reportboard.html');
+				$('.content-04 > #boardMain > #content').load('sub/bbs02_report_list.html');
 			});
 			
 			$('#rupdateBtn').click(function(event) {
 				event.preventDefault();
 				moduleObj.rupdateBoard(); 
-				$('.content-04 > #boardMain > #content').load('sub/reportboard.html');
+				$('.content-04 > #boardMain > #content').load('sub/bbs02_report_list.html');
 			});
 			
-			$('#rinsertBtn').click(function(event) {
+			// 과제 게시판 글쓰기 등록
+			$('#bbs02-insertBtn').click(function(event) {
 				event.preventDefault();
 				moduleObj.rinsertBoard();
-				$('.content-04 > #boardMain > #content').load('sub/reportboard.html');
+				$('.content-04 > #boardMain > #content').load('sub/bbs02_report_list.html');
 			});
 			
-			// 레포트 게시판 글쓰기
-			$('#r_writeBtn').click(function(event) {
+			$('#bbs02-cancelBtn').click(function(event) {
+				event.preventDefault();
+				$('.content-04 > #boardMain > #content').load('sub/bbs02_report_list.html');
+			});
+			
+			// 과제 게시판 글쓰기
+			$('#report-writeBtn').click(function(event) {
 			    event.preventDefault();
-			    $('.content-04 > #boardMain > #content' ).load('sub/reportboard_reg.html');
+			    console.log("멤버정보 " + $('#hidden-member-no').val());
+			    $('.content-04 > #boardMain > #content' ).load('sub/bbs02_report_insert.html');
 			  });
 
-			$('#rcancelBtn').click(function(event) {
-				 event.preventDefault();
-				 $('.content-04 > #boardMain > #content').load('sub/reportboard.html');
-			    });
 			
 		} // 초기화 함수
 	};

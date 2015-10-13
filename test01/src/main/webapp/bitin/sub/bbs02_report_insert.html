@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="css/bbs02_insert.css">
+
+<div id='report-insert'>
+<div class='bbs02-top-img'>
+  <img src='image/bbs02_01.png'>
+</div>
+  <div class='report-head report-head-border-top'>
+    <span class='report-head-title'>제목</span>
+    <span class='span-input-02'><input type='text' name='bbs02-title' 
+      id='bbs02-title' style="width:631px" maxlength='30' 
+      placeholder="제목을 입력하세요.(30글자 이내)"></span>
+  </div>
+  <div class='report-head'>
+    <span class='report-head-title report-head-content'>내용</span>
+    <span>
+      <textarea name='bbs02-content' id='bbs02-content' rows='15' cols='87' 
+        placeholder="내용을 입력하세요." style="resize:none;"></textarea>
+    </span>
+  </div>  
+  <div class='report-head-buttons'>
+	  <span><a href='#'><button type='button' id='bbs02-insertBtn'>등록</button></a>
+	  <a href='#'><button type='button' id='bbs02-cancelBtn'>취소</button></a></span>
+  </div>
+      
+
+</div>
+<script>
+requirejs(['app/bbs02_report'], function(bbs02_report) {
+	bbs02_report.rinit();
+});
+</script>

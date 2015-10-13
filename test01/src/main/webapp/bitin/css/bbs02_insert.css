@@ -1,0 +1,84 @@
+#free-insert {
+}
+.report-head {
+  width: 750px;
+  padding: 7px 7px;
+  border-bottom: 1px solid #eee;
+}
+.report-head-border-top {
+  border-top: 1px solid #eee;
+}
+.report-head-title {
+  display: inline-block;
+  width: 100px;
+  font-weight: bold;
+  font-size: 1.1em;
+  border-right: 1px dashed #ddd;
+}
+.report-head-file {
+  display: inline-block;
+}
+.span-input-02 input {
+  padding: 3px;
+}
+.report-head-content {
+  vertical-align: top;
+}
+.report-head-buttons {
+  padding: 10px 13px 10px 0px;
+  text-align: right;
+}
+.report-head-buttons span button {
+  border: none;
+  padding: 4px 10px 6px 10px;
+  background: #50a85a;
+  font-size: 1.2em;
+  color: white;
+  width: 60px;
+  overflow: visible;
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+.bbs02-top-img {
+  margin-bottom: 30px;
+}
+/* 게시물 상세 보기 */
+.forborder {
+	height: 400px;
+}
+.report-head-buttons {
+	text-decoration: none;
+	font-weight: bold;
+}
+.report-content-detail {
+	border-left: 1px solid #eee;
+}
+#bbs02-editBtn, #bbs02-updateBtn, #bbs02-updateCancelBtn {
+	display: none;
+}
+.detail-member-photo {
+	display: inline-block;
+	vertical-align: top;
+	margin-bottom: 10px;
+}
+.detail-information {
+	display: inline-block;
+	width: 610px;
+	padding-left: 15px;
+	margin-bottom: 10px;
+}
+.bbs02-detail {
+	padding-bottom: 10px;
+}
+#writer-photo {
+	border: 2px solid rgba(0, 0, 0, 0.1);
+}
+.detail-category, .detail-title, .detail-member-name, 
+.detail-added-date, .report-head-filename {
+	color: #999;
+}
+.report-head-buttons span a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}

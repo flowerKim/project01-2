@@ -15,7 +15,7 @@
   </resultMap>
     
   <select id="list" parameterType="map" resultMap="ReportBoardMap">
-   SELECT hno, mno, (select name from memb where mno=h1.mno)as name, title, web_addr, add_dt from howk h1
+   SELECT hno, mno, (select name from memb where mno=h1.mno)as name, title, add_dt from howk h1
    ORDER By hno desc
    LIMIT #{startIndex}, #{pageSize}
   </select>
@@ -26,8 +26,8 @@
   </select>
   
   <insert id="insert" parameterType="ReportBoard">
-  INSERT INTO howk(mno, title, content, web_addr, add_dt)
-		values(#{mno}, #{title}, #{content}, #{webAddress}, now())
+  INSERT INTO howk(mno, title, content, add_dt)
+		values(#{mno}, #{title}, #{content}, now())
   </insert>
    
   <delete id="delete" parameterType="int">
@@ -36,7 +36,6 @@
   
   <update id="update" parameterType="ReportBoard">
   UPDATE howk SET
- 	add_dt=now(),
     title=#{title},
     content=#{content}
   WHERE hno=#{no}   

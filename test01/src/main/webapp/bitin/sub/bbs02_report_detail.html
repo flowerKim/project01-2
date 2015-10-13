@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="css/bbs02_insert.css">
+
+<div id='report-insert'>
+<div class='bbs02-top-img'>
+  <img src='image/bbs02_01.png'>
+</div>
+  <div class='report-head report-head-border-top'>
+    <span class='report-head-title'>제목</span>
+    <span class='span-input-02'><input type='text' name='bbs02-dtitle' 
+      id='bbs02-dtitle' style="width:625px;border:0px;" readonly></span>
+  </div>
+  <div class='report-head'>
+    <span class='report-head-title report-head-content forborder'>내용</span>
+    <span class='report-content-detail'>
+      <textarea name='bbs02-dcontent' id='bbs02-dcontent' rows='20' cols='86' 
+        style="resize:none;border:0px;outline-style:none" readonly></textarea>
+    </span>
+  </div>  
+  <div class='report-head-buttons'>
+	  <span><a href='#'><span id='bbs02-editBtn'>- 수정하기</span></a>
+	  <a href='#'><button type='button' id='bbs02-updateBtn'>저장</button></a>
+	  <a href='#'><button type='button' id='bbs02-updateCancelBtn'>취소</button></a></span>
+  </div>
+      
+
+</div>
+<script>
+requirejs(['app/bbs02_report'], function(bbs02_report) {
+	bbs02_report.rinit();
+});
+</script>
